@@ -35,14 +35,14 @@
     window.matchMedia('(min-width: 901px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
   }
 
-  /* ---- gentle reveal on scroll */
-  const revealables = document.querySelectorAll('[data-reveal]');
-  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  /* ---- slow fade-in as each block scrolls into view (CSS softens it for reduced-motion users) */
+  const revealables = document.querySelectorAll('[data-reveal], [data-sweep]');
+  if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); }
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
     revealables.forEach((el) => io.observe(el));
   } else {
     revealables.forEach((el) => el.classList.add('is-in'));
