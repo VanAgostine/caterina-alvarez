@@ -1,4 +1,4 @@
-/* Caterina Alvarez — site behaviour. No dependencies. */
+/* Caterina Alvarez: site behaviour. No dependencies. */
 (() => {
   const doc = document.documentElement;
   const body = document.body;
@@ -76,7 +76,7 @@
       const v = (name) => { const el = form.elements.namedItem(name); return el && typeof el.value === 'string' ? el.value.trim() : ''; };
       const to = form.getAttribute('data-inquiry');
       const title = v('title');
-      const subject = `Editing inquiry${title ? ` — ${title}` : ''}`;
+      const subject = `Editing inquiry${title ? `: ${title}` : ''}`;
       const lines = [
         `Name: ${v('first')} ${v('last')}`.trim(),
         `Email: ${v('email')}`,
