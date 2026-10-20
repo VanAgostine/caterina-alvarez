@@ -16,7 +16,7 @@
   --sand: #e9e1d5;           /* deeper beige: pressed states */
   --select: #e2ded8;         /* faint warm grey: the chosen option, the current tab */
   --greige: #d7cec2;         /* hairlines of boxes and frames */
-  --clay: #b07d62;           /* client swatch: placeholder marks only */
+  --clay: #b07d62;           /* client swatch: kept for reference, not used (orange on black read as a stock theme) */
   --umber: #54453a;          /* client swatch: labels, captions, small marks */
 
   /* paper: a faint grain laid over the whole page, like uncoated stock */
@@ -488,7 +488,7 @@ em, i { font-style: italic; }
 }
 .menu.is-open { opacity: 1; visibility: visible; transition: opacity .6s var(--ease); }
 .menu__inner { display: flex; flex-direction: column; justify-content: space-between; gap: 48px; padding-block: 24px 40px; overflow-y: auto; }
-/* set like the contents page of a book: titles, dotted leaders, part numerals */
+/* set like the contents page of a book: titles, a fine leader line, part numerals */
 .menu__contents { margin-bottom: 14px; }
 .menu__list { border-top: 1px solid var(--line); }
 .menu__list > li { border-bottom: 1px solid var(--line); }
@@ -507,7 +507,7 @@ em, i { font-style: italic; }
   order: 1;
   flex: 1;
   min-width: 24px;
-  border-bottom: 1px dotted var(--line-mid);
+  border-bottom: 1px solid var(--line);
   transform: translateY(-.28em);
 }
 .menu__list > li > a span { order: 2; flex: none; min-width: 2.2em; text-align: right; font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--umber); }
@@ -917,31 +917,8 @@ em, i { font-style: italic; }
 .notes--four .note__title { margin-top: auto; }
 @media (max-width: 900px) { .notes { grid-template-columns: 1fr; } .notes--four .note { min-height: 0; } }
 
-/* a dark card, the reverse of the paper ones */
-.frame.on-dark { background: var(--ink-2); border-color: var(--ink-2); }
-.frame.on-dark::after { border-color: rgba(255, 255, 255, .14); }
-
-/* ----------------------------------------------------------------- questions: one numbered sheet, and a dark card to write */
-.qa { align-items: start; row-gap: 32px; }
-.qa__sheet { grid-column: 1 / 8; padding: clamp(10px, 1.4vw, 18px) clamp(26px, 3.4vw, 52px); }
-.qa__aside {
-  grid-column: 9 / 13;
-  position: sticky;
-  top: calc(var(--header-compact) + 32px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding: clamp(40px, 3.8vw, 56px) clamp(24px, 2.6vw, 40px);
-  text-align: center;
-}
-.mini-seal { position: relative; display: flex; align-items: center; justify-content: center; width: 116px; aspect-ratio: 1; padding: 24px; border: 1px solid rgba(255, 255, 255, .22); border-radius: 50%; margin-bottom: 6px; }
-.mini-seal::after { content: ""; position: absolute; inset: 6px; border: 1px solid rgba(255, 255, 255, .08); border-radius: 50%; }
-.mini-seal img { width: 100%; }
-.qa__email { padding-bottom: 5px; border-bottom: 1px solid rgba(255, 255, 255, .35); font-family: var(--serif); font-style: italic; font-size: clamp(18px, 1.45vw, 21px); line-height: 1.35; transition: border-color .4s ease; }
-.qa__email:hover { border-bottom-color: var(--paper); }
-.qa__email:active { color: var(--sand); }
-@media (max-width: 1000px) { .qa__sheet, .qa__aside { grid-column: 1 / -1; } .qa__aside { position: static; } }
+/* ----------------------------------------------------------------- questions: one numbered sheet */
+.qa__sheet { padding: clamp(10px, 1.4vw, 18px) clamp(26px, 3.4vw, 52px); }
 
 /* the questions as a numbered list on one sheet, ruled between */
 .faq.faq--sheet { gap: 0; counter-reset: q; }
@@ -1292,8 +1269,6 @@ em, i { font-style: italic; }
   .faq.faq--sheet summary { padding: 18px 0; }
   .faq.faq--sheet summary::before { width: 38px; font-size: 14px; }
   .faq.faq--sheet .faq__answer { padding: 0 0 22px 38px; }
-  .qa__aside { padding: 34px 22px; }
-  .mini-seal { width: 96px; padding: 20px; }
   .after-cards { margin-top: 36px; }
   .faq { gap: 10px; }
   .faq summary { gap: 16px; padding: 16px; font-size: 18px; }
@@ -1360,16 +1335,6 @@ em, i { font-style: italic; }
   .legal__meta { margin-bottom: 28px; padding-bottom: 20px; font-size: 13px; }
   .legal h2 { margin: 36px 0 12px; font-size: 22px; }
 }
-
-/* ----------------------------------------------------------------- placeholders (remove before launch) */
-.tbd {
-  background-image: linear-gradient(to right, var(--clay) 55%, transparent 0);
-  background-size: 6px 1px;
-  background-repeat: repeat-x;
-  background-position: 0 100%;
-  padding-bottom: 2px;
-}
-.tbd-block { outline: 1px dashed rgba(176, 125, 98, .7); outline-offset: 6px; }
 
 /* ----------------------------------------------------------------- motion: slow fades as you scroll */
 .js [data-reveal] {
