@@ -572,7 +572,6 @@ em, i { font-style: italic; }
 .hero__quote::before { content: "\201C"; }
 .hero__quote::after { content: "\201D"; }
 .hero__title { max-width: 27em; font-family: var(--sans); font-size: clamp(18px, 1.4vw, 20px); line-height: 1.6; color: var(--text); }
-.hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 40px; padding-top: 6px; }
 
 /* framed artwork: the client's drawing, hung like a gallery piece */
 .artwork { display: flex; flex-direction: column; gap: 22px; width: min(100%, 520px); }
@@ -885,8 +884,6 @@ em, i { font-style: italic; }
 .service__body { color: var(--mute); }
 .service__price { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-top: auto; padding-top: 22px; border-top: 1px solid var(--line); }
 .service__amount { font-family: var(--serif); font-size: clamp(21px, 1.6vw, 24px); line-height: 1.1; white-space: nowrap; }
-.fees-note { margin-top: 36px; color: var(--mute); }
-.after-cards { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 22px 40px; margin-top: clamp(48px, 5vw, 72px); }
 @media (max-width: 900px) { .services { grid-template-columns: 1fr; } }
 
 /* ----------------------------------------------------------------- begin: two ways to reach her */
@@ -1064,7 +1061,6 @@ em, i { font-style: italic; }
 .two-col { row-gap: 56px; }
 .two-col__a { grid-column: 1 / 6; display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
 .two-col__b { grid-column: 7 / 13; }
-.after-rows { margin-top: 40px; }
 @media (max-width: 900px) { .two-col__a, .two-col__b { grid-column: 1 / -1; } }
 
 /* ----------------------------------------------------------------- about */
@@ -1232,7 +1228,6 @@ em, i { font-style: italic; }
   .hero__text { gap: 20px; padding: 40px var(--gutter) 56px; }
   .hero__quote { font-size: 21px; line-height: 1.45; }
   .hero__title { font-size: 16.5px; }
-  .hero__actions { gap: 18px 28px; }
   .credits__inner { gap: 16px; padding-block: 24px; }
   .credits__group { flex-direction: column; gap: 8px; }
   /* the four journals as a neat two by two list, each with its own dot */
@@ -1278,7 +1273,6 @@ em, i { font-style: italic; }
   .faq.faq--sheet summary { padding: 18px 0; }
   .faq.faq--sheet summary::before { width: 38px; font-size: 14px; }
   .faq.faq--sheet .faq__answer { padding: 0 0 22px 38px; }
-  .after-cards { margin-top: 36px; }
   .faq { gap: 10px; }
   .faq summary { gap: 16px; padding: 16px; font-size: 18px; }
   .faq__icon { width: 30px; height: 30px; }
@@ -1292,7 +1286,6 @@ em, i { font-style: italic; }
   .row__title { font-size: 18px; }
   .two-col { row-gap: 32px; }
   .two-col__a { gap: 16px; }
-  .after-rows { margin-top: 28px; }
 
   /* about */
   .about-hero { row-gap: 40px; padding-block: 40px 56px; }
