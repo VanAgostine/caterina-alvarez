@@ -671,7 +671,9 @@ em, i { font-style: italic; }
 .door--dark:hover { background: #24201c; }
 .door--dark:hover::after { border-color: rgba(255, 255, 255, .55); }
 .door:active::after { inset: clamp(18px, 1.9vw, 28px); }
-.door .badge { position: absolute; top: clamp(44px, 5vw, 76px); left: clamp(36px, 6.4vw, 112px); }
+/* The numeral stays in the flow: its auto margin holds it at the top while the card has room,
+   and when the text wraps it is pushed down with everything else, so it never sits on the label. */
+.door .badge { align-self: flex-start; margin-top: calc(clamp(44px, 5vw, 76px) - clamp(64px, 7vw, 120px)); margin-bottom: auto; }
 .door__title { font-family: var(--serif); font-weight: 500; font-size: clamp(28px, 2.6vw, 38px); line-height: 1.15; }
 .door__title em { font-style: italic; }
 .door__text { max-width: 30em; color: var(--mute); }
@@ -685,7 +687,7 @@ em, i { font-style: italic; }
 @media (max-width: 900px) {
   .doors { grid-template-columns: 1fr; }
   .door { min-height: 0; justify-content: flex-start; padding-block: 64px 72px; }
-  .door .badge { position: static; }
+  .door .badge { margin-top: 0; }
 }
 
 /* ----------------------------------------------------------------- portraits: arch-topped frames */
