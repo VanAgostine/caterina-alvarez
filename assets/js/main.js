@@ -35,14 +35,25 @@
     window.matchMedia('(min-width: 901px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
   }
 
-  /* ---- slow fade-in as each block scrolls into view (CSS softens it for reduced-motion users) */
+  /* ---- slow fade-in as each block scrolls into view (CSS softens it for reduced-motion users).
+     Once a block has arrived it lets go of the reveal styles, so its own hover effects run smoothly. */
   const revealables = document.querySelectorAll('[data-reveal], [data-sweep]');
+  const letGo = (el) => {
+    const done = (e) => {
+      if (e.target !== el || !/^(opacity|mask-position|-webkit-mask-position)$/.test(e.propertyName)) return;
+      el.removeEventListener('transitionend', done);
+      el.removeAttribute('data-reveal');
+      el.removeAttribute('data-sweep');
+      el.classList.remove('is-in');
+    };
+    el.addEventListener('transitionend', done);
+  };
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); }
+        if (entry.isIntersecting) { letGo(entry.target); entry.target.classList.add('is-in'); io.unobserve(entry.target); }
       });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
     revealables.forEach((el) => io.observe(el));
   } else {
     revealables.forEach((el) => el.classList.add('is-in'));

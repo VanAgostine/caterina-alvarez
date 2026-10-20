@@ -43,6 +43,7 @@
   /* motion: unhurried, after Maven Travel's reveal curve */
   --ease: cubic-bezier(.25, .1, .25, 1);
   --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease-reveal: cubic-bezier(.22, .61, .36, 1);
 }
 
 @media (max-width: 900px) {
@@ -59,12 +60,11 @@ html {
   scroll-padding-top: calc(var(--header-compact) + 32px);
 }
 
-/* page to page: a soft cross-fade, with the header held still (browsers without support simply load the page) */
+/* page to page: one soft dissolve, the new page settling over the old one so nothing flashes in between
+   (browsers without support simply load the page) */
 @view-transition { navigation: auto; }
-::view-transition-old(root) { animation: page-out .35s var(--ease) both; }
-::view-transition-new(root) { animation: page-in .7s var(--ease) both; }
-::view-transition-group(site-header) { animation-duration: .5s; animation-timing-function: var(--ease); }
-@keyframes page-out { to { opacity: 0; } }
+::view-transition-old(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-new(root) { animation: page-in .6s cubic-bezier(.4, 0, .2, 1) both; mix-blend-mode: normal; }
 @keyframes page-in { from { opacity: 0; } }
 
 body {
@@ -338,7 +338,6 @@ em, i { font-style: italic; }
   position: sticky;
   top: 0;
   z-index: 70;
-  view-transition-name: site-header;
   background: rgba(252, 251, 248, .97);
   border-bottom: 1px solid transparent;
   transition: border-color .4s ease;
@@ -441,6 +440,8 @@ em, i { font-style: italic; }
   white-space: nowrap;
 }
 .wordmark__sub {
+  display: grid;
+  justify-items: center;
   font-size: 9px;
   font-weight: 500;
   letter-spacing: .34em;
@@ -449,6 +450,13 @@ em, i { font-style: italic; }
   margin-right: -.34em;
   white-space: nowrap;
 }
+
+/* pointing at the name swaps its small line for where it leads */
+.wordmark__sub > span { grid-area: 1 / 1; transition: opacity .55s var(--ease), translate .55s var(--ease); }
+.wordmark__home { opacity: 0; translate: 0 5px; color: var(--ink); }
+.wordmark:not([aria-current]):is(:hover, :focus-visible) .wordmark__line { opacity: 0; translate: 0 -5px; }
+.wordmark:not([aria-current]):is(:hover, :focus-visible) .wordmark__home { opacity: 1; translate: none; }
+.wordmark:active .wordmark__name { color: var(--umber); }
 
 .menu-toggle {
   display: none;
@@ -527,6 +535,7 @@ em, i { font-style: italic; }
   .site-header__inner { grid-template-columns: minmax(0, 1fr) auto; }
   .site-nav { display: none; }
   .wordmark { align-items: flex-start; text-align: left; gap: 7px; }
+  .wordmark__sub { justify-items: start; }
   .wordmark__name { font-size: 16px; letter-spacing: .26em; }
   .wordmark__sub { font-size: 8px; letter-spacing: .28em; }
   .menu-toggle { display: inline-flex; }
@@ -1337,14 +1346,14 @@ em, i { font-style: italic; }
 }
 
 /* ----------------------------------------------------------------- motion: slow fades as you scroll */
+/* uses translate (not transform) so it never fights a card's own hover movement */
 .js [data-reveal] {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 1.3s var(--ease), transform 1.3s var(--ease);
+  translate: 0 18px;
+  transition: opacity 1.2s var(--ease-reveal), translate 1.2s var(--ease-reveal);
   transition-delay: var(--d, 0ms);
-  will-change: opacity, transform;
 }
-.js [data-reveal].is-in { opacity: 1; transform: none; }
+.js [data-reveal].is-in { opacity: 1; translate: none; }
 
 /* the motto is unveiled with a slow, soft ink sweep */
 .js [data-sweep] {
@@ -1362,7 +1371,7 @@ em, i { font-style: italic; }
 /* reduced motion: keep a gentle fade, drop the movement */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .js [data-reveal] { transform: none; transition: opacity 1s ease; transition-delay: 0ms; }
+  .js [data-reveal] { translate: none; transition: opacity 1s ease; transition-delay: 0ms; }
   .js [data-sweep] { -webkit-mask-image: none; mask-image: none; }
   .button, .chip span, .service, .choice, .book__cover, .door::after, .pager__icon svg { transition-duration: .01ms; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
@@ -1373,5 +1382,5 @@ em, i { font-style: italic; }
   .site-header, .menu, .pager, .cta, .site-footer__bottom, .skip-link { display: none !important; }
   body { font-size: 11pt; background: #fff; }
   .on-dark { background: none; color: #000; }
-  .js [data-reveal], .js [data-sweep] { opacity: 1 !important; transform: none !important; -webkit-mask-image: none !important; mask-image: none !important; }
+  .js [data-reveal], .js [data-sweep] { opacity: 1 !important; translate: none !important; -webkit-mask-image: none !important; mask-image: none !important; }
 }
