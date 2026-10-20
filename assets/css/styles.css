@@ -17,12 +17,10 @@
   --select: #e2ded8;         /* faint warm grey: the chosen option, the current tab */
   --greige: #d7cec2;         /* hairlines of boxes and frames */
   --clay: #b07d62;           /* client swatch: placeholder marks only */
-  --umber: #54453a;          /* client swatch: labels, captions, printed ornaments */
+  --umber: #54453a;          /* client swatch: labels, captions, small marks */
 
   /* paper: a faint grain laid over the whole page, like uncoated stock */
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .32 0 0 0 0 .26 0 0 0 0 .2 0 0 0 .55 -.18'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  /* a printer's ornament: three small diamonds */
-  --ornament: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='54' height='9' viewBox='0 0 54 9'%3E%3Cg fill='none' stroke='%2354453a' stroke-width='.9'%3E%3Cpath d='M4.5 1 8 4.5 4.5 8 1 4.5z'/%3E%3Cpath d='M27 .6 30.9 4.5 27 8.4 23.1 4.5z' fill='%2354453a'/%3E%3Cpath d='M49.5 1 53 4.5 49.5 8 46 4.5z'/%3E%3C/g%3E%3C/svg%3E");
   --text: #1c1b1a;
   --mute: #5b534c;
   --line: rgba(40, 30, 22, .14);
@@ -195,9 +193,6 @@ em, i { font-style: italic; }
   line-height: 1.7;
   color: var(--text);
 }
-
-/* a printer's ornament between passages */
-.ornament { display: block; width: 54px; height: 9px; margin-inline: auto; background: var(--ornament) center / contain no-repeat; border: 0; }
 
 /* a drop capital to open a passage, as in a book */
 .dropcap::first-letter {
@@ -812,11 +807,9 @@ em, i { font-style: italic; }
 @media (max-width: 1100px) { .site-footer__top { grid-template-columns: repeat(4, minmax(0, 1fr)); } .footer-brand { grid-column: 1 / -1; } }
 
 /* ----------------------------------------------------------------- inner page opening, set like a chapter opening */
-.page-hero { padding-block: clamp(64px, 7vw, 112px) clamp(56px, 6vw, 96px); border-bottom: 1px solid var(--line); }
+.page-hero { padding-block: clamp(60px, 6.4vw, 104px) clamp(52px, 5.6vw, 88px); border-bottom: 1px solid var(--line); }
 .page-hero__inner { display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; }
 .page-hero__title { max-width: 18em; }
-.page-hero__title::after { content: ""; display: block; width: 54px; height: 9px; margin: 26px auto 0; background: var(--ornament) center / contain no-repeat; }
-.page-hero__lede { max-width: 36em; font-family: var(--serif); font-style: italic; font-size: clamp(18px, 1.45vw, 21px); line-height: 1.6; color: var(--mute); }
 
 /* the page's own name, in small italic just above its part number */
 .page-label { margin-bottom: -10px; font-family: var(--serif); font-style: italic; font-size: 17px; line-height: 1.3; color: var(--ink); }
@@ -906,6 +899,60 @@ em, i { font-style: italic; }
 .choice__text { color: var(--mute); }
 .choice > .link { margin-top: auto; }
 @media (max-width: 900px) { .choices { grid-template-columns: 1fr; } }
+
+/* ----------------------------------------------------------------- a passage of hers, set large on the dark band */
+.quote-band .cta__inner { gap: 28px; }
+.cta__quote { max-width: 31em; font-family: var(--serif); font-style: italic; font-size: clamp(22px, 2.1vw, 30px); line-height: 1.55; text-wrap: pretty; }
+.cta__quote::before { content: "\201C"; }
+.cta__quote::after { content: "\201D"; }
+.cta__by { margin-right: -.3em; font-family: var(--serif); font-size: 13px; letter-spacing: .3em; text-transform: uppercase; color: rgba(255, 255, 255, .62); }
+
+/* ----------------------------------------------------------------- note cards: numbered paper cards, one thought each */
+.notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 3vw, 40px); }
+.note { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; padding: clamp(40px, 4.4vw, 64px); }
+.note__title { font-family: var(--serif); font-weight: 500; font-size: clamp(22px, 1.8vw, 26px); line-height: 1.25; }
+.note__title em { font-style: italic; }
+.note__text { color: var(--mute); }
+.notes--four .note { min-height: clamp(220px, 18vw, 260px); }
+.notes--four .note__title { margin-top: auto; }
+@media (max-width: 900px) { .notes { grid-template-columns: 1fr; } .notes--four .note { min-height: 0; } }
+
+/* a dark card, the reverse of the paper ones */
+.frame.on-dark { background: var(--ink-2); border-color: var(--ink-2); }
+.frame.on-dark::after { border-color: rgba(255, 255, 255, .14); }
+
+/* ----------------------------------------------------------------- questions: one numbered sheet, and a dark card to write */
+.qa { align-items: start; row-gap: 32px; }
+.qa__sheet { grid-column: 1 / 8; padding: clamp(10px, 1.4vw, 18px) clamp(26px, 3.4vw, 52px); }
+.qa__aside {
+  grid-column: 9 / 13;
+  position: sticky;
+  top: calc(var(--header-compact) + 32px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: clamp(40px, 3.8vw, 56px) clamp(24px, 2.6vw, 40px);
+  text-align: center;
+}
+.mini-seal { position: relative; display: flex; align-items: center; justify-content: center; width: 116px; aspect-ratio: 1; padding: 24px; border: 1px solid rgba(255, 255, 255, .22); border-radius: 50%; margin-bottom: 6px; }
+.mini-seal::after { content: ""; position: absolute; inset: 6px; border: 1px solid rgba(255, 255, 255, .08); border-radius: 50%; }
+.mini-seal img { width: 100%; }
+.qa__email { padding-bottom: 5px; border-bottom: 1px solid rgba(255, 255, 255, .35); font-family: var(--serif); font-style: italic; font-size: clamp(18px, 1.45vw, 21px); line-height: 1.35; transition: border-color .4s ease; }
+.qa__email:hover { border-bottom-color: var(--paper); }
+.qa__email:active { color: var(--sand); }
+@media (max-width: 1000px) { .qa__sheet, .qa__aside { grid-column: 1 / -1; } .qa__aside { position: static; } }
+
+/* the questions as a numbered list on one sheet, ruled between */
+.faq.faq--sheet { gap: 0; counter-reset: q; }
+.faq.faq--sheet details { counter-increment: q; border: 0; border-bottom: 1px solid var(--line); background: transparent; }
+.faq.faq--sheet details:last-child { border-bottom: 0; }
+.faq.faq--sheet details:hover, .faq.faq--sheet details[open] { background: transparent; border-color: var(--line); }
+.faq.faq--sheet summary { justify-content: flex-start; gap: 0; padding: 26px 0; }
+.faq.faq--sheet summary::before { content: counter(q, upper-roman) "."; flex: none; width: 52px; font-style: italic; font-size: 15px; color: var(--umber); }
+.faq.faq--sheet summary .faq__icon { margin-left: auto; }
+.faq.faq--sheet details[open] summary { font-style: italic; }
+.faq.faq--sheet .faq__answer { padding: 0 48px 30px 52px; }
 
 /* ----------------------------------------------------------------- questions (FAQ) */
 .faq { display: flex; flex-direction: column; gap: 12px; }
@@ -1042,7 +1089,6 @@ em, i { font-style: italic; }
 .name-display span { display: block; }
 .name-display em { display: block; padding-left: .9em; font-style: italic; }
 .role-line { font-family: var(--serif); font-style: italic; font-size: clamp(18px, 1.4vw, 21px); color: var(--umber); }
-.rule-short { display: block; width: 54px; height: 9px; background: var(--ornament) left center / contain no-repeat; border: 0; margin: 0; }
 @media (max-width: 900px) {
   .about-hero__portrait { grid-column: 1 / -1; position: static; width: min(100%, 360px); margin-inline: auto; }
   .about-hero__text { grid-column: 1 / -1; }
@@ -1231,8 +1277,6 @@ em, i { font-style: italic; }
   /* inner pages */
   .page-hero { padding-block: 40px 36px; }
   .page-hero__inner { gap: 14px; }
-  .page-hero__title::after { margin-top: 18px; }
-  .page-hero__lede { font-size: 17px; }
   .section-head { row-gap: 16px; margin-bottom: 36px; }
   .intro { row-gap: 18px; }
   .intro__body { gap: 28px; }
@@ -1241,6 +1285,15 @@ em, i { font-style: italic; }
   .service__title { font-size: 21px; }
   .service__amount { font-size: 20px; }
   .choice__title { font-size: 19px; }
+  .note { gap: 14px; padding: 30px 22px; }
+  .note__title { font-size: 20px; }
+  .cta__quote { font-size: 20px; }
+  .qa__sheet { padding: 4px 18px; }
+  .faq.faq--sheet summary { padding: 18px 0; }
+  .faq.faq--sheet summary::before { width: 38px; font-size: 14px; }
+  .faq.faq--sheet .faq__answer { padding: 0 0 22px 38px; }
+  .qa__aside { padding: 34px 22px; }
+  .mini-seal { width: 96px; padding: 20px; }
   .after-cards { margin-top: 36px; }
   .faq { gap: 10px; }
   .faq summary { gap: 16px; padding: 16px; font-size: 18px; }
