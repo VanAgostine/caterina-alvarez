@@ -6,9 +6,9 @@
   <title>About · Caterina Alvarez</title>
   <meta name="description" content="Caterina Alvarez is a senior editor at Thirty West Publishing House, a priority editor for Flash Fiction Magazine, and a Wigleaf Top 50 author. Her story and her biography.">
   <link rel="canonical" href="https://caterinaalvarez.com/about.html">
-  <meta property="og:type" content="profile">
+  <meta property="og:type" content="website">
   <meta property="og:site_name" content="Caterina Alvarez · Grand Avenue Editing &amp; Publications">
-  <meta property="og:title" content="About Caterina Alvarez">
+  <meta property="og:title" content="About · Caterina Alvarez">
   <meta property="og:description" content="Senior editor at Thirty West Publishing House and priority editor for Flash Fiction Magazine.">
   <meta property="og:url" content="https://caterinaalvarez.com/about.html">
   <meta property="og:image" content="https://caterinaalvarez.com/assets/img/og-image.jpg">
@@ -32,8 +32,25 @@
     <div class="container site-header__inner">
       <nav class="site-nav site-nav--left" aria-label="Primary">
         <ul>
-          <li><a href="editing.html">Editing</a></li>
-          <li><a href="publications.html">Publications</a></li>
+          <li><a href="editing.html">Editing</a>
+            <div class="site-nav__sub">
+              <ul>
+                <li><a href="editing.html">Approach</a></li>
+                <li><a href="editing-services.html">Services &amp; fees</a></li>
+                <li><a href="editing-questions.html">Questions</a></li>
+                <li><a href="editing-begin.html">Begin</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="publications.html">Publications</a>
+            <div class="site-nav__sub">
+              <ul>
+                <li><a href="publications.html">The collection</a></li>
+                <li><a href="publications-short-fiction.html">Short fiction</a></li>
+                <li><a href="publications-editorial.html">Editorial work</a></li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </nav>
       <a class="wordmark" href="index.html" aria-label="Caterina Alvarez, Grand Avenue Editing and Publications, home">
@@ -57,8 +74,21 @@
       <nav aria-label="Menu">
         <ul class="menu__list">
           <li><a href="index.html"><span></span>Home</a></li>
-          <li><a href="editing.html"><span>I.</span>Editing</a></li>
-          <li><a href="publications.html"><span>II.</span>Publications</a></li>
+          <li><a href="editing.html"><span>I.</span>Editing</a>
+            <ul class="menu__sub">
+              <li><a href="editing.html">Approach</a></li>
+              <li><a href="editing-services.html">Services &amp; fees</a></li>
+              <li><a href="editing-questions.html">Questions</a></li>
+              <li><a href="editing-begin.html">Begin</a></li>
+            </ul>
+          </li>
+          <li><a href="publications.html"><span>II.</span>Publications</a>
+            <ul class="menu__sub">
+              <li><a href="publications.html">The collection</a></li>
+              <li><a href="publications-short-fiction.html">Short fiction</a></li>
+              <li><a href="publications-editorial.html">Editorial work</a></li>
+            </ul>
+          </li>
           <li><a href="about.html" aria-current="page"><span>III.</span>About</a></li>
           <li><a href="contact.html"><span>IV.</span>Contact</a></li>
         </ul>
@@ -75,7 +105,6 @@
   </div>
 
   <main id="main">
-
     <!-- Portrait & her story (her words) -->
     <section class="container grid about-hero" aria-labelledby="about-title">
       <figure class="portrait about-hero__portrait" data-reveal>
@@ -102,7 +131,7 @@
           <p>One of them, an indie press, hired me as an editor in 2022. Another, an online magazine that publishes one work of fiction a day 365 days a year, also hired me per my application.</p>
           <p>Soon, authors whom I served for these publications asked if I could help them on the side with their works-in-progress. I discovered I adore this type of work: I love stories and people and writing and working on my own time in spaces of my choice, often from far-flung places.</p>
         </div>
-        <div data-reveal style="--d: 460ms"><a class="link" href="editing.html">Editing services <span class="link__arrow" aria-hidden="true">→</span></a></div>
+        <div data-reveal style="--d: 460ms"><a class="link" href="editing-services.html">Editing services <span class="link__arrow" aria-hidden="true">→</span></a></div>
       </div>
     </section>
 
@@ -158,6 +187,29 @@
       </div>
     </section>
 
+    <nav class="pager" aria-label="Grand Avenue: previous and next">
+      <div class="container pager__inner">
+        <a class="pager__link pager__link--prev" href="publications.html">
+          <span class="pager__icon"><svg viewBox="0 0 30 12" aria-hidden="true" focusable="false"><path d="M29.5 6H1M6.5.5 1 6l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></span>
+          <span class="pager__text"><span class="pager__dir">Previous</span><span class="pager__title">Publications</span></span>
+        </a>
+        <div class="pager__where">
+          <span class="eyebrow">Grand Avenue</span>
+          <ol class="pager__dots">
+            <li><a href="index.html"><span class="visually-hidden">Home</span></a></li>
+            <li><a href="editing.html"><span class="visually-hidden">Editing</span></a></li>
+            <li><a href="publications.html"><span class="visually-hidden">Publications</span></a></li>
+            <li><a href="about.html" aria-current="page"><span class="visually-hidden">About</span></a></li>
+            <li><a href="contact.html"><span class="visually-hidden">Contact</span></a></li>
+          </ol>
+        </div>
+        <a class="pager__link pager__link--next" href="contact.html">
+          <span class="pager__text"><span class="pager__dir">Next</span><span class="pager__title">Contact</span></span>
+          <span class="pager__icon"><svg viewBox="0 0 30 12" aria-hidden="true" focusable="false"><path d="M.5 6H29M23.5.5 29 6l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></span>
+        </a>
+      </div>
+    </nav>
+
   </main>
 
   <footer class="site-footer">
@@ -168,28 +220,38 @@
           <span class="wordmark__sub">Grand Avenue Editing &amp; Publications</span>
         </a>
         <p>Developmental editing and publications. Available completely remotely.</p>
+        <a class="text-link footer-brand__email" href="mailto:caterina@grandavenueediting.com">caterina@grandavenueediting.com</a>
       </div>
       <div class="footer-col">
-        <h2 class="eyebrow">Navigate</h2>
+        <h2 class="eyebrow">Editing</h2>
         <ul>
-          <li><a href="editing.html">Editing</a></li>
-          <li><a href="publications.html">Publications</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="editing.html">Approach</a></li>
+          <li><a href="editing-services.html">Services &amp; fees</a></li>
+          <li><a href="editing-questions.html">Questions</a></li>
+          <li><a href="editing-begin.html">Begin</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h2 class="eyebrow">Write</h2>
+        <h2 class="eyebrow">Publications</h2>
         <ul>
-          <li><a href="mailto:caterina@grandavenueediting.com">caterina@grandavenueediting.com</a></li>
-          <li><a href="contact.html">Send an inquiry</a></li>
+          <li><a href="publications.html">The collection</a></li>
+          <li><a href="publications-short-fiction.html">Short fiction</a></li>
+          <li><a href="publications-editorial.html">Editorial work</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2 class="eyebrow">More</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h2 class="eyebrow">Elsewhere</h2>
         <ul>
-          <li><a href="https://www.instagram.com/caterinaAF/" rel="noopener" target="_blank">Instagram · @caterinaAF</a></li>
-          <li><a href="https://x.com/caterina445" rel="noopener" target="_blank">X · @caterina445</a></li>
+          <li><a href="https://www.instagram.com/caterinaAF/" rel="noopener" target="_blank">Instagram</a></li>
+          <li><a href="https://x.com/caterina445" rel="noopener" target="_blank">X</a></li>
         </ul>
       </div>
     </div>

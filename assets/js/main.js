@@ -48,20 +48,6 @@
     revealables.forEach((el) => el.classList.add('is-in'));
   }
 
-  /* ---- in-page section bar: highlight the section in view */
-  const subLinks = [...document.querySelectorAll('.subnav a[href^="#"]')];
-  if (subLinks.length && 'IntersectionObserver' in window) {
-    const byId = new Map(subLinks.map((a) => [a.getAttribute('href').slice(1), a]));
-    const sections = [...byId.keys()].map((id) => document.getElementById(id)).filter(Boolean);
-    const visible = new Set();
-    const spy = new IntersectionObserver((entries) => {
-      entries.forEach((e) => (e.isIntersecting ? visible.add(e.target.id) : visible.delete(e.target.id)));
-      const current = sections.find((s) => visible.has(s.id));
-      subLinks.forEach((a) => a.classList.toggle('is-active', Boolean(current && a === byId.get(current.id))));
-    }, { rootMargin: '-35% 0px -55% 0px' });
-    sections.forEach((s) => spy.observe(s));
-  }
-
   /* ---- footer year */
   document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
 
