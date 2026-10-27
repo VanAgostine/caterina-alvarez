@@ -732,7 +732,7 @@ em, i { font-style: italic; }
 }
 /* the home page's body paragraphs share one style */
 .hello__body,
-.hero__title {
+.page-hero__text {
   max-width: 31em;
   font-family: var(--serif);
   font-size: clamp(16.5px, 1.12vw, 17.5px);
@@ -875,6 +875,7 @@ em, i { font-style: italic; }
 .page-hero { padding-block: clamp(60px, 6.4vw, 104px) clamp(52px, 5.6vw, 88px); border-bottom: 1px solid var(--line); }
 .page-hero__inner { display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; }
 .page-hero__title { max-width: 18em; }
+.page-hero__text { margin-inline: auto; }
 
 /* the page's own name, in small italic just above its part number */
 .page-label { margin-bottom: -10px; font-family: var(--serif); font-style: italic; font-size: 17px; line-height: 1.3; color: var(--ink); }
