@@ -1,0 +1,7 @@
+{
+  "redirects": [
+    { "source": "/editing-services.html", "destination": "/editing.html#services", "permanent": true },
+    { "source": "/editing-questions.html", "destination": "/editing.html#questions", "permanent": true },
+    { "source": "/editing-begin.html", "destination": "/editing.html#begin", "permanent": true }
+  ]
+}
