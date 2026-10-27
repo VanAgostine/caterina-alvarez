@@ -768,6 +768,30 @@ em, i { font-style: italic; }
 .home .pager__link,
 .home .pager__dir { color: var(--text); }
 
+/* the introduction opens like the first page of a book: a drop capital, then the opening words in spaced capitals */
+.home .hello__body .dropcap::first-letter { color: var(--text); font-size: 3.7em; }
+.home .hello__body .dropcap::first-line { text-transform: none; letter-spacing: normal; font-size: 1em; }
+.home .lead-in { text-transform: uppercase; letter-spacing: .1em; font-size: .86em; }
+.home .hero__quote { text-wrap: balance; }
+
+/* the drawing is traced in once, the first time it comes into view: the ink appears where her handwriting
+   begins (about ten o'clock) and follows the pen round the circle. Left whole without scripts, for visitors
+   who ask for less motion, and in print. */
+@property --ink { syntax: "<angle>"; inherits: false; initial-value: 372deg; }
+.js .home [data-ink] img {
+  --ink: 0deg;
+  -webkit-mask-image: conic-gradient(from 290deg at 50% 50%, #000 calc(var(--ink) - 12deg), transparent var(--ink));
+  mask-image: conic-gradient(from 290deg at 50% 50%, #000 calc(var(--ink) - 12deg), transparent var(--ink));
+  transition: --ink 2.8s cubic-bezier(.5, .1, .3, 1) .35s;
+}
+.js .home [data-ink].is-inked img { --ink: 372deg; }
+@media (prefers-reduced-motion: reduce) {
+  .js .home [data-ink] img { -webkit-mask-image: none; mask-image: none; }
+}
+@media print {
+  .js .home [data-ink] img { -webkit-mask-image: none !important; mask-image: none !important; }
+}
+
 /* ----------------------------------------------------------------- portraits: arch-topped frames */
 .profile { align-items: center; row-gap: 56px; }
 .profile__portrait { grid-column: 2 / 6; }

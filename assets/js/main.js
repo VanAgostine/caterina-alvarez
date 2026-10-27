@@ -59,6 +59,21 @@
     revealables.forEach((el) => el.classList.add('is-in'));
   }
 
+  /* ---- ink: a drawing marked data-ink is traced in once, the first time it comes into view (see styles.css) */
+  const inks = document.querySelectorAll('[data-ink]');
+  if (inks.length) {
+    if ('IntersectionObserver' in window) {
+      const inkIo = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) { entry.target.classList.add('is-inked'); inkIo.unobserve(entry.target); }
+        });
+      }, { threshold: 0.3 });
+      inks.forEach((el) => inkIo.observe(el));
+    } else {
+      inks.forEach((el) => el.classList.add('is-inked'));
+    }
+  }
+
   /* ---- footer year */
   document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
 
