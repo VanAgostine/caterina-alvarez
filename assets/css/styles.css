@@ -690,6 +690,15 @@ em, i { font-style: italic; }
   .door .badge { margin-top: 0; }
 }
 
+/* ----------------------------------------------------------------- home: hello (her portrait beside her introduction) */
+.hello__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(60px, 7.2vw, 112px);
+  line-height: .95;
+  letter-spacing: -.02em;
+}
+
 /* ----------------------------------------------------------------- portraits: arch-topped frames */
 .profile { align-items: center; row-gap: 56px; }
 .profile__portrait { grid-column: 2 / 6; }

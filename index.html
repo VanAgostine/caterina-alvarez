@@ -18,7 +18,7 @@
   <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="preload" href="assets/fonts/spectral-italic-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/spectral-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/jost-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <script>document.documentElement.classList.add('js')</script>
   <link rel="stylesheet" href="assets/css/fonts.css">
@@ -106,12 +106,38 @@
   </div>
 
   <main id="main">
+    <!-- Hello: her portrait beside her introduction (her words, from her Wix home page) -->
+    <section class="section" aria-labelledby="hello-title">
+      <div class="container grid profile">
+        <figure class="portrait profile__portrait" data-reveal>
+          <div class="portrait__arch">
+            <picture>
+              <source srcset="assets/img/caterina-alvarez.webp" type="image/webp">
+              <img src="assets/img/caterina-alvarez.jpg" width="394" height="602" fetchpriority="high"
+                   alt="Caterina Alvarez seated at a wooden table, hands clasped beneath her chin, smiling.">
+            </picture>
+          </div>
+          <figcaption>
+            <span class="portrait__name">Caterina Alvarez</span>
+            <span class="portrait__role">Editor &amp; writer</span>
+          </figcaption>
+        </figure>
+        <div class="profile__text">
+          <h1 id="hello-title" class="hello__title" data-reveal style="--d: 120ms">Hello</h1>
+          <div class="prose lede" data-reveal style="--d: 240ms">
+            <p>Ms. Alvarez’s work appears in <em>The Los Angeles Review</em>, <em>The Atticus Review</em>, <em>Flash Boulevard</em> and other journals. Her story “Short Division” won a spot on the Wigleaf Top 50 in 2023. She is a priority editor with <em>Flash Fiction Magazine</em> and senior editor at Thirty West Publishing House. A longtime member of The Lighthouse Writers Workshop, she received her masters at USC in 2000.</p>
+            <p>With Grand Avenue Editing and Publication, she seeks to reach a broader audience for her publications and to provide the deep and thorough feedback she provides to clients as an editor at both <em>Flash Fiction Magazine</em> and Thirty West Publishing House. Focusing on both the strengths and weaknesses of your work, Caterina finds ways to marry your intention for your work with a technical foundation that will free your stories to be fully&nbsp;realized.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- The drawing, hung like a gallery piece, beside her motto -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero__art">
         <figure class="artwork" data-reveal>
           <div class="artwork__frame">
-            <img src="assets/img/drawing-ink.png" width="1169" height="1206" fetchpriority="high"
+            <img src="assets/img/drawing-ink.png" width="1169" height="1206" loading="lazy"
                  alt="Caterina Alvarez’s ink drawing: the handwritten words “What I mean is this:…” curve above a ring of looping lines that spiral inward toward an open center.">
           </div>
           <figcaption class="artwork__label">
@@ -125,7 +151,7 @@
         <span class="eyebrow" data-reveal style="--d: 100ms">Developmental Editor · Writer</span>
         <blockquote class="hero__quote" data-sweep style="--d: 300ms">Your options are, of course, limitless, but my gut tells me the heart lies right here. This is the axis upon which your story&nbsp;spins.</blockquote>
         <p data-reveal style="--d: 900ms"><span class="eyebrow">Caterina Alvarez</span></p>
-        <h1 id="hero-title" class="hero__title" data-reveal style="--d: 1100ms">Developmental editing for writers and their stories, and a small, growing collection of publications of my own.</h1>
+        <p id="hero-title" class="hero__title" data-reveal style="--d: 1100ms">Developmental editing for writers and their stories, and a small, growing collection of publications of my own.</p>
       </div>
     </section>
 
