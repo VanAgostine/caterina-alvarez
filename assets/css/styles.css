@@ -747,6 +747,23 @@ em, i { font-style: italic; }
   .hello__text { grid-column: 1 / -1; }
 }
 
+/* ----------------------------------------------------------------- home as one room
+   Between the header and the footer the home page is one ground, her wall colour. Both pictures are framed in
+   the header's warm white, the drawing without its black frame or shadow, and all the words share one ink. */
+.home { background: var(--wall); }
+.home .hero,
+.home .pager { background: none; }
+.home .window,
+.home .window__pane { background: var(--paper); }
+.home .artwork__frame { background: var(--paper); border: 0; box-shadow: none; }
+.home .artwork__frame::after { display: none; }
+.home .hello__title,
+.home .hello__body,
+.home .eyebrow,
+.home .hero__quote,
+.home .pager__link,
+.home .pager__dir { color: var(--text); }
+
 /* ----------------------------------------------------------------- portraits: arch-topped frames */
 .profile { align-items: center; row-gap: 56px; }
 .profile__portrait { grid-column: 2 / 6; }
