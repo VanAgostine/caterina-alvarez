@@ -842,7 +842,7 @@ em, i { font-style: italic; }
 .site-footer { background: var(--stone); border-top: 1px solid var(--line); }
 .site-footer__top {
   display: grid;
-  grid-template-columns: 1.5fr repeat(4, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
   gap: 48px var(--gap);
   padding-block: clamp(72px, 8vw, 116px) clamp(56px, 6vw, 80px);
 }
@@ -854,8 +854,6 @@ em, i { font-style: italic; }
 .footer-col a { transition: color .3s ease; }
 .footer-col a:hover { color: var(--umber); }
 .footer-col a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .3em; }
-/* the colophon, as at the back of a book */
-.colophon { font-family: var(--serif); font-style: italic; font-size: 14px; letter-spacing: 0; }
 .footer-brand__email { font-size: 15px; }
 .site-footer__bottom {
   display: flex;
@@ -871,7 +869,7 @@ em, i { font-style: italic; }
 .legal-links { display: flex; flex-wrap: wrap; gap: 6px 26px; }
 .legal-links a { transition: color .3s ease; }
 .legal-links a:hover, .legal-links a[aria-current="page"] { color: var(--ink); text-decoration: underline; text-underline-offset: .3em; text-decoration-thickness: 1px; }
-@media (max-width: 1100px) { .site-footer__top { grid-template-columns: repeat(4, minmax(0, 1fr)); } .footer-brand { grid-column: 1 / -1; } }
+@media (max-width: 1100px) { .site-footer__top { grid-template-columns: repeat(2, minmax(0, 1fr)); } .footer-brand { grid-column: 1 / -1; } }
 
 /* ----------------------------------------------------------------- inner page opening, set like a chapter opening */
 .page-hero { padding-block: clamp(60px, 6.4vw, 104px) clamp(52px, 5.6vw, 88px); border-bottom: 1px solid var(--line); }
