@@ -698,21 +698,15 @@ em, i { font-style: italic; }
   padding-block: clamp(56px, 7vw, 120px);
 }
 .hello__inner { align-items: center; row-gap: 44px; }
-/* the portrait is set into the page like an arched window in a wall: the page is the wall, the band
-   around the photo is the inside of the opening (her wall colour, shaded by her umber where the wall's
-   edge falls into shadow at the top, lighter at the sill), and the photo is the view beyond */
+/* the portrait is set into the page like an arched window: a slim band of her wall colour, flat and even,
+   around the photo; no shading, so it stays crisp */
 .hello__portrait { grid-column: 2 / 6; justify-self: end; width: min(100%, 440px); }
 .window {
-  padding: clamp(9px, .9vw, 13px);
+  padding: clamp(6px, .55vw, 8px);
   border-radius: 999px 999px 0 0;
-  background: linear-gradient(180deg, var(--sand) 0%, var(--wall) 45%);
-  box-shadow:
-    inset 0 14px 18px -14px rgba(84, 69, 58, .42),
-    inset 0 -2px 0 rgba(255, 255, 255, .75),
-    inset 0 0 0 1px rgba(84, 69, 58, .12);
+  background: var(--wall);
 }
 .window__pane {
-  position: relative;
   overflow: hidden;
   aspect-ratio: 394 / 560;
   border-radius: 999px 999px 0 0;
@@ -724,15 +718,7 @@ em, i { font-style: italic; }
   object-fit: cover;
   object-position: center top;
 }
-.window__pane::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: inset 0 18px 26px -18px rgba(54, 40, 30, .6), inset 0 0 0 1px rgba(84, 69, 58, .22);
-  pointer-events: none;
-}
-.hello__text { grid-column: 7 / 12; display: flex; flex-direction: column; gap: clamp(22px, 2.4vw, 32px); }
+.hello__text { grid-column: 7 / 12; display: flex; flex-direction: column; gap: clamp(28px, 3vw, 44px); }
 .hello__title {
   font-family: var(--serif);
   font-weight: 400;
@@ -742,14 +728,14 @@ em, i { font-style: italic; }
   color: var(--ink);
 }
 .hello__body {
-  max-width: 34em;
+  max-width: 31em;
   font-family: var(--serif);
-  font-size: clamp(17px, 1.2vw, 18.5px);
-  line-height: 1.75;
-  color: var(--text);
+  font-size: clamp(16.5px, 1.12vw, 17.5px);
+  line-height: 1.85;
+  color: var(--mute);
   text-wrap: pretty;
 }
-.hello__body p + p { margin-top: 1.1em; }
+.hello__body p + p { margin-top: 1.2em; }
 @media (max-width: 900px) {
   .hello { min-height: 0; }
   .hello__portrait { grid-column: 1 / -1; justify-self: center; width: min(100%, 340px); }
