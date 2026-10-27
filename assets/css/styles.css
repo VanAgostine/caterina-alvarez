@@ -564,8 +564,8 @@ em, i { font-style: italic; }
 .hero__quote {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(23px, 2.1vw, 31px);
-  line-height: 1.45;
+  font-size: clamp(19px, 1.6vw, 23px);
+  line-height: 1.6;
   text-wrap: pretty;
   text-indent: -.4em; /* the opening quote hangs in the margin, as typesetters set it */
   padding-left: .4em; /* room for the hanging quote inside the box, so the reveal sweep shows it too */
@@ -967,7 +967,7 @@ em, i { font-style: italic; }
 
 /* ----------------------------------------------------------------- a passage of hers, set large on the dark band */
 .quote-band .cta__inner { gap: 28px; }
-.cta__quote { max-width: 30em; font-family: var(--serif); font-style: italic; font-size: clamp(19px, 1.6vw, 23px); line-height: 1.65; text-wrap: pretty; }
+.cta__quote { max-width: 31em; font-family: var(--serif); font-style: italic; font-size: clamp(22px, 2.1vw, 30px); line-height: 1.55; text-wrap: pretty; }
 .cta__quote::before { content: "\201C"; }
 .cta__quote::after { content: "\201D"; }
 .cta__by { margin-right: -.3em; font-family: var(--serif); font-size: 13px; letter-spacing: .3em; text-transform: uppercase; color: rgba(255, 255, 255, .62); }
@@ -1284,7 +1284,7 @@ em, i { font-style: italic; }
   .artwork__frame { border-width: 5px; }
   .artwork__frame::after { inset: 10px; }
   .hero__text { gap: 20px; }
-  .hero__quote { font-size: 21px; line-height: 1.45; }
+  .hero__quote { font-size: 18px; line-height: 1.6; }
   .credits__inner { gap: 16px; padding-block: 24px; }
   .credits__group { flex-direction: column; gap: 8px; }
   /* the four journals as a neat two by two list, each with its own dot */
@@ -1325,7 +1325,7 @@ em, i { font-style: italic; }
   .choice__title { font-size: 19px; }
   .note { gap: 14px; padding: 30px 22px; }
   .note__title { font-size: 20px; }
-  .cta__quote { font-size: 18px; }
+  .cta__quote { font-size: 20px; }
   .qa__sheet { padding: 4px 18px; }
   .faq.faq--sheet summary { padding: 18px 0; }
   .faq.faq--sheet summary::before { width: 38px; font-size: 14px; }
