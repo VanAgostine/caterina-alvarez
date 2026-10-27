@@ -544,21 +544,23 @@ em, i { font-style: italic; }
 /* ----------------------------------------------------------------- home: hero */
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
-  column-gap: clamp(40px, 6vw, 112px);
   min-height: calc(100svh - var(--header-h));
-  padding: clamp(56px, 7vw, 120px) var(--gutter);
+  padding-block: clamp(56px, 7vw, 120px);
   background: var(--wall);
 }
-.hero__art { display: flex; align-items: center; justify-content: flex-end; }
+/* on the same grid as the hello section above, mirrored: the words where the portrait is, the drawing
+   where the introduction is */
+.hero__inner { align-items: center; row-gap: 48px; }
 .hero__text {
+  grid-column: 2 / 7;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: clamp(26px, 2.8vw, 38px);
-  max-width: 34em;
 }
+.hero__art { grid-column: 8 / 12; grid-row: 1; display: flex; align-items: center; justify-content: flex-end; }
 .hero__quote {
   font-family: var(--serif);
   font-style: italic;
@@ -571,7 +573,6 @@ em, i { font-style: italic; }
 }
 .hero__quote::before { content: "\201C"; }
 .hero__quote::after { content: "\201D"; }
-.hero__title { max-width: 27em; font-family: var(--sans); font-size: clamp(18px, 1.4vw, 20px); line-height: 1.6; color: var(--text); }
 
 /* framed artwork: the client's drawing, hung like a gallery piece */
 .artwork { display: flex; flex-direction: column; gap: 22px; width: min(100%, 520px); }
@@ -589,9 +590,11 @@ em, i { font-style: italic; }
 .artwork__meta { font-size: 10.5px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--umber); }
 
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; min-height: 0; row-gap: 48px; padding-block: 56px 72px; }
+  .hero { min-height: 0; padding-block: 56px 72px; }
+  .hero__art, .hero__text { grid-column: 1 / -1; grid-row: auto; }
   .hero__art { justify-content: center; }
   .artwork { width: min(100%, 380px); }
+}
 }
 
 /* ----------------------------------------------------------------- credits band */
@@ -727,7 +730,9 @@ em, i { font-style: italic; }
   letter-spacing: -.02em;
   color: var(--ink);
 }
-.hello__body {
+/* the home page's body paragraphs share one style */
+.hello__body,
+.hero__title {
   max-width: 31em;
   font-family: var(--serif);
   font-size: clamp(16.5px, 1.12vw, 17.5px);
@@ -1275,13 +1280,11 @@ em, i { font-style: italic; }
   .menu-toggle__icon { width: 22px; }
 
   /* home */
-  .hero__art { padding-block: 36px 30px; }
   .artwork { width: min(100%, 290px); gap: 16px; }
   .artwork__frame { border-width: 5px; }
   .artwork__frame::after { inset: 10px; }
-  .hero__text { gap: 20px; padding: 40px var(--gutter) 56px; }
+  .hero__text { gap: 20px; }
   .hero__quote { font-size: 21px; line-height: 1.45; }
-  .hero__title { font-size: 16.5px; }
   .credits__inner { gap: 16px; padding-block: 24px; }
   .credits__group { flex-direction: column; gap: 8px; }
   /* the four journals as a neat two by two list, each with its own dot */
