@@ -31,12 +31,21 @@
   /* type */
   --serif: "Spectral", Georgia, "Times New Roman", serif;
   --sans: "Jost", "Futura", "Century Gothic", "Helvetica Neue", Arial, sans-serif;
+  /* one type scale for the whole site: every page's main title, every section title, every introductory line,
+     all running text and all small notes use these sizes (phones step each one down, below) */
+  --t-title: clamp(42px, 4.4vw, 64px);
+  --t-heading: clamp(26px, 2.1vw, 30px);
+  --t-lead: 20px;
+  --t-body: 18px;
+  --t-body-lh: 1.65;
+  --t-small: 14px;
 
   /* space */
   --maxw: 1320px;
   --gutter: clamp(20px, 4.4vw, 72px);
   --gap: clamp(16px, 2.2vw, 32px);
-  --section: clamp(88px, 9vw, 140px);
+  --section: clamp(56px, 5.6vw, 80px);  /* one interval between sections, everywhere */
+  --space-open: clamp(48px, 5vw, 72px); /* from the header to a page's opening */
   --header-h: 104px;
   --header-compact: 76px;
 
@@ -157,18 +166,18 @@ em, i { font-style: italic; }
 /* titles are set small, like a well made book: a little larger than the text, in a firmer weight */
 .display {
   font-family: var(--serif);
-  font-weight: 500;
-  font-size: clamp(30px, 2.9vw, 42px);
-  line-height: 1.15;
-  letter-spacing: -.005em;
+  font-weight: 400;
+  font-size: var(--t-title);
+  line-height: 1.05;
+  letter-spacing: -.015em;
   text-wrap: balance;
 }
 .display em, .h2 em, .h3 em { font-style: italic; }
 
 .h2 {
   font-family: var(--serif);
-  font-weight: 500;
-  font-size: clamp(25px, 2.2vw, 32px);
+  font-weight: 400;
+  font-size: var(--t-heading);
   line-height: 1.2;
   letter-spacing: -.005em;
   text-wrap: balance;
@@ -188,9 +197,9 @@ em, i { font-style: italic; }
 }
 
 .lede {
-  font-family: var(--sans);
-  font-size: clamp(17.5px, 1.3vw, 19px);
-  line-height: 1.7;
+  font-family: var(--serif);
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
   color: var(--text);
 }
 
@@ -564,7 +573,7 @@ em, i { font-style: italic; }
 .hero__quote {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(19px, 1.6vw, 23px);
+  font-size: var(--t-lead);
   line-height: 1.6;
   text-wrap: pretty;
   text-indent: -.4em; /* the opening quote hangs in the margin, as typesetters set it */
@@ -725,7 +734,7 @@ em, i { font-style: italic; }
 .hello__title {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(48px, 5.4vw, 84px);
+  font-size: var(--t-title);
   line-height: .95;
   letter-spacing: -.02em;
   color: var(--ink);
@@ -735,8 +744,8 @@ em, i { font-style: italic; }
 .page-hero__text {
   max-width: 31em;
   font-family: var(--serif);
-  font-size: clamp(16.5px, 1.12vw, 17.5px);
-  line-height: 1.85;
+  font-size: var(--t-body);
+  line-height: 1.85; /* airier than the rest by design: the drop capital M is set to two of these lines */
   color: var(--mute);
   text-wrap: pretty;
 }
@@ -753,8 +762,8 @@ em, i { font-style: italic; }
 .home { background: var(--paper); }
 .home .hero { background: none; }
 /* the greeting and the motto read as one section: no full-screen heights, a modest gap between them */
-.home .hello { min-height: 0; padding-bottom: clamp(36px, 4vw, 64px); }
-.home .hero { min-height: 0; padding-top: clamp(36px, 4vw, 64px); }
+.home .hello { min-height: 0; padding-top: var(--space-open); padding-bottom: clamp(36px, 4vw, 64px); }
+.home .hero { min-height: 0; padding-top: clamp(36px, 4vw, 64px); padding-bottom: var(--section); }
 .home .window,
 .home .window__pane { background: var(--wall); }
 .home .artwork { width: min(100%, 440px); }
@@ -763,7 +772,6 @@ em, i { font-style: italic; }
 .home .artwork__frame::after { display: none; }
 .home .hello__title,
 .home .hello__body,
-.home .eyebrow,
 .home .hero__quote,
 .home .pager__link,
 .home .pager__dir { color: var(--text); }
@@ -845,7 +853,7 @@ em, i { font-style: italic; }
 /* two note cards, set square so the full testimonials read evenly */
 .testimonial { display: flex; flex-direction: column; gap: 28px; padding: clamp(40px, 4.4vw, 64px); }
 .testimonial__mark { font-family: var(--serif); font-size: 64px; line-height: .5; color: var(--greige); height: 26px; }
-.testimonial blockquote { font-family: var(--serif); font-style: italic; font-size: clamp(18px, 1.35vw, 20px); line-height: 1.6; }
+.testimonial blockquote { font-family: var(--serif); font-style: italic; font-size: var(--t-body); line-height: var(--t-body-lh); }
 .testimonial blockquote p + p { margin-top: .9em; }
 .testimonial figcaption { display: flex; flex-direction: column; gap: 4px; padding-top: 22px; border-top: 1px solid var(--line); }
 .testimonial__name { font-size: 11.5px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; }
@@ -897,7 +905,7 @@ em, i { font-style: italic; }
 @media (max-width: 1100px) { .site-footer__top { grid-template-columns: repeat(2, minmax(0, 1fr)); } .footer-brand { grid-column: 1 / -1; } }
 
 /* ----------------------------------------------------------------- inner page opening, set like a chapter opening */
-.page-hero { padding-block: clamp(60px, 6.4vw, 104px) clamp(52px, 5.6vw, 88px); border-bottom: 1px solid var(--line); }
+.page-hero { padding-block: var(--space-open); border-bottom: 1px solid var(--line); }
 .page-hero__inner { display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; }
 .page-hero__title { max-width: 18em; }
 .page-hero__text { margin-inline: auto; }
@@ -954,13 +962,12 @@ em, i { font-style: italic; }
    No rules between the parts. Every part shares one measure (the same two edges, the same centre) and one
    interval of space (80px; 52px on phones), so the page reads in a single, even rhythm: the arch, her words,
    the questions. All the words share one ink, like the home page. */
-.editing { --ed-space: 80px; }
-.editing .eyebrow { color: var(--text); }
+.editing { --ed-space: var(--section); }
 .ed-frame { max-width: calc(1040px + var(--gutter) * 2); }
 
 /* the opening: the service under its name in an arch of her wall colour, like the portrait's window on the
    home page, with a hairline arch drawn just inside its edge */
-.niche-wrap { padding-top: clamp(48px, 5.6vw, 80px); }
+.niche-wrap { padding-top: var(--space-open); }
 .niche {
   position: relative;
   display: flex;
@@ -985,7 +992,7 @@ em, i { font-style: italic; }
   margin-top: clamp(16px, 1.6vw, 22px);
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(40px, 4.3vw, 62px);
+  font-size: var(--t-title);
   line-height: 1;
   letter-spacing: -.018em;
   color: var(--text);
@@ -994,7 +1001,7 @@ em, i { font-style: italic; }
 .niche__price {
   margin-top: clamp(30px, 3vw, 42px);
   font-family: var(--serif);
-  font-size: clamp(19px, 1.5vw, 22px);
+  font-size: var(--t-lead);
   line-height: 1.4;
   white-space: nowrap;
 }
@@ -1005,7 +1012,7 @@ em, i { font-style: italic; }
   gap: 6px;
   margin-top: clamp(16px, 1.6vw, 22px);
   font-family: var(--serif);
-  font-size: clamp(16px, 1.1vw, 17px);
+  font-size: var(--t-body);
   line-height: 1.7;
 }
 
@@ -1026,8 +1033,8 @@ em, i { font-style: italic; }
 .spread__text {
   margin-bottom: -.53em; /* the last line's baseline, not its leading, meets the picture's foot */
   font-family: var(--serif);
-  font-size: 18px;
-  line-height: 1.65;
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
   color: var(--text);
   text-wrap: pretty;
 }
@@ -1066,15 +1073,10 @@ em, i { font-style: italic; }
   .spread__text { margin-bottom: 0; }
 }
 @media (max-width: 600px) {
-  .editing { --ed-space: 52px; }
-  .niche-wrap { padding-top: 32px; }
   .niche { padding: 88px 22px 44px; }
   .niche::after { inset: 8px; }
-  .niche__title { font-size: 38px; }
-  .niche__price { margin-top: 26px; font-size: 18px; }
-  .niche__list { font-size: 15.5px; }
+  .niche__price { margin-top: 26px; }
   .spread__image { padding: 6px; }
-  .spread__text { font-size: 17px; }
   .mat { gap: 24px; padding: 36px 10px 10px; }
 }
 
@@ -1090,7 +1092,7 @@ em, i { font-style: italic; }
   --p-brown: var(--umber);
   --p-ivory: var(--wall);
   --p-accent: var(--clay);
-  --p-space: 64px;
+  --p-space: var(--section);
   --p-gap: 24px;
   --p-cols: minmax(0, 1fr) 16rem 6.5rem;
   color: var(--p-ink);
@@ -1107,14 +1109,14 @@ em, i { font-style: italic; }
   grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
   column-gap: 40px;
   align-items: center;
-  padding-block: 64px 56px;
+  padding-block: var(--space-open) 48px;
   border-bottom: 1px solid var(--p-ink);
 }
 .pub-hero__title {
   margin-top: 18px;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(46px, 5.2vw, 72px);
+  font-size: var(--t-title);
   line-height: 1;
   letter-spacing: -.022em;
   color: var(--p-ink);
@@ -1124,14 +1126,15 @@ em, i { font-style: italic; }
   margin-top: 22px;
   font-family: var(--serif);
   font-style: italic;
-  font-size: 21px;
+  font-size: var(--t-lead);
   line-height: 1.55;
   color: var(--p-brown);
   text-wrap: pretty;
 }
 .pub-hero__quote p::before { content: "\201C"; }
 .pub-hero__quote p::after { content: "\201D"; }
-.pub-hero__art { justify-self: end; width: 176px; margin-right: 8px; }
+/* the engraving for Wayne C. Booth's Rhetoric of Fiction, in the same slim band of her wall colour as the Editing photo */
+.pub-hero__art { justify-self: end; width: clamp(200px, 20vw, 270px); padding: clamp(6px, .55vw, 8px); background: var(--p-ivory); }
 .pub-hero__art img { width: 100%; height: auto; }
 
 /* sections share one interval; labels sit a short step above what they label */
@@ -1140,7 +1143,7 @@ em, i { font-style: italic; }
 .pub-label { margin-bottom: 22px; }
 
 /* the small date style, wherever a date appears */
-.pub-date { font-family: var(--sans); font-size: 13.5px; line-height: 1.5; letter-spacing: .02em; color: var(--p-brown); }
+.pub-date { font-family: var(--sans); font-size: var(--t-small); line-height: 1.5; letter-spacing: .02em; color: var(--p-brown); }
 
 /* the Read link: small capitals with a restrained arrow that steps forward on hover; its underline warms to terracotta */
 .pub-read {
@@ -1203,8 +1206,6 @@ em, i { font-style: italic; }
   background: var(--p-ivory);
   color: var(--p-ink);
 }
-/* the page's own near-white, held by a hairline */
-.pub-panel--paper { background: var(--paper); box-shadow: inset 0 0 0 1px var(--line); }
 /* "Short Division": the one ink panel, its words in her ivory */
 .pub-panel--ink { background: var(--p-ink); color: var(--p-ivory); }
 .pub-panel--ink .pub-panel__honour,
@@ -1215,22 +1216,20 @@ em, i { font-style: italic; }
 
 .pub-panel__honour { grid-row: 1; display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
 .pub-panel__honour::before { content: ""; flex: none; width: 24px; height: 1px; background: var(--p-accent); }
-.pub-panel__journal { grid-row: 2; font-family: var(--serif); font-size: 17px; line-height: 1.45; }
+.pub-panel__journal { grid-row: 2; font-family: var(--serif); font-size: var(--t-body); line-height: 1.45; }
 .pub-panel .pub-date { grid-row: 3; margin-top: 2px; }
 .pub-panel__body { grid-row: 4; align-self: end; padding-top: 32px; }
 .pub-panel__title {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: 38px;
-  line-height: 1.06;
+  font-size: var(--t-heading);
+  line-height: 1.12;
   letter-spacing: -.015em;
   text-wrap: balance;
 }
-.pub-panel__title--long { font-size: 32px; line-height: 1.1; } /* a long title, a size down so it still reads as one shape */
-.pub-panel__text { margin-top: 14px; font-family: var(--serif); font-size: 16.5px; line-height: 1.55; }
+.pub-panel__title--long { font-size: calc(var(--t-heading) * .87); } /* a long title, a size down so it still reads as one shape */
+.pub-panel__text { margin-top: 14px; font-family: var(--serif); font-size: var(--t-body); line-height: 1.55; }
 .pub-panel__read { grid-row: 5; margin-top: 22px; }
-/* her handwritten circle, small in the corner like a signature (decorative) */
-.pub-panel__mark { position: absolute; right: 22px; bottom: 20px; width: 64px; height: auto; pointer-events: none; }
 
 /* the navigation line: one continuous hairline with an equal part for each work; the part for the work in view is her
    deep brown. Each part is a generous invisible button named after its work */
@@ -1267,7 +1266,7 @@ em, i { font-style: italic; }
   padding-block: 18px;
   border-top: 1px solid var(--line);
 }
-.pub-row__title { font-family: var(--serif); font-weight: 400; font-size: 20px; line-height: 1.35; color: var(--p-ink); }
+.pub-row__title { font-family: var(--serif); font-weight: 400; font-size: var(--t-lead); line-height: 1.35; color: var(--p-ink); }
 .pub-row__role { font-family: var(--sans); font-size: 14px; line-height: 1.5; color: var(--p-brown); }
 
 @media (max-width: 1000px) {
@@ -1275,19 +1274,15 @@ em, i { font-style: italic; }
 }
 /* phones: the circle follows the opening text; panels show one and a little of the next; swipe to move */
 @media (max-width: 760px) {
-  .publications { --p-space: 52px; --p-gap: 20px; }
-  .pub-hero { grid-template-columns: minmax(0, 1fr); padding-block: 44px 40px; }
-  .pub-hero__title { font-size: 44px; margin-top: 14px; }
-  .pub-hero__quote { margin-top: 18px; font-size: 19px; }
-  .pub-hero__art { justify-self: start; width: 120px; margin: 30px 0 0; }
+  .publications { --p-gap: 20px; }
+  .pub-hero { grid-template-columns: minmax(0, 1fr); padding-bottom: 40px; }
+  .pub-hero__title { margin-top: 14px; }
+  .pub-hero__quote { margin-top: 18px; }
+  .pub-hero__art { justify-self: start; width: min(100%, 240px); margin: 30px 0 0; }
   .pub-gallery { padding-top: 40px; }
   .pub-gallery__list { grid-auto-columns: min(78vw, 290px); min-height: 340px; }
   .pub-panel { padding: 24px; }
-  .pub-panel__title { font-size: 32px; }
-  .pub-panel__title--long { font-size: 27px; }
-  .pub-panel__mark { width: 54px; right: 18px; bottom: 16px; }
   .pub-row { grid-template-columns: minmax(0, 1fr); row-gap: 2px; padding-block: 16px; }
-  .pub-row__title { font-size: 19px; }
   .pub-section--last { padding-bottom: 56px; }
 }
 
@@ -1340,7 +1335,7 @@ em, i { font-style: italic; }
   cursor: pointer;
   list-style: none;
   font-family: var(--serif);
-  font-size: clamp(19px, 1.5vw, 21px);
+  font-size: var(--t-lead);
   line-height: 1.4;
 }
 .faq summary::-webkit-details-marker { display: none; }
@@ -1361,7 +1356,7 @@ em, i { font-style: italic; }
 .faq__icon::after { transform: rotate(90deg); }
 .faq details[open] .faq__icon { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 .faq details[open] .faq__icon::after { transform: rotate(0deg); opacity: 0; }
-.faq__answer { max-width: 64ch; padding: 0 clamp(20px, 2.6vw, 36px) 30px; color: var(--mute); }
+.faq__answer { max-width: 64ch; padding: 0 clamp(20px, 2.6vw, 36px) 30px; font-family: var(--serif); font-size: var(--t-body); line-height: var(--t-body-lh); color: var(--mute); }
 .faq__answer p + p { margin-top: 1em; }
 
 /* ----------------------------------------------------------------- publications */
@@ -1448,26 +1443,18 @@ em, i { font-style: italic; }
 @media (max-width: 900px) { .two-col__a, .two-col__b { grid-column: 1 / -1; } }
 
 /* ----------------------------------------------------------------- about */
-.about-hero { padding-block: clamp(64px, 8vw, 136px); row-gap: 64px; align-items: start; }
+.about-hero { padding-block: var(--space-open) var(--section); row-gap: 64px; align-items: start; }
 .about-hero__portrait { grid-column: 1 / 6; position: sticky; top: calc(var(--header-compact) + 40px); }
 .about-hero__text { grid-column: 7 / 13; display: flex; flex-direction: column; gap: 34px; }
-/* her experience in a row of its own under her story: beside it, under her portrait and framed the same way
-   (a band of her wall colour inside a hairline), the engraving for Wayne C. Booth's Rhetoric of Fiction.
-   The small label's capitals start level with the top of the picture */
-.about-hero__booth { grid-column: 1 / 6; padding: clamp(12px, 1.4vw, 18px); border: 1px solid var(--greige); background: var(--wall); }
-.about-hero__booth img { width: 100%; }
-.about-hero__experience { grid-column: 7 / 13; }
-.experience { display: flex; flex-direction: column; gap: 16px; }
-.experience .eyebrow { margin-top: -.41em; }
-.name-display { font-family: var(--serif); font-weight: 500; font-size: clamp(34px, 3.4vw, 48px); line-height: 1.1; }
+/* her experience, under her story: a fine rule and a small label, then the text */
+.experience { display: flex; flex-direction: column; gap: 16px; padding-top: 30px; border-top: 1px solid var(--line); }
+.name-display { font-family: var(--serif); font-weight: 400; font-size: var(--t-title); line-height: 1.05; letter-spacing: -.015em; }
 .name-display span { display: block; }
 .name-display em { display: block; padding-left: .9em; font-style: italic; }
-.role-line { font-family: var(--serif); font-style: italic; font-size: clamp(18px, 1.4vw, 21px); color: var(--umber); }
+.role-line { font-family: var(--serif); font-style: italic; font-size: var(--t-lead); color: var(--umber); }
 @media (max-width: 900px) {
-  .about-hero__portrait,
-  .about-hero__booth { grid-column: 1 / -1; position: static; width: min(100%, 360px); margin-inline: auto; }
-  .about-hero__text,
-  .about-hero__experience { grid-column: 1 / -1; }
+  .about-hero__portrait { grid-column: 1 / -1; position: static; width: min(100%, 360px); margin-inline: auto; }
+  .about-hero__text { grid-column: 1 / -1; }
 }
 
 .bio-plate .plate__label { color: rgba(255, 255, 255, .62); }
@@ -1577,16 +1564,17 @@ em, i { font-style: italic; }
 .form__status[hidden] { display: none; }
 
 .aside-block { display: flex; flex-direction: column; gap: 12px; padding: 30px 32px; }
-.aside-block__big { font-family: var(--serif); font-size: clamp(20px, 1.7vw, 24px); line-height: 1.35; overflow-wrap: break-word; }
+.aside-block__big { font-family: var(--serif); font-size: var(--t-lead); line-height: 1.35; overflow-wrap: break-word; }
 .aside-block__big em { font-style: italic; }
 
 /* ----------------------------------------------------------------- legal pages */
-.legal { padding-block: clamp(64px, 7vw, 112px) var(--section); }
+.legal { padding-block: var(--section); }
 .legal__box { padding: clamp(32px, 5vw, 80px); }
 .legal__meta { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-bottom: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--line); font-size: 14px; color: var(--mute); }
-.legal h2 { margin: 52px 0 16px; font-family: var(--serif); font-weight: 500; font-size: clamp(20px, 1.6vw, 23px); line-height: 1.3; }
-.legal h2:first-of-type { margin-top: 0; }
-.legal p, .legal li { color: var(--text); }
+.legal h2 { margin: 52px 0 16px; font-family: var(--serif); font-weight: 400; font-size: var(--t-lead); line-height: 1.3; }
+.legal h2:first-child { margin-top: 0; } /* only when nothing comes before it */
+.legal p, .legal li { font-family: var(--serif); font-size: var(--t-body); line-height: var(--t-body-lh); color: var(--text); }
+.legal .legal__meta { font-family: var(--sans); font-size: var(--t-small); line-height: 1.5; color: var(--mute); } /* the dates stay small notes */
 .legal p + p { margin-top: 1em; }
 .legal ul { margin-top: 14px; }
 
@@ -1597,13 +1585,10 @@ em, i { font-style: italic; }
 
 /* ----------------------------------------------------------------- phones: everything a size smaller, so lines stay whole */
 @media (max-width: 600px) {
-  :root { --section: 64px; --gap: 14px; }
+  :root { --section: 56px; --space-open: 44px; --gap: 14px; --t-title: 40px; --t-heading: 24px; --t-lead: 18px; --t-body: 17px; }
   body { font-size: 16px; line-height: 1.7; }
   .eyebrow { font-size: 10px; letter-spacing: .2em; }
-  .display { font-size: 27px; line-height: 1.2; }
-  .h2 { font-size: 23px; }
   .statement { font-size: 19px; line-height: 1.55; }
-  .lede { font-size: 16.5px; }
   .link { font-size: 10.5px; letter-spacing: .2em; }
   .button { min-height: 50px; padding: 0 28px; font-size: 10.5px; letter-spacing: .2em; }
 
@@ -1619,7 +1604,6 @@ em, i { font-style: italic; }
   .artwork__frame { border-width: 5px; }
   .artwork__frame::after { inset: 10px; }
   .hero__text { gap: 20px; }
-  .hero__quote { font-size: 18px; line-height: 1.6; }
   .credits__inner { gap: 16px; padding-block: 24px; }
   .credits__group { flex-direction: column; gap: 8px; }
   /* the four journals as a neat two by two list, each with its own dot */
@@ -1638,7 +1622,6 @@ em, i { font-style: italic; }
   .portrait { gap: 18px; }
   .portrait__name { font-size: 15px; letter-spacing: .26em; margin-right: -.26em; }
   .testimonial { gap: 20px; padding: 32px 24px; }
-  .testimonial blockquote { font-size: 17.5px; }
 
   /* thin shapes, drawn a little closer */
   .frame::after { inset: 6px; }
@@ -1648,7 +1631,6 @@ em, i { font-style: italic; }
   .badge { width: 40px; height: 40px; font-size: 14px; }
 
   /* inner pages */
-  .page-hero { padding-block: 40px 36px; }
   .page-hero__inner { gap: 14px; }
   .section-head { row-gap: 16px; margin-bottom: 36px; }
   .intro { row-gap: 18px; }
@@ -1661,10 +1643,10 @@ em, i { font-style: italic; }
   .faq.faq--sheet summary::before { width: 38px; font-size: 14px; }
   .faq.faq--sheet .faq__answer { padding: 0 0 22px 38px; }
   .faq { gap: 10px; }
-  .faq summary { gap: 16px; padding: 16px; font-size: 18px; }
+  .faq summary { gap: 16px; padding: 16px; }
   .faq__icon { width: 30px; height: 30px; }
   .faq__icon::before, .faq__icon::after { left: 9px; right: 9px; top: 14px; }
-  .faq__answer { padding: 0 16px 22px; font-size: 15.5px; }
+  .faq__answer { padding: 0 16px 22px; }
   .shelf { justify-items: center; gap: 44px; }
   .book { width: 100%; max-width: 290px; }
   .feature { row-gap: 26px; }
@@ -1675,11 +1657,9 @@ em, i { font-style: italic; }
   .two-col__a { gap: 16px; }
 
   /* about */
-  .about-hero { row-gap: 40px; padding-block: 40px 56px; }
-  .about-hero__portrait, .about-hero__booth { width: min(100%, 270px); }
+  .about-hero { row-gap: 40px; }
+  .about-hero__portrait { width: min(100%, 270px); }
   .about-hero__text { gap: 22px; }
-  .name-display { font-size: 34px; }
-  .role-line { font-size: 17px; }
   .bio-plate p { font-size: 18px; }
   .motto { row-gap: 36px; }
   .motto__art .artwork { width: min(100%, 280px); }
@@ -1700,7 +1680,6 @@ em, i { font-style: italic; }
   .form__foot .button { width: 100%; }
   .form__note { font-size: 13.5px; }
   .aside-block { gap: 8px; padding: 24px 22px; }
-  .aside-block__big { font-size: 18px; }
 
   /* closing band */
   .cta__inner { gap: 24px; }
@@ -1717,8 +1696,8 @@ em, i { font-style: italic; }
   /* legal */
   .legal { padding-block: 36px 64px; }
   .legal__box { padding: 30px 20px; }
-  .legal__meta { margin-bottom: 28px; padding-bottom: 20px; font-size: 13px; }
-  .legal h2 { margin: 36px 0 12px; font-size: 22px; }
+  .legal__meta { margin-bottom: 28px; padding-bottom: 20px; }
+  .legal h2 { margin: 36px 0 12px; }
 }
 
 /* ----------------------------------------------------------------- her social links
