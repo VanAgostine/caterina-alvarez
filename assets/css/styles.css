@@ -956,7 +956,7 @@ em, i { font-style: italic; }
    No bands, cards or boxes: one warm white page, each part named in the margin with its words beside it,
    a hairline between parts. All the words share one ink, like the home page. */
 .editing .page-hero { border-bottom: 0; padding-bottom: clamp(40px, 4.4vw, 72px); }
-.editing .page-hero .eyebrow, .editing .page-hero__text { color: var(--text); }
+.editing .page-hero .eyebrow { color: var(--text); }
 .article { max-width: calc(1000px + var(--gutter) * 2); padding-bottom: clamp(72px, 7vw, 120px); }
 .article__part {
   display: grid;
@@ -989,12 +989,9 @@ em, i { font-style: italic; }
 }
 .article__quote::before { content: "\201C"; }
 .article__quote::after { content: "\201D"; }
-.article__title { font-weight: 500; font-size: clamp(24px, 2.1vw, 30px); line-height: 1.2; text-wrap: balance; }
-.article__title em { font-style: italic; }
 
 /* services: a short list, each with its starting price set level with its name */
 .fee { display: flex; flex-direction: column; gap: 14px; }
-.fee + .fee { margin-top: clamp(8px, 1vw, 14px); }
 .fee__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 24px; }
 .fee__title { font-family: var(--serif); font-weight: 500; font-size: clamp(20px, 1.6vw, 23px); line-height: 1.3; }
 .fee__title em { font-style: italic; }
@@ -1002,22 +999,8 @@ em, i { font-style: italic; }
 .fee__price em { font-size: .85em; }
 .fee__list { display: flex; flex-direction: column; gap: 2px; }
 
-/* questions: asked in italic, answered beneath */
-.qa { gap: clamp(20px, 2vw, 26px); }
-.qa dt { font-style: italic; font-size: clamp(18px, 1.4vw, 20px); line-height: 1.45; }
-.qa dd { margin: 4px 0 0; }
-
-/* her email, set in the italic, as the way to begin */
-.article__email {
-  font-style: italic;
-  font-size: clamp(19px, 1.5vw, 22px);
-  line-height: 1.4;
-  padding-bottom: 4px;
-  border-bottom: 1px solid var(--line-mid);
-  transition: border-color .4s ease, color .3s ease;
-}
-.article__email:hover { border-bottom-color: currentColor; }
-.article__email:active { color: var(--umber); }
+/* questions: the framed, numbered sheet below; its answers share the page's one ink */
+.article .faq__answer { color: var(--text); }
 
 @media (max-width: 900px) {
   .article__part { grid-template-columns: minmax(0, 1fr); row-gap: 20px; }
@@ -1029,11 +1012,8 @@ em, i { font-style: italic; }
   .article__part { padding-block: 36px; row-gap: 16px; }
   .article__body { font-size: 16.5px; }
   .article__quote { font-size: 18px; }
-  .article__title { font-size: 23px; }
   .fee__title { font-size: 19.5px; }
   .fee__price { font-size: 17px; }
-  .qa dt { font-size: 17.5px; }
-  .article__email { font-size: 19px; }
 }
 
 /* ----------------------------------------------------------------- a passage of hers, set large on the dark band */
@@ -1051,6 +1031,63 @@ em, i { font-style: italic; }
 .notes--four .note { min-height: clamp(220px, 18vw, 260px); }
 .notes--four .note__title { margin-top: auto; }
 @media (max-width: 900px) { .notes { grid-template-columns: 1fr; } .notes--four .note { min-height: 0; } }
+
+/* ----------------------------------------------------------------- questions: one numbered sheet */
+.qa__sheet { padding: clamp(10px, 1.4vw, 18px) clamp(26px, 3.4vw, 52px); }
+
+/* the questions as a numbered list on one sheet, ruled between */
+.faq.faq--sheet { gap: 0; counter-reset: q; }
+.faq.faq--sheet details { counter-increment: q; border: 0; border-bottom: 1px solid var(--line); background: transparent; }
+.faq.faq--sheet details:last-child { border-bottom: 0; }
+.faq.faq--sheet details:hover, .faq.faq--sheet details[open] { background: transparent; border-color: var(--line); }
+.faq.faq--sheet summary { justify-content: flex-start; gap: 0; padding: 26px 0; }
+.faq.faq--sheet summary::before { content: counter(q, upper-roman) "."; flex: none; width: 52px; font-style: italic; font-size: 15px; color: var(--umber); }
+.faq.faq--sheet summary .faq__icon { margin-left: auto; }
+.faq.faq--sheet details[open] summary { font-style: italic; }
+.faq.faq--sheet .faq__answer { padding: 0 48px 30px 52px; }
+
+/* ----------------------------------------------------------------- questions (FAQ) */
+.faq { display: flex; flex-direction: column; gap: 12px; }
+.faq details {
+  border: 1px solid var(--greige);
+  background: var(--white);
+  transition: background-color .5s var(--ease), border-color .5s var(--ease);
+}
+.faq details:hover { border-color: var(--line-mid); }
+.faq details[open] { background: var(--stone); border-color: var(--ink); }
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  min-height: 44px;
+  padding: 24px clamp(20px, 2.6vw, 36px);
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--serif);
+  font-size: clamp(19px, 1.5vw, 21px);
+  line-height: 1.4;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:active { color: var(--umber); }
+.faq__icon {
+  position: relative;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line-mid);
+  border-radius: 50%;
+  transition: background-color .5s var(--ease), border-color .5s var(--ease);
+}
+.faq__icon::before, .faq__icon::after {
+  content: ""; position: absolute; left: 10px; right: 10px; top: 16px; height: 1px; background: currentColor;
+  transition: transform .5s var(--ease), opacity .5s var(--ease);
+}
+.faq__icon::after { transform: rotate(90deg); }
+.faq details[open] .faq__icon { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.faq details[open] .faq__icon::after { transform: rotate(0deg); opacity: 0; }
+.faq__answer { max-width: 64ch; padding: 0 clamp(20px, 2.6vw, 36px) 30px; color: var(--mute); }
+.faq__answer p + p { margin-top: 1em; }
 
 /* ----------------------------------------------------------------- publications */
 .shelf { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 64px clamp(28px, 4vw, 64px); }
@@ -1334,6 +1371,15 @@ em, i { font-style: italic; }
   .note { gap: 14px; padding: 30px 22px; }
   .note__title { font-size: 20px; }
   .cta__quote { font-size: 20px; }
+  .qa__sheet { padding: 4px 18px; }
+  .faq.faq--sheet summary { padding: 18px 0; }
+  .faq.faq--sheet summary::before { width: 38px; font-size: 14px; }
+  .faq.faq--sheet .faq__answer { padding: 0 0 22px 38px; }
+  .faq { gap: 10px; }
+  .faq summary { gap: 16px; padding: 16px; font-size: 18px; }
+  .faq__icon { width: 30px; height: 30px; }
+  .faq__icon::before, .faq__icon::after { left: 9px; right: 9px; top: 14px; }
+  .faq__answer { padding: 0 16px 22px; font-size: 15.5px; }
   .shelf { justify-items: center; gap: 44px; }
   .book { width: 100%; max-width: 290px; }
   .feature { row-gap: 26px; }
