@@ -1094,7 +1094,6 @@ em, i { font-style: italic; }
   --p-accent: var(--clay);
   --p-space: var(--section);
   --p-gap: 24px;
-  --p-cols: minmax(0, 1fr) 16rem 6.5rem;
   color: var(--p-ink);
 }
 .page-publications::after { opacity: .06; } /* the paper grain, almost imperceptible here */
@@ -1103,15 +1102,18 @@ em, i { font-style: italic; }
 .pub-label,
 .pub-panel__honour { font-family: var(--sans); font-weight: 500; font-size: 11px; line-height: 1.5; letter-spacing: .26em; text-transform: uppercase; color: var(--p-brown); }
 
-/* the opening: compact, so the gallery begins in the first view */
+/* the opening: compact, so the gallery begins in the first view. The words and the engraving sit side by side,
+   close together, with any spare width to the right rather than in the middle */
 .pub-hero {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
-  column-gap: 40px;
+  grid-template-columns: minmax(0, 27em) auto;
+  justify-content: start;
+  column-gap: clamp(48px, 6vw, 88px);
   align-items: center;
-  padding-block: var(--space-open) 48px;
+  padding-block: var(--space-open) 44px;
   border-bottom: 1px solid var(--p-ink);
 }
+/* one heading: "From" on a small upright line, "Grand Avenue" in italics at the site's title size */
 .pub-hero__title {
   margin-top: 18px;
   font-family: var(--serif);
@@ -1121,20 +1123,21 @@ em, i { font-style: italic; }
   letter-spacing: -.022em;
   color: var(--p-ink);
 }
+.pub-hero__from { display: block; margin-bottom: .14em; font-size: var(--t-heading); font-style: normal; letter-spacing: -.005em; }
+.pub-hero__title em { display: block; font-style: italic; }
 .pub-hero__quote {
   max-width: 24em;
-  margin-top: 22px;
+  margin-top: 20px;
   font-family: var(--serif);
-  font-style: italic;
-  font-size: var(--t-lead);
-  line-height: 1.55;
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
   color: var(--p-brown);
   text-wrap: pretty;
 }
 .pub-hero__quote p::before { content: "\201C"; }
 .pub-hero__quote p::after { content: "\201D"; }
 /* the engraving for Wayne C. Booth's Rhetoric of Fiction, in the same slim band of her wall colour as the Editing photo */
-.pub-hero__art { justify-self: end; width: clamp(200px, 20vw, 270px); padding: clamp(6px, .55vw, 8px); background: var(--p-ivory); }
+.pub-hero__art { width: clamp(200px, 20vw, 260px); padding: clamp(6px, .55vw, 8px); background: var(--p-ivory); }
 .pub-hero__art img { width: 100%; height: auto; }
 
 /* sections share one interval; labels sit a short step above what they label */
@@ -1173,7 +1176,7 @@ em, i { font-style: italic; }
 
 /* the gallery: a row of small literary compositions that scrolls sideways (touch, trackpad, keys, or the line beneath).
    The native scrollbar is hidden: the line below takes its place */
-.pub-gallery { padding-top: 48px; }
+.pub-gallery { padding-top: 44px; }
 .pub-gallery .pub-label { margin-bottom: 20px; }
 .pub-gallery__track {
   position: relative; /* keeps the links' hidden screen-reader text inside the row, so the page never widens */
@@ -1184,16 +1187,16 @@ em, i { font-style: italic; }
 .pub-gallery__track::-webkit-scrollbar { display: none; }
 .pub-gallery__track:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 6px; }
 
-/* one shared grid: every panel's recognition line, journal, date and link sit on the same lines across the row
-   (subgrid); the title and any sentence settle at the foot of the open space above the link. About three panels
-   and part of the next are in view */
+/* one shared grid: every panel's recognition line, journal, date, title and link sit on the same lines across the
+   row (subgrid). The titles all start on one line with any sentence right beneath; the open space falls between
+   them and the Read link at the foot. About three panels and part of the next are in view */
 .pub-gallery__list {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: clamp(300px, calc((100% - 3 * var(--p-gap)) / 3.3), 340px);
   grid-template-rows: auto auto auto minmax(0, 1fr) auto;
   column-gap: var(--p-gap);
-  min-height: 360px;
+  min-height: 300px;
 }
 .pub-panel {
   position: relative;
@@ -1202,7 +1205,7 @@ em, i { font-style: italic; }
   grid-row: 1 / -1;
   grid-template-rows: subgrid;
   justify-items: start;
-  padding: 28px;
+  padding: 24px 26px;
   background: var(--p-ivory);
   color: var(--p-ink);
 }
@@ -1214,11 +1217,11 @@ em, i { font-style: italic; }
 .pub-panel--ink .pub-read__word { text-decoration-color: rgba(244, 238, 229, .4); }
 .pub-panel--ink .pub-read:focus-visible { outline-color: var(--p-ivory); }
 
-.pub-panel__honour { grid-row: 1; display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.pub-panel__honour { grid-row: 1; display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
 .pub-panel__honour::before { content: ""; flex: none; width: 24px; height: 1px; background: var(--p-accent); }
 .pub-panel__journal { grid-row: 2; font-family: var(--serif); font-size: var(--t-body); line-height: 1.45; }
 .pub-panel .pub-date { grid-row: 3; margin-top: 2px; }
-.pub-panel__body { grid-row: 4; align-self: end; padding-top: 32px; }
+.pub-panel__body { grid-row: 4; align-self: start; padding-top: 18px; }
 .pub-panel__title {
   font-family: var(--serif);
   font-weight: 400;
@@ -1228,8 +1231,8 @@ em, i { font-style: italic; }
   text-wrap: balance;
 }
 .pub-panel__title--long { font-size: calc(var(--t-heading) * .87); } /* a long title, a size down so it still reads as one shape */
-.pub-panel__text { margin-top: 14px; font-family: var(--serif); font-size: var(--t-body); line-height: 1.55; }
-.pub-panel__read { grid-row: 5; margin-top: 22px; }
+.pub-panel__text { margin-top: 12px; font-family: var(--serif); font-size: var(--t-body); line-height: 1.55; }
+.pub-panel__read { grid-row: 5; margin-top: 16px; }
 
 /* the navigation line: one continuous hairline with an equal part for each work; the part for the work in view is her
    deep brown. Each part is a generous invisible button named after its work */
@@ -1256,33 +1259,25 @@ em, i { font-style: italic; }
   .pub-read:hover .pub-read__arrow { transform: none; }
 }
 
-/* her editorial positions: compact rows between fine rules, organisation and role on two aligned columns */
-.pub-list { border-bottom: 1px solid var(--line); }
-.pub-row {
-  display: grid;
-  grid-template-columns: var(--p-cols);
-  column-gap: 40px;
-  align-items: baseline;
-  padding-block: 18px;
-  border-top: 1px solid var(--line);
-}
-.pub-row__title { font-family: var(--serif); font-weight: 400; font-size: var(--t-lead); line-height: 1.35; color: var(--p-ink); }
-.pub-row__role { font-family: var(--sans); font-size: 14px; line-height: 1.5; color: var(--p-brown); }
+/* her editorial positions: a two-by-two grid on the page's own ground; in each block the role or credential (small,
+   sans-serif) sits above the organisation (larger, serif) under a thin rule. No fills, shadows or boxes */
+.pub-creds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px var(--p-gap); }
+.pub-cred { padding-top: 16px; border-top: 1px solid var(--line); }
+.pub-cred__role { font-family: var(--sans); font-weight: 500; font-size: 11px; line-height: 1.5; letter-spacing: .22em; text-transform: uppercase; color: var(--p-brown); }
+.pub-cred__org { margin-top: 8px; font-family: var(--serif); font-weight: 400; font-size: var(--t-lead); line-height: 1.35; color: var(--p-ink); }
 
-@media (max-width: 1000px) {
-  .publications { --p-cols: minmax(0, 1fr) 13rem 6rem; }
-}
-/* phones: the circle follows the opening text; panels show one and a little of the next; swipe to move */
+/* phones: the engraving follows the opening text; panels show one and a little of the next; swipe to move;
+   the editorial blocks stack */
 @media (max-width: 760px) {
   .publications { --p-gap: 20px; }
-  .pub-hero { grid-template-columns: minmax(0, 1fr); padding-bottom: 40px; }
+  .pub-hero { grid-template-columns: minmax(0, 1fr); padding-bottom: 36px; }
   .pub-hero__title { margin-top: 14px; }
   .pub-hero__quote { margin-top: 18px; }
   .pub-hero__art { justify-self: start; width: min(100%, 240px); margin: 30px 0 0; }
-  .pub-gallery { padding-top: 40px; }
-  .pub-gallery__list { grid-auto-columns: min(78vw, 290px); min-height: 340px; }
-  .pub-panel { padding: 24px; }
-  .pub-row { grid-template-columns: minmax(0, 1fr); row-gap: 2px; padding-block: 16px; }
+  .pub-gallery { padding-top: 36px; }
+  .pub-gallery__list { grid-auto-columns: min(78vw, 290px); min-height: 280px; }
+  .pub-panel { padding: 22px; }
+  .pub-creds { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .pub-section--last { padding-bottom: 56px; }
 }
 
