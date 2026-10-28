@@ -777,43 +777,43 @@ em, i { font-style: italic; }
 .home .pager__dir { color: var(--text); }
 
 /* ----------------------------------------------------------------- the cover (index.html)
-   Quiet, and plainly part of the same site: her name set exactly as in the header, then the Hello page's grid
-   mirrored, the drawing in its beige-banded frame on the left (traced in as it arrives) and on the right her motto
-   with Enter beneath it. One warm white ground, no header or footer: the cover is only the way in */
+   The entry page of an editorial magazine: her name as the masthead, then on the Hello page's grid (mirrored) the
+   drawing in its beige-banded frame on the left (traced in as it arrives) and her motto as the cover line on the
+   right. No labels and no button: one fine arrow is the only cue, and the whole cover is the way in. One warm white
+   ground, no header or footer */
 .home.cover {
+  position: relative;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   min-height: 100svh;
   background: var(--paper);
 }
-.cover__mark { padding: clamp(32px, 5.5svh, 52px) var(--gutter) 0; }
-/* centred on every screen (the header's phone rule sets the wordmark to the left) */
-.cover .wordmark.cover__mark { align-items: center; text-align: center; }
-.cover .cover__mark .wordmark__sub { justify-items: center; }
+/* the masthead: a size above the site header's wordmark, with wider spacing */
+.cover__mark { padding: clamp(36px, 6svh, 60px) var(--gutter) 0; }
+.cover .wordmark.cover__mark { align-items: center; gap: 12px; text-align: center; }
+.cover .cover__mark .wordmark__name { font-size: clamp(20px, 1.75vw, 26px); letter-spacing: .4em; margin-right: -.4em; }
+.cover .cover__mark .wordmark__sub { justify-items: center; font-size: 9.5px; letter-spacing: .38em; margin-right: -.38em; }
 .cover__inner { align-items: center; row-gap: 40px; padding-block: clamp(28px, 5svh, 64px); }
 .cover__art { grid-column: 2 / 6; justify-self: end; width: min(100%, 440px, 58svh); }
-.cover__text { grid-column: 7 / 12; display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
-.cover .hero__quote { max-width: 21em; }
-/* Enter: small capitals and a long, thin arrow that steps forward when pointed at */
-.cover__enter {
-  display: inline-flex;
-  align-items: center;
-  gap: 18px;
-  min-height: 44px;
-  margin-top: 14px;
-  font-family: var(--sans);
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: .3em;
-  text-transform: uppercase;
-  color: var(--text);
-  transition: color .3s ease;
+.cover__text { grid-column: 7 / 12; display: flex; flex-direction: column; align-items: flex-start; gap: clamp(28px, 3.4svh, 40px); }
+/* the motto as the cover line: a size up from the running text, in the serif's italic, balanced over its lines */
+.cover .hero__quote.cover__quote { max-width: 19em; font-size: clamp(21px, 1.85vw, 27px); line-height: 1.5; text-wrap: balance; }
+/* the one cue: a long, thin arrow that steps forward when the cover is pointed at. Its link covers the whole page,
+   so a click anywhere enters; it fades in once the motto has arrived */
+.cover__enter { display: block; padding: 10px 0; color: var(--text); animation: cover-cue 1.2s var(--ease) 1.4s both; }
+.cover__enter::after { content: ""; position: absolute; inset: 0; z-index: 3; cursor: pointer; }
+.cover__enter svg { display: block; width: 64px; height: 12px; transition: transform .7s var(--ease-out); }
+.home.cover:hover .cover__enter svg { transform: translateX(10px); }
+.cover__enter:focus-visible { outline-offset: 8px; }
+@keyframes cover-cue { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .cover__enter { animation: none; }
+  .cover__enter svg { transition: none; }
+  .home.cover:hover .cover__enter svg { transform: none; }
 }
-.cover__enter svg { display: block; width: 44px; height: 12px; transition: transform .6s var(--ease-out); }
-.cover__enter:hover svg { transform: translateX(8px); }
-.cover__enter:active { color: var(--umber); }
-@media (prefers-reduced-motion: reduce) { .cover__enter svg { transition: none; } .cover__enter:hover svg { transform: none; } }
 @media (max-width: 900px) {
+  .cover .cover__mark .wordmark__name { font-size: min(20px, 4.6vw); letter-spacing: .34em; margin-right: -.34em; }
+  .cover .cover__mark .wordmark__sub { font-size: min(9.5px, 2.3vw); letter-spacing: .3em; margin-right: -.3em; }
   .cover__art { grid-column: 1 / -1; justify-self: center; width: min(100%, 340px, 46svh); }
   .cover__text { grid-column: 1 / -1; }
 }
