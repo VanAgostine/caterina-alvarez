@@ -952,15 +952,15 @@ em, i { font-style: italic; }
 
 /* ----------------------------------------------------------------- editing: one page, composed like a magazine feature
    No rules between the parts. Every part shares one measure (the same two edges, the same centre) and one
-   interval of space, so the page reads in a single, even rhythm: the arch, her words, the questions.
-   All the words share one ink, like the home page. */
-.editing { --ed-space: clamp(88px, 8.4vw, 128px); }
+   interval of space (80px; 52px on phones), so the page reads in a single, even rhythm: the arch, her words,
+   the questions. All the words share one ink, like the home page. */
+.editing { --ed-space: 80px; }
 .editing .eyebrow { color: var(--text); }
 .ed-frame { max-width: calc(1040px + var(--gutter) * 2); }
 
 /* the opening: the service under its name in an arch of her wall colour, like the portrait's window on the
    home page, with a hairline arch drawn just inside its edge */
-.niche-wrap { padding-top: clamp(56px, 5.6vw, 84px); }
+.niche-wrap { padding-top: clamp(48px, 5.6vw, 80px); }
 .niche {
   position: relative;
   display: flex;
@@ -968,7 +968,7 @@ em, i { font-style: italic; }
   align-items: center;
   width: min(100%, 580px);
   margin-inline: auto;
-  padding: clamp(118px, 11vw, 158px) clamp(28px, 4vw, 64px) clamp(72px, 6.4vw, 96px);
+  padding: clamp(96px, 8.4vw, 120px) clamp(28px, 4vw, 64px) clamp(52px, 4.4vw, 64px);
   border-radius: 999px 999px 0 0;
   background: var(--wall);
   text-align: center;
@@ -1009,25 +1009,23 @@ em, i { font-style: italic; }
   line-height: 1.7;
 }
 
-/* the approach: the marked-up draft (framed in a slim band of her wall colour, like the portrait) beside one
-   column of text that starts level with the picture: its name, her words as the lead paragraph (upright, a
-   size up, the opening quotation mark hung just outside the edge), then her way of working in the page's
-   text. Below a hairline, her background, in the same text and the same left column as the picture */
+/* the approach: the marked-up draft (framed in a slim band of her wall colour, like the portrait) on the left,
+   about two fifths of the measure, and one continuous column of text on the right that starts level with the
+   picture: its name, her words as an introductory passage (upright, a size up, the opening quotation mark
+   hung just outside the edge), her way of working, then her background. Each keeps its natural height */
 .spread { padding-top: var(--ed-space); }
-.spread__pair,
-.spread__after {
+.spread__pair {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: clamp(48px, 6.4vw, 92px);
+  grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
+  column-gap: 48px;
+  align-items: start;
 }
-.spread__pair { align-items: start; }
 .spread__image { padding: clamp(6px, .55vw, 8px); background: var(--wall); }
 .spread__image img { width: 100%; }
-.spread__text,
-.spread__after {
+.spread__text {
   font-family: var(--serif);
-  font-size: clamp(16.5px, 1.12vw, 17.5px);
-  line-height: 1.85;
+  font-size: 18px;
+  line-height: 1.65;
   color: var(--text);
   text-wrap: pretty;
 }
@@ -1036,17 +1034,12 @@ em, i { font-style: italic; }
   margin: 0 0 24px -.45em;
   padding-left: .45em;
   text-indent: -.45em;
-  font-size: clamp(22px, 1.85vw, 25px);
+  font-size: clamp(22px, 1.8vw, 24px);
   line-height: 1.45;
 }
 .spread__quote p::before { content: "\201C"; }
 .spread__quote p::after { content: "\201D"; }
-.spread__after {
-  margin-top: clamp(52px, 4.8vw, 68px);
-  padding-top: clamp(48px, 4.4vw, 62px);
-  border-top: 1px solid var(--line);
-}
-.spread__after p { grid-column: 1; }
+.spread__text > p + p { margin-top: 24px; }
 
 /* the questions matted on her wall colour like a framed print, the numbered sheet in the middle */
 .questions { padding-block: var(--ed-space); }
@@ -1061,25 +1054,23 @@ em, i { font-style: italic; }
 .mat .qa__sheet { width: min(100%, 700px); }
 .editing .faq__answer { color: var(--text); }
 
-/* tablets: the approach narrows to one centred column, the draft above its words, all on one left edge */
+/* tablets: the approach and the questions narrow to the arch's width, so all three share the same two edges;
+   the draft stands above its words */
 @media (max-width: 900px) {
-  .spread { max-width: calc(560px + var(--gutter) * 2); }
-  .spread__pair, .spread__after { grid-template-columns: minmax(0, 1fr); }
-  .spread__pair { row-gap: 40px; }
+  .spread, .questions { max-width: calc(580px + var(--gutter) * 2); }
+  .spread__pair { grid-template-columns: minmax(0, 1fr); row-gap: 30px; }
 }
 @media (max-width: 600px) {
-  .editing { --ed-space: 72px; }
+  .editing { --ed-space: 52px; }
   .niche-wrap { padding-top: 32px; }
-  .niche { padding: 104px 22px 56px; }
+  .niche { padding: 88px 22px 44px; }
   .niche::after { inset: 8px; }
   .niche__title { font-size: 38px; }
   .niche__price { margin-top: 26px; font-size: 18px; }
   .niche__list { font-size: 15.5px; }
-  .spread__pair { row-gap: 32px; }
   .spread__image { padding: 6px; }
-  .spread__text, .spread__after { font-size: 16.5px; }
-  .spread__quote { font-size: 20.5px; line-height: 1.5; }
-  .spread__after { margin-top: 44px; padding-top: 40px; }
+  .spread__text { font-size: 17px; }
+  .spread__quote { font-size: 20px; line-height: 1.5; }
   .mat { gap: 24px; padding: 36px 10px 10px; }
 }
 
