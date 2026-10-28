@@ -75,7 +75,7 @@
     </div>
   </div>
 
-  <main id="main">
+  <main id="main" class="editing">
     <header class="page-hero">
       <div class="container grid page-hero__inner">
         <span class="eyebrow" data-reveal>Part I · Editing</span>
@@ -84,143 +84,75 @@
       </div>
     </header>
 
-    <!-- Her approach, in her words, set large on the dark band -->
-    <section id="approach" class="cta on-dark quote-band" aria-labelledby="approach-title">
-      <div class="container cta__inner">
-        <h2 id="approach-title" class="eyebrow" data-reveal>The approach</h2>
-        <blockquote class="cta__quote" data-sweep style="--d: 200ms">I drop into stories hunting around for meaning and obscurity. I am intuitive about what works and what doesn’t; what is okay to hide in a story and what must be exposed for the reader to understand what lies at its&nbsp;heart.</blockquote>
-        <span class="cta__by" data-reveal style="--d: 600ms">Caterina Alvarez</span>
-      </div>
-    </section>
-
-    <!-- The work and the editor (her words) -->
-    <section class="section band-stone" aria-label="The work and the editor">
-      <div class="container">
-        <div class="notes">
-          <article class="note frame" data-reveal>
-            <span class="badge" aria-hidden="true">I</span>
-            <span class="eyebrow">The work</span>
-            <h3 class="note__title">Strengths <em>and</em> weaknesses</h3>
-            <p class="note__text">Focusing on both the strengths and weaknesses of your work, I find ways to marry your intention for your work with a technical foundation that will free your stories to be fully realized.</p>
-          </article>
-          <article class="note frame" data-reveal style="--d: 150ms">
-            <span class="badge" aria-hidden="true">II</span>
-            <span class="eyebrow">The editor</span>
-            <h3 class="note__title">Deep and <em>thorough</em> feedback</h3>
-            <p class="note__text">I am a senior editor at Thirty West Publishing House and a priority editor for <em>Flash Fiction Magazine</em>. With Grand Avenue Editing &amp; Publications, I seek to provide the deep and thorough feedback I provide to clients as an editor at both <em>Flash Fiction Magazine</em> and Thirty West Publishing House.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services & fees: fill in the details and prices -->
-    <section id="services" class="section" aria-labelledby="services-title">
-      <div class="container">
-        <div class="grid section-head">
-          <div class="section-head__title">
-            <span class="eyebrow" data-reveal>Services &amp; fees</span>
-            <h2 id="services-title" class="h2" data-reveal style="--d: 120ms">Ways to <em>work together</em></h2>
+    <!-- One continuous article: each part named in the margin, its words beside it. Answers marked tbd are hers to give. -->
+    <div class="container article">
+      <section id="approach" class="article__part" aria-labelledby="approach-title">
+        <h2 id="approach-title" class="eyebrow article__label" data-reveal>The approach</h2>
+        <div class="article__body">
+          <blockquote class="article__quote" data-sweep style="--d: 150ms">I drop into stories hunting around for meaning and obscurity. I am intuitive about what works and what doesn’t; what is okay to hide in a story and what must be exposed for the reader to understand what lies at its&nbsp;heart.</blockquote>
+          <div class="article__prose" data-reveal style="--d: 300ms">
+            <p>Focusing on both the strengths and weaknesses of your work, I find ways to marry your intention for your work with a technical foundation that will free your stories to be fully realized.</p>
+            <p>I am a senior editor at Thirty West Publishing House and a priority editor for <em>Flash Fiction Magazine</em>. With Grand Avenue Editing &amp; Publications, I seek to provide the deep and thorough feedback I provide to clients as an editor at both <em>Flash Fiction Magazine</em> and Thirty West Publishing House.</p>
           </div>
         </div>
-        <div class="services">
-          <article class="service frame" data-reveal>
-            <div class="service__head">
-              <span class="badge" aria-hidden="true">I</span>
-              <h3 class="service__title">Developmental <em>editing</em></h3>
+      </section>
+
+      <section id="services" class="article__part" aria-labelledby="services-title" data-reveal>
+        <h2 id="services-title" class="eyebrow article__label">Services &amp; fees</h2>
+        <div class="article__body">
+          <article class="fee">
+            <div class="fee__head">
+              <h3 class="fee__title">Developmental <em>editing</em></h3>
+              <p class="fee__price"><em>Starting at</em> <span class="tbd">$ [price]</span></p>
             </div>
-            <p class="service__body">Deep and thorough feedback on your work, focusing on both its strengths and its weaknesses.</p>
-            <ul class="diamonds tbd-block">
+            <ul class="fee__list tbd-block">
               <li>[What the edit includes, to confirm]</li>
               <li>[What the edit includes, to confirm]</li>
               <li>[What the edit includes, to confirm]</li>
             </ul>
-            <p class="service__price"><span class="eyebrow">Starting at</span><span class="service__amount tbd">$ [price]</span></p>
           </article>
-
-          <article class="service frame tbd-block" data-reveal style="--d: 150ms">
-            <div class="service__head">
-              <span class="badge" aria-hidden="true">II</span>
-              <h3 class="service__title">[Additional service, if offered]</h3>
+          <article class="fee tbd-block">
+            <div class="fee__head">
+              <h3 class="fee__title">[Additional service, if offered]</h3>
+              <p class="fee__price"><em>Starting at</em> <span class="tbd">$ [price]</span></p>
             </div>
-            <p class="service__body">[A short description, to confirm.]</p>
-            <ul class="diamonds">
+            <p>[A short description, to confirm.]</p>
+            <ul class="fee__list">
               <li>[What it includes, to confirm]</li>
               <li>[What it includes, to confirm]</li>
             </ul>
-            <p class="service__price"><span class="eyebrow">Starting at</span><span class="service__amount tbd">$ [price]</span></p>
           </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Questions on one numbered sheet. Answers marked tbd are hers to give. -->
-    <section id="questions" class="section band-stone" aria-labelledby="questions-title">
-      <div class="container container--narrow">
-        <div class="grid section-head">
-          <div class="section-head__title">
-            <span class="eyebrow" data-reveal>Questions</span>
-            <h2 id="questions-title" class="h2" data-reveal style="--d: 120ms">Before <em>we begin</em></h2>
+      <section id="questions" class="article__part" aria-labelledby="questions-title" data-reveal>
+        <h2 id="questions-title" class="eyebrow article__label">Questions</h2>
+        <dl class="article__body qa">
+          <div class="qa__item">
+            <dt>How are fees set?</dt>
+            <dd>Prices are listed as starting prices. <span class="tbd">[To confirm: how a final fee is set.]</span></dd>
           </div>
-        </div>
-        <div class="qa__sheet frame" data-reveal>
-          <div class="faq faq--sheet">
-            <details>
-              <summary>Where are you based?<span class="faq__icon" aria-hidden="true"></span></summary>
-              <div class="faq__answer"><p>I am available completely remotely.</p></div>
-            </details>
-            <details>
-              <summary>How do I begin?<span class="faq__icon" aria-hidden="true"></span></summary>
-              <div class="faq__answer"><p>By email, at <a class="text-link" href="mailto:caterina45@gmail.com">caterina45@gmail.com</a>, or through the <a class="text-link" href="contact.html">inquiry form</a>.</p></div>
-            </details>
-            <details>
-              <summary>How are fees set?<span class="faq__icon" aria-hidden="true"></span></summary>
-              <div class="faq__answer"><p>Prices are listed as starting prices. <span class="tbd">[To confirm: how a final fee is set.]</span></p></div>
-            </details>
-            <details>
-              <summary>What kinds of writing do you work with?<span class="faq__icon" aria-hidden="true"></span></summary>
-              <div class="faq__answer"><p class="tbd">[To confirm: the forms and genres you edit.]</p></div>
-            </details>
-            <details>
-              <summary>How long does an edit take?<span class="faq__icon" aria-hidden="true"></span></summary>
-              <div class="faq__answer"><p class="tbd">[To confirm: typical timelines.]</p></div>
-            </details>
+          <div class="qa__item">
+            <dt>What kinds of writing do you work with?</dt>
+            <dd class="tbd">[To confirm: the forms and genres you edit.]</dd>
           </div>
-        </div>
-      </div>
-    </section>
+          <div class="qa__item">
+            <dt>How long does an edit take?</dt>
+            <dd class="tbd">[To confirm: typical timelines.]</dd>
+          </div>
+        </dl>
+      </section>
 
-    <!-- Begin: the drawing in its seal, then the two ways to reach her -->
-    <section id="begin" class="cta cta--page on-dark" aria-labelledby="begin-title">
-      <div class="container cta__inner">
-        <div class="cta__seal" data-reveal>
-          <svg class="cta__ring" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><defs><path id="seal-ring" d="M100 100m-84 0a84 84 0 1 1 168 0a84 84 0 1 1-168 0"/></defs><text><textPath href="#seal-ring" textLength="522" lengthAdjust="spacing">GRAND AVENUE EDITING &amp; PUBLICATIONS · GRAND AVENUE EDITING &amp; PUBLICATIONS ·</textPath></text></svg>
-          <img src="assets/img/drawing-ink-white.png" width="1169" height="1206" alt="">
+      <section id="begin" class="article__part" aria-labelledby="begin-title" data-reveal>
+        <h2 id="begin-title" class="eyebrow article__label">Begin</h2>
+        <div class="article__body">
+          <p class="article__title">Tell me about <em>your story.</em></p>
+          <p>The best way to reach me is by email. I am available completely remotely.</p>
+          <p><a class="article__email" href="mailto:caterina45@gmail.com">caterina45@<wbr>gmail.com</a></p>
+          <p>Or use the <a class="text-link" href="contact.html">inquiry form</a> to tell me a little about your story: its form, its length, and where it is in its life.</p>
         </div>
-        <span class="eyebrow" data-reveal style="--d: 100ms">Begin</span>
-        <h2 id="begin-title" class="cta__title" data-reveal style="--d: 150ms">Tell me about <em>your story.</em></h2>
-        <p class="cta__text" data-reveal style="--d: 300ms">The best way to reach me is by email. I am available completely remotely.</p>
-      </div>
-    </section>
-
-    <section class="section band-stone" aria-label="Ways to begin">
-      <div class="container">
-        <div class="choices">
-          <a class="choice frame" href="mailto:caterina45@gmail.com" data-reveal>
-            <span class="badge" aria-hidden="true">I</span>
-            <span class="eyebrow">By email</span>
-            <span class="choice__title">caterina45@<wbr>gmail.com</span>
-            <span class="link">Write to me <span class="link__arrow" aria-hidden="true">→</span></span>
-          </a>
-          <a class="choice frame" href="contact.html" data-reveal style="--d: 150ms">
-            <span class="badge" aria-hidden="true">II</span>
-            <span class="eyebrow">Inquiry form</span>
-            <span class="choice__title">Send an <em>inquiry</em></span>
-            <span class="choice__text">Tell me a little about your story: its form, its length, and where it is in its life.</span>
-            <span class="link">Open the form <span class="link__arrow" aria-hidden="true">→</span></span>
-          </a>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <nav class="pager" aria-label="Grand Avenue: previous and next">
       <div class="container pager__inner">
