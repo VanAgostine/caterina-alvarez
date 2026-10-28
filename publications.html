@@ -93,59 +93,70 @@
       </div>
     </header>
 
-    <!-- Her published work as one horizontal gallery, "Short Division" first: each work once, on her ivory; small details
-         at the top of each panel, its title and Read link at the foot. Swipe, scroll sideways, use the arrows, or Tab
-         through the links. Each Read link goes to the journal's own page, checked on 2026-10-28 -->
+    <!-- Her published work as one horizontal gallery of small literary compositions, "Short Division" first and the only
+         ink panel; the others alternate her ivory and the page's near-white, two carrying her handwritten circle as a
+         corner mark. Journal and date at the top, the title at the foot, the link beneath. Beneath the row, one thin line
+         with a part for each work (built by main.js) shows where you are and brings a work into view. Each Read link goes
+         to the journal's own page, checked on 2026-10-28 -->
     <section id="short-fiction" class="container pub-frame pub-section pub-gallery" aria-labelledby="index-title" data-gallery>
-      <div class="pub-gallery__head">
-        <h2 id="index-title" class="pub-label">Published work</h2>
-        <div class="pub-gallery__nav" hidden data-gallery-nav>
-          <button class="pub-gallery__button" type="button" aria-label="Previous publications" aria-controls="pub-track" data-gallery-prev><svg viewBox="0 0 44 12" aria-hidden="true" focusable="false"><path d="M43.5 6H1M6.5.5 1 6l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></button>
-          <button class="pub-gallery__button" type="button" aria-label="Next publications" aria-controls="pub-track" data-gallery-next><svg viewBox="0 0 44 12" aria-hidden="true" focusable="false"><path d="M.5 6H43M37.5.5 43 6l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></button>
-        </div>
-      </div>
-      <div class="pub-gallery__track" id="pub-track" tabindex="0" role="region" aria-labelledby="index-title" data-gallery-track>
+      <h2 id="index-title" class="pub-label">Published work</h2>
+      <div class="pub-gallery__track" tabindex="0" role="region" aria-labelledby="index-title" data-gallery-track>
         <ol class="pub-gallery__list">
-          <li class="pub-panel" id="feature">
+          <li class="pub-panel pub-panel--ink" id="feature" data-gallery-panel>
             <p class="pub-panel__honour">Wigleaf Top 50, 2022</p>
             <p class="pub-panel__journal"><em>Flash Boulevard</em></p>
             <p class="pub-date"><time datetime="2022-04-16">April 16, 2022</time></p>
-            <h3 class="pub-panel__title">“Short Division”</h3>
-            <p class="pub-panel__text">Her story “Short Division” won a spot on the Wigleaf Top 50 for 2022.</p>
+            <div class="pub-panel__body">
+              <h3 class="pub-panel__title">“Short Division”</h3>
+              <p class="pub-panel__text">Her story “Short Division” won a spot on the Wigleaf Top 50 for 2022.</p>
+            </div>
             <p class="pub-panel__read"><a class="pub-read" href="https://flashboulevard.wordpress.com/2022/04/23/catarina-alvarez-short-division/" rel="noopener" target="_blank"><span class="pub-read__word">Read</span><span class="visually-hidden"> “Short Division”</span><span class="pub-read__arrow" aria-hidden="true">→</span></a></p>
           </li>
-          <li class="pub-panel">
+          <li class="pub-panel pub-panel--ivory" data-gallery-panel>
             <p class="pub-panel__journal"><em>The Los Angeles Review</em></p>
             <p class="pub-date"><time datetime="2024-01-24">January 24, 2024</time></p>
-            <h3 class="pub-panel__title">“Photo From the Future”</h3>
+            <div class="pub-panel__body">
+              <h3 class="pub-panel__title">“Photo From the Future”</h3>
+            </div>
             <p class="pub-panel__read"><a class="pub-read" href="https://losangelesreview.org/photo-from-the-future-by-caterina-alvarez/" rel="noopener" target="_blank"><span class="pub-read__word">Read</span><span class="visually-hidden"> “Photo From the Future”</span><span class="pub-read__arrow" aria-hidden="true">→</span></a></p>
           </li>
-          <li class="pub-panel">
+          <li class="pub-panel pub-panel--paper" data-gallery-panel>
             <p class="pub-panel__journal"><em>Flash Fiction Magazine</em></p>
             <p class="pub-date"><time datetime="2022-12-04">December 4, 2022</time></p>
-            <h3 class="pub-panel__title">“Underworld Muse”</h3>
+            <div class="pub-panel__body">
+              <h3 class="pub-panel__title">“Underworld Muse”</h3>
+            </div>
             <p class="pub-panel__read"><a class="pub-read" href="https://flashfictionmagazine.com/blog/2022/12/04/underworld-muse/" rel="noopener" target="_blank"><span class="pub-read__word">Read</span><span class="visually-hidden"> “Underworld Muse”</span><span class="pub-read__arrow" aria-hidden="true">→</span></a></p>
+            <img class="pub-panel__mark" src="assets/img/drawing-ink.png" width="1169" height="1206" alt="" loading="lazy" decoding="async">
           </li>
-          <li class="pub-panel">
+          <li class="pub-panel pub-panel--ivory" data-gallery-panel>
             <p class="pub-panel__journal"><em>The Atticus Review</em></p>
             <p class="pub-date"><time datetime="2021-02-18">February 18, 2021</time></p>
-            <h3 class="pub-panel__title">“In Eight Moments You Changed My Understanding”</h3>
+            <div class="pub-panel__body">
+              <h3 class="pub-panel__title pub-panel__title--long">“In Eight Moments You Changed My Understanding”</h3>
+            </div>
             <p class="pub-panel__read"><a class="pub-read" href="https://atticusreview.org/in-eight-moments-you-changed-my-understanding/" rel="noopener" target="_blank"><span class="pub-read__word">Read</span><span class="visually-hidden"> “In Eight Moments You Changed My Understanding”</span><span class="pub-read__arrow" aria-hidden="true">→</span></a></p>
           </li>
-          <li class="pub-panel">
+          <li class="pub-panel pub-panel--paper" data-gallery-panel>
             <p class="pub-panel__journal"><em>Unpublishable Zine</em> · Two poems</p>
             <p class="pub-date"><time datetime="2020-10-30">October 30, 2020</time></p>
-            <h3 class="pub-panel__title">“Veil” and “Still”</h3>
+            <div class="pub-panel__body">
+              <h3 class="pub-panel__title">“Veil” and “Still”</h3>
+            </div>
             <p class="pub-panel__read"><a class="pub-read" href="https://theunpublishablezine.wordpress.com/2020/10/30/two-poems-by-caterina-alvarez/" rel="noopener" target="_blank"><span class="pub-read__word">Read</span><span class="visually-hidden"> “Veil” and “Still”</span><span class="pub-read__arrow" aria-hidden="true">→</span></a></p>
+            <img class="pub-panel__mark" src="assets/img/drawing-ink.png" width="1169" height="1206" alt="" loading="lazy" decoding="async">
           </li>
-          <li class="pub-panel">
+          <li class="pub-panel pub-panel--ivory" data-gallery-panel>
             <p class="pub-panel__journal"><em>Tiny Molecules</em> · Flash fiction</p>
             <p class="pub-date"><time datetime="2020-06">June 2020</time></p>
-            <h3 class="pub-panel__title">“Two Sided Coin”</h3>
+            <div class="pub-panel__body">
+              <h3 class="pub-panel__title">“Two Sided Coin”</h3>
+            </div>
             <p class="pub-panel__read"><a class="pub-read" href="https://www.tinymolecules.com/issues/five#caterina-alvarez" rel="noopener" target="_blank"><span class="pub-read__word">Read</span><span class="visually-hidden"> “Two Sided Coin”</span><span class="pub-read__arrow" aria-hidden="true">→</span></a></p>
           </li>
         </ol>
       </div>
+      <div class="pub-line" role="group" aria-label="Choose a publication" hidden data-gallery-line></div>
     </section>
 
     <!-- Her editorial positions and training: quieter, compact rows on the same columns -->

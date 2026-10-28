@@ -74,41 +74,50 @@
     }
   }
 
-  /* ---- gallery: the arrows step one panel at a time and rest at either end (the row also scrolls by touch,
-     trackpad and keyboard, so the arrows only appear once this script runs) */
+  /* ---- gallery: one thin line beneath the row, an equal part for each work. The part that is lit follows the row
+     as it scrolls (touch, trackpad, keys or the line), moving from the first work at the start of the row to the last
+     at its end; clicking a part scrolls to the place where its work is the one lit. The line is built here from the
+     panels' own titles, so it only appears once this script runs */
   document.querySelectorAll('[data-gallery]').forEach((gallery) => {
     const track = gallery.querySelector('[data-gallery-track]');
-    const nav = gallery.querySelector('[data-gallery-nav]');
-    const prev = gallery.querySelector('[data-gallery-prev]');
-    const next = gallery.querySelector('[data-gallery-next]');
-    if (!track || !nav || !prev || !next) return;
+    const line = gallery.querySelector('[data-gallery-line]');
+    const panels = track ? [...track.querySelectorAll('[data-gallery-panel]')] : [];
+    if (!track || !line || panels.length < 2) return;
     const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const step = () => {
-      const panel = track.querySelector('li');
-      const gap = parseFloat(getComputedStyle(panel.parentElement).columnGap) || 0;
-      return panel ? panel.getBoundingClientRect().width + gap : track.clientWidth;
+    const last = panels.length - 1;
+    const room = () => Math.max(0, track.scrollWidth - track.clientWidth);
+    const current = () => (room() ? Math.round((track.scrollLeft / room()) * last) : 0);
+    const show = (i) => {
+      const to = Math.min(last, Math.max(0, i));
+      track.scrollTo({ left: (to / last) * room(), behavior: calm.matches ? 'auto' : 'smooth' });
     };
-    const go = (dir) => track.scrollBy({ left: dir * step(), behavior: calm.matches ? 'auto' : 'smooth' });
+    const parts = panels.map((panel, i) => {
+      const part = document.createElement('button');
+      const title = panel.querySelector('h3');
+      part.type = 'button';
+      part.className = 'pub-line__part';
+      part.setAttribute('aria-label', `Show ${title ? title.textContent.trim() : `work ${i + 1}`}`);
+      part.addEventListener('click', () => show(i));
+      line.appendChild(part);
+      return part;
+    });
+    let lit = -1;
     const update = () => {
-      const end = track.scrollWidth - track.clientWidth - 2;
-      prev.disabled = track.scrollLeft <= 2;
-      next.disabled = track.scrollLeft >= end;
+      const i = current();
+      if (i === lit) return;
+      lit = i;
+      parts.forEach((part, j) => (j === i ? part.setAttribute('aria-current', 'true') : part.removeAttribute('aria-current')));
     };
-    prev.addEventListener('click', () => go(-1));
-    next.addEventListener('click', () => go(1));
-    // with the row itself focused, the arrow keys step a panel (the browser's own small step would snap back)
+    // with the row itself focused, the arrow keys move one work along (the browser's own small step is too slight)
     track.addEventListener('keydown', (e) => {
       if (e.target !== track) return;
-      const to = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
-      if (to) { e.preventDefault(); go(to); }
-      else if (e.key === 'Home' || e.key === 'End') {
-        e.preventDefault();
-        track.scrollTo({ left: e.key === 'Home' ? 0 : track.scrollWidth, behavior: calm.matches ? 'auto' : 'smooth' });
-      }
+      const move = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+      if (move) { e.preventDefault(); show(current() + move); }
+      else if (e.key === 'Home' || e.key === 'End') { e.preventDefault(); show(e.key === 'Home' ? 0 : last); }
     });
     track.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    nav.hidden = false;
+    window.addEventListener('resize', () => { lit = -1; update(); });
+    line.hidden = false;
     update();
   });
 
