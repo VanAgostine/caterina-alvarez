@@ -701,77 +701,56 @@ em, i { font-style: italic; }
   .door .badge { margin-top: 0; }
 }
 
-/* ----------------------------------------------------------------- home: hello (her portrait beside her introduction)
-   Quiet and editorial: the arched portrait, an upright greeting, the introduction set in the serif. */
-.hello {
+/* ----------------------------------------------------------------- home: hello, the opening spread
+   Like the opening spread of a literary magazine, on one 1160px measure: her portrait (about 55%) in a plain rectangle,
+   no arch, band or shadow, beside her introduction (about 45%), the top of the photograph level with the capitals of
+   "Hello". The introduction in the page's running text and one ink. Nothing waits on a scroll animation */
+.hello { padding-block: var(--space-open) var(--section); }
+.hello__inner {
+  max-width: calc(1160px + var(--gutter) * 2);
   display: grid;
-  align-items: center;
-  min-height: calc(100svh - var(--header-h));
-  padding-block: clamp(56px, 7vw, 120px);
+  grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+  column-gap: 56px;
+  row-gap: 40px;
+  align-items: start;
 }
-.hello__inner { align-items: center; row-gap: 44px; }
-/* the portrait is set into the page like an arched window: a slim band of her wall colour, flat and even,
-   around the photo; no shading, so it stays crisp */
-.hello__portrait { grid-column: 2 / 6; justify-self: end; width: min(100%, 440px); }
-.window {
-  padding: clamp(6px, .55vw, 8px);
-  border-radius: 999px 999px 0 0;
-  background: var(--wall);
-}
-.window__pane {
-  overflow: hidden;
-  aspect-ratio: 394 / 560;
-  border-radius: 999px 999px 0 0;
-  background: var(--wall);
-}
-.window__pane img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-}
-.hello__text { grid-column: 7 / 12; display: flex; flex-direction: column; gap: clamp(28px, 3vw, 44px); }
+/* a flattering 4:5 crop from her portrait, kept to the head, hands and shoulders; never stretched */
+.hello__portrait img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 16%; }
+.hello__text { display: flex; flex-direction: column; gap: 32px; }
 .hello__title {
+  margin-top: -.12em; /* Spectral's capitals start about .12em below the line's top: this sets them level with the photograph */
   font-family: var(--serif);
   font-weight: 400;
   font-size: var(--t-title);
-  line-height: .95;
+  line-height: 1;
   letter-spacing: -.02em;
-  color: var(--ink);
+  color: var(--text);
 }
-/* the home page's body paragraphs share one style */
-.hello__body,
-.page-hero__text {
-  max-width: 31em;
+/* the introduction, in the running text at a comfortable measure */
+.hello__body {
+  max-width: 30em;
   font-family: var(--serif);
   font-size: var(--t-body);
-  line-height: 1.85; /* airier than the rest by design: the drop capital M is set to two of these lines */
-  color: var(--mute);
+  line-height: 1.6;
+  color: var(--text);
   text-wrap: pretty;
 }
-.hello__body p + p { margin-top: 1.2em; }
+.hello__body p + p { margin-top: 1.1em; }
+/* the paper grain, almost imperceptible on this page */
+.page-home::after { opacity: .06; }
 @media (max-width: 900px) {
-  .hello { min-height: 0; }
-  .hello__portrait { grid-column: 1 / -1; justify-self: center; width: min(100%, 340px); }
-  .hello__text { grid-column: 1 / -1; }
+  .hello__inner { grid-template-columns: minmax(0, 1fr); }
+  .hello__portrait { width: min(100%, 560px); }
 }
 
-/* ----------------------------------------------------------------- home as one room
-   Between the header and the footer the home page is one warm white ground. Both pictures are framed in her
-   wall colour, like the header and footer, the drawing without its black frame or shadow, and all the words share one ink. */
+/* ----------------------------------------------------------------- home and cover: one warm white ground
+   The drawing (on the cover) sits in a square band of her wall colour without its black frame or shadow, and all the
+   words share one ink. */
 .home { background: var(--paper); }
-.home .hero { background: none; }
-/* the greeting and the motto read as one section: no full-screen heights, a modest gap between them */
-.home .hello { min-height: 0; padding-top: var(--space-open); padding-bottom: var(--section); }
-.home .hero { min-height: 0; padding-top: clamp(36px, 4vw, 64px); padding-bottom: var(--section); }
-.home .window,
-.home .window__pane { background: var(--wall); }
 .home .artwork { width: min(100%, 440px); }
 .home .artwork__frame { background: var(--paper); border: 0; box-shadow: inset 0 0 0 clamp(6px, .55vw, 8px) var(--wall); }
 @media (max-width: 900px) { .home .artwork { width: min(100%, 340px); } }
 .home .artwork__frame::after { display: none; }
-.home .hello__title,
-.home .hello__body,
 .home .hero__quote,
 .home .pager__link,
 .home .pager__dir { color: var(--text); }
@@ -818,22 +797,6 @@ em, i { font-style: italic; }
   .cover__text { grid-column: 1 / -1; }
 }
 
-/* the introduction opens like the first page of a book: a drop capital, then the opening words in spaced capitals.
-   The M stands exactly two lines deep: its top level with the capitals beside it, its foot on the second line's
-   baseline. Measured from Spectral, whose capitals stand .66 of the type size; the M sits outside the small
-   capitals' span so it is sized from the paragraph. The float stays shorter than two lines so the third runs full. */
-.home .hello__body .dropcap::first-letter {
-  color: var(--text);
-  font-size: 3.66em;
-  line-height: .8;
-  margin: .14em 0 0 -.05em;
-}
-/* Firefox sets a floated first letter a little higher than Chrome and Safari; bring it down onto the same lines */
-@supports (-moz-appearance: none) {
-  .home .hello__body .dropcap::first-letter { margin-top: .182em; }
-}
-.home .hello__body .dropcap::first-line { text-transform: none; letter-spacing: normal; font-size: 1em; }
-.home .lead-in { text-transform: uppercase; letter-spacing: .1em; font-size: .86em; }
 .home .hero__quote { text-wrap: balance; }
 
 /* the drawing is traced in once, the first time it comes into view: the ink appears where her handwriting
