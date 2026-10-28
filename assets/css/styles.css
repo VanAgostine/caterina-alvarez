@@ -1078,48 +1078,50 @@ em, i { font-style: italic; }
   .mat { gap: 24px; padding: 36px 10px 10px; }
 }
 
-/* ----------------------------------------------------------------- publications: a literary journal's contents page
-   Black and white with a little warmth, in one 1080px measure: a confident opening with her handwritten circle set
-   like a signature and a fine ink rule beneath; one featured story on her ivory; then the index of her published
-   work and, quieter, her editorial positions, on the same three aligned columns (title, journal and date, link).
-   Terracotta appears only as one small mark and on link hover. No cards, bands or scroll animations. */
+/* ----------------------------------------------------------------- publications: a gallery of her published work
+   Black and white with a little warmth, in one 1080px measure. A compact opening (her title and line on the left, her
+   handwritten circle on the right like a signature, a fine ink rule beneath), then her work as one horizontal gallery
+   after the "Been there, Done That" row on Maven Travel's experiences page: square panels on her ivory, about two and
+   a half in view, small details at the top and the title at the foot where a caption would sit. Her editorial
+   positions follow as quiet rows. Terracotta appears only as one small mark and on hover. Nothing waits on a scroll
+   animation. */
 .publications {
   --p-ink: #201e1b;
   --p-brown: var(--umber);
   --p-ivory: var(--wall);
   --p-accent: var(--clay);
-  --p-space: 72px;
+  --p-space: 64px;
+  --p-gap: 28px;
   --p-cols: minmax(0, 1fr) 16rem 6.5rem;
-  --p-gap: 40px;
   color: var(--p-ink);
 }
 .page-publications::after { opacity: .06; } /* the paper grain, almost imperceptible here */
 .pub-frame { max-width: calc(1080px + var(--gutter) * 2); }
 .publications .eyebrow,
 .pub-label,
-.pub-feature__honour { font-family: var(--sans); font-weight: 500; font-size: 11px; line-height: 1.5; letter-spacing: .26em; text-transform: uppercase; color: var(--p-brown); }
+.pub-panel__honour { font-family: var(--sans); font-weight: 500; font-size: 11px; line-height: 1.5; letter-spacing: .26em; text-transform: uppercase; color: var(--p-brown); }
 
-/* 1. the opening */
+/* the opening: compact, so the gallery begins in the first view */
 .pub-hero {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
-  column-gap: var(--p-gap);
+  column-gap: 40px;
   align-items: center;
-  padding-block: 84px 80px;
+  padding-block: 64px 56px;
   border-bottom: 1px solid var(--p-ink);
 }
 .pub-hero__title {
-  margin-top: 22px;
+  margin-top: 18px;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(46px, 5.4vw, 76px);
+  font-size: clamp(46px, 5.2vw, 72px);
   line-height: 1;
   letter-spacing: -.022em;
   color: var(--p-ink);
 }
 .pub-hero__quote {
   max-width: 24em;
-  margin-top: 26px;
+  margin-top: 22px;
   font-family: var(--serif);
   font-style: italic;
   font-size: 21px;
@@ -1129,10 +1131,10 @@ em, i { font-style: italic; }
 }
 .pub-hero__quote p::before { content: "\201C"; }
 .pub-hero__quote p::after { content: "\201D"; }
-.pub-hero__art { justify-self: end; width: 184px; margin-right: 8px; }
+.pub-hero__art { justify-self: end; width: 176px; margin-right: 8px; }
 .pub-hero__art img { width: 100%; height: auto; }
 
-/* sections share one interval; their labels sit a short step above what they label */
+/* sections share one interval; labels sit a short step above what they label */
 .pub-section { padding-top: var(--p-space); }
 .pub-section--last { padding-bottom: 80px; }
 .pub-label { margin-bottom: 22px; }
@@ -1165,74 +1167,114 @@ em, i { font-style: italic; }
 .pub-read:hover .pub-read__word { text-decoration-color: var(--p-accent); }
 .pub-read:hover .pub-read__arrow { transform: translateX(4px); }
 .pub-read:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 6px; }
-@media (prefers-reduced-motion: reduce) {
-  .pub-read__arrow { transition: none; }
-  .pub-read:hover .pub-read__arrow { transform: none; }
+
+/* the gallery: its label and the two arrows on one line, then the scrolling row of panels */
+.pub-gallery__head { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
+.pub-gallery__head .pub-label { margin: 0; }
+.pub-gallery__nav { display: flex; gap: 4px; margin-right: -6px; }
+.pub-gallery__nav[hidden] { display: none; }
+.pub-gallery__button {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--p-ink);
+  cursor: pointer;
+  transition: color .3s ease, opacity .3s ease;
+}
+.pub-gallery__button svg { display: block; width: 44px; height: 12px; transition: transform .45s var(--ease-out); }
+.pub-gallery__button:hover:not(:disabled) { color: var(--p-accent); }
+.pub-gallery__button[data-gallery-prev]:hover:not(:disabled) svg { transform: translateX(-4px); }
+.pub-gallery__button[data-gallery-next]:hover:not(:disabled) svg { transform: translateX(4px); }
+.pub-gallery__button:disabled { opacity: .25; cursor: default; }
+.pub-gallery__button:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 0; }
+.pub-gallery__track {
+  position: relative; /* keeps the links' hidden screen-reader text inside the row, so the page never widens */
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  padding-bottom: 22px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--p-ink) rgba(32, 30, 27, .12); /* a fine ink rule that shows where you are */
+}
+.pub-gallery__track:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 8px; }
+/* one shared grid: every panel's recognition line, journal, date, title, sentence and link sit on the same lines
+   across the row (subgrid), whatever each panel holds */
+.pub-gallery__list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(280px, calc((100% - 2 * var(--p-gap)) / 2.5), 420px);
+  grid-template-rows: auto auto auto minmax(40px, 1fr) auto auto auto;
+  column-gap: var(--p-gap);
+  min-height: 450px;
 }
 
-/* 2. the featured story on her ivory: square, no shadow; a short terracotta mark before its recognition line */
-.pub-feature {
+/* each panel: square, on her ivory, about two and a half in view */
+.pub-panel {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  column-gap: var(--p-gap);
-  align-items: end;
-  padding: 44px;
+  grid-row: 1 / -1;
+  grid-template-rows: subgrid;
+  justify-items: start;
+  padding: 32px;
   background: var(--p-ivory);
+  scroll-snap-align: start;
 }
-.pub-feature__honour { display: flex; align-items: center; gap: 14px; }
-.pub-feature__honour::before { content: ""; flex: none; width: 28px; height: 1px; background: var(--p-accent); }
-.pub-feature__title {
-  margin-top: 18px;
+.pub-panel__honour { grid-row: 1; display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.pub-panel__honour::before { content: ""; flex: none; width: 28px; height: 1px; background: var(--p-accent); }
+.pub-panel__journal { grid-row: 2; font-family: var(--serif); font-size: 17px; line-height: 1.45; color: var(--p-ink); }
+.pub-panel .pub-date { grid-row: 3; margin-top: 2px; }
+.pub-panel__title {
+  grid-row: 5;
+  align-self: end; /* every title's last line on one line across the row; longer titles rise */
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(36px, 3.2vw, 46px);
-  line-height: 1.1;
-  letter-spacing: -.015em;
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: -.01em;
   color: var(--p-ink);
+  text-wrap: pretty;
 }
-.pub-feature__source { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-top: 14px; font-family: var(--serif); font-size: 17px; line-height: 1.5; }
-.pub-feature__text { max-width: 34em; margin-top: 12px; font-family: var(--serif); font-size: 18px; line-height: 1.65; color: var(--p-ink); }
-.pub-feature__read { padding-bottom: 4px; }
+.pub-panel__text { grid-row: 6; margin-top: 14px; font-family: var(--serif); font-size: 17px; line-height: 1.6; color: var(--p-ink); }
+.pub-panel__read { grid-row: 7; margin-top: 24px; }
 
-/* 3. the index: three columns that line up on every row, thin rules between */
+@media (prefers-reduced-motion: reduce) {
+  .pub-read__arrow, .pub-gallery__button svg { transition: none; }
+  .pub-read:hover .pub-read__arrow,
+  .pub-gallery__button:hover:not(:disabled) svg { transform: none; }
+}
+
+/* her editorial positions: compact rows between fine rules, organisation and role on two aligned columns */
 .pub-list { border-bottom: 1px solid var(--line); }
 .pub-row {
   display: grid;
   grid-template-columns: var(--p-cols);
-  column-gap: var(--p-gap);
+  column-gap: 40px;
   align-items: baseline;
-  padding-block: 32px;
+  padding-block: 18px;
   border-top: 1px solid var(--line);
 }
-.pub-row__title { font-family: var(--serif); font-weight: 400; font-size: clamp(27px, 2.05vw, 29px); line-height: 1.22; letter-spacing: -.01em; color: var(--p-ink); text-wrap: pretty; }
-.pub-row__journal { font-family: var(--serif); font-size: 17px; line-height: 1.45; color: var(--p-ink); }
-.pub-row__source .pub-date { margin-top: 4px; }
-.pub-row__read { justify-self: end; }
-
-/* 4. her editorial positions: the same columns, compact and quieter */
-.pub-list--quiet .pub-row { padding-block: 18px; }
-.pub-row--quiet .pub-row__title { font-size: 20px; line-height: 1.35; }
+.pub-row__title { font-family: var(--serif); font-weight: 400; font-size: 20px; line-height: 1.35; color: var(--p-ink); }
 .pub-row__role { font-family: var(--sans); font-size: 14px; line-height: 1.5; color: var(--p-brown); }
 
-/* tablets: the middle column narrows */
 @media (max-width: 1000px) {
-  .publications { --p-cols: minmax(0, 1fr) 13rem 6rem; --p-gap: 28px; }
+  .publications { --p-cols: minmax(0, 1fr) 13rem 6rem; }
 }
-/* phones: the circle follows the opening text; each entry stacks (title, journal and date, link) */
+/* phones: the circle follows the opening text; panels show one and a little of the next; swipe to move */
 @media (max-width: 760px) {
-  .publications { --p-space: 56px; }
-  .pub-hero { grid-template-columns: minmax(0, 1fr); padding-block: 52px 48px; }
-  .pub-hero__title { font-size: 44px; margin-top: 16px; }
-  .pub-hero__quote { margin-top: 20px; font-size: 19px; }
-  .pub-hero__art { justify-self: start; width: 124px; margin: 36px 0 0; }
-  .pub-feature { grid-template-columns: minmax(0, 1fr); row-gap: 22px; padding: 24px; }
-  .pub-feature__title { font-size: 32px; }
-  .pub-feature__text { font-size: 17px; }
-  .pub-row { grid-template-columns: minmax(0, 1fr); row-gap: 8px; padding-block: 26px; }
-  .pub-row__title { font-size: 24px; }
-  .pub-row__read { justify-self: start; margin-top: 6px; }
-  .pub-list--quiet .pub-row { row-gap: 2px; padding-block: 16px; }
-  .pub-row--quiet .pub-row__title { font-size: 19px; }
+  .publications { --p-space: 52px; --p-gap: 20px; }
+  .pub-hero { grid-template-columns: minmax(0, 1fr); padding-block: 44px 40px; }
+  .pub-hero__title { font-size: 44px; margin-top: 14px; }
+  .pub-hero__quote { margin-top: 18px; font-size: 19px; }
+  .pub-hero__art { justify-self: start; width: 120px; margin: 30px 0 0; }
+  .pub-gallery__nav { display: none; }
+  .pub-gallery__list { grid-auto-columns: min(80vw, 300px); min-height: 400px; }
+  .pub-panel { padding: 24px; }
+  .pub-panel__title { font-size: 26px; }
+  .pub-row { grid-template-columns: minmax(0, 1fr); row-gap: 2px; padding-block: 16px; }
+  .pub-row__title { font-size: 19px; }
   .pub-section--last { padding-bottom: 56px; }
 }
 

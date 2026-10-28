@@ -74,6 +74,44 @@
     }
   }
 
+  /* ---- gallery: the arrows step one panel at a time and rest at either end (the row also scrolls by touch,
+     trackpad and keyboard, so the arrows only appear once this script runs) */
+  document.querySelectorAll('[data-gallery]').forEach((gallery) => {
+    const track = gallery.querySelector('[data-gallery-track]');
+    const nav = gallery.querySelector('[data-gallery-nav]');
+    const prev = gallery.querySelector('[data-gallery-prev]');
+    const next = gallery.querySelector('[data-gallery-next]');
+    if (!track || !nav || !prev || !next) return;
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const step = () => {
+      const panel = track.querySelector('li');
+      const gap = parseFloat(getComputedStyle(panel.parentElement).columnGap) || 0;
+      return panel ? panel.getBoundingClientRect().width + gap : track.clientWidth;
+    };
+    const go = (dir) => track.scrollBy({ left: dir * step(), behavior: calm.matches ? 'auto' : 'smooth' });
+    const update = () => {
+      const end = track.scrollWidth - track.clientWidth - 2;
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= end;
+    };
+    prev.addEventListener('click', () => go(-1));
+    next.addEventListener('click', () => go(1));
+    // with the row itself focused, the arrow keys step a panel (the browser's own small step would snap back)
+    track.addEventListener('keydown', (e) => {
+      if (e.target !== track) return;
+      const to = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+      if (to) { e.preventDefault(); go(to); }
+      else if (e.key === 'Home' || e.key === 'End') {
+        e.preventDefault();
+        track.scrollTo({ left: e.key === 'Home' ? 0 : track.scrollWidth, behavior: calm.matches ? 'auto' : 'smooth' });
+      }
+    });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    nav.hidden = false;
+    update();
+  });
+
   /* ---- footer year */
   document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
 
