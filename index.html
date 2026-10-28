@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://caterinaalvarez.com/assets/img/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@caterina445">
-  <meta name="theme-color" content="#f4eee5">
+  <meta name="theme-color" content="#fcfbf8">
   <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
@@ -28,18 +28,23 @@
 <body class="cover-page">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- The cover: her name, the drawing (traced in as it arrives) and her motto, like the front of a book.
+  <!-- The cover, set like the front of an art book: her near-white on the left, an ink panel on the right holding
+       the drawing in ivory like a single work hung on a dark wall. Her name runs large across the seam ("Alvarez"
+       turns from ink to ivory where it crosses). Small capitals mark the corners; her motto sits at the foot, and
        Enter opens the site at Hello -->
   <main id="main" class="home cover">
-    <div class="cover__inner">
-      <h1 class="cover__name" data-reveal><span class="cover__author">Caterina Alvarez</span> <span class="cover__imprint">Grand Avenue Editing &amp; Publications</span></h1>
-      <figure class="cover__art" data-reveal style="--d: 150ms">
-        <div class="artwork__frame" data-ink>
-          <img src="assets/img/drawing-ink.png" width="1169" height="1206" fetchpriority="high"
-                   alt="Caterina Alvarez’s ink drawing: the handwritten words “What I mean is this:…” curve above a ring of looping lines that spiral inward toward an open center.">
-        </div>
+    <p class="cover__imprint" data-reveal>Grand Avenue Editing &amp; Publications</p>
+    <h1 class="cover__name" data-reveal style="--d: 200ms"><span>Caterina</span> <em>Alvarez</em></h1>
+    <div class="cover__motto" data-reveal style="--d: 900ms">
+      <p class="cover__label">Our motto</p>
+      <blockquote class="cover__quote"><p>Your options are, of course, limitless, but my gut tells me the heart lies right here. This is the axis upon which your story&nbsp;spins.</p></blockquote>
+    </div>
+    <div class="cover__plate">
+      <p class="cover__role" data-reveal style="--d: 400ms">Editor and writer</p>
+      <figure class="cover__art" data-ink>
+        <img src="assets/img/drawing-ink-white.png" width="1169" height="1206" fetchpriority="high"
+             alt="Caterina Alvarez’s ink drawing: the handwritten words “What I mean is this:…” curve above a ring of looping lines that spiral inward toward an open center.">
       </figure>
-      <blockquote class="hero__quote cover__motto" data-sweep style="--d: 700ms">Your options are, of course, limitless, but my gut tells me the heart lies right here. This is the axis upon which your story&nbsp;spins.</blockquote>
       <a class="cover__enter" href="home.html" data-reveal style="--d: 1400ms"><span>Enter</span><svg viewBox="0 0 44 12" aria-hidden="true" focusable="false"><path d="M.5 6H43M37.5.5 43 6l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></a>
     </div>
   </main>
