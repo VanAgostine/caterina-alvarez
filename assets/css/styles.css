@@ -951,13 +951,16 @@ em, i { font-style: italic; }
 }
 
 /* ----------------------------------------------------------------- editing: one page, composed like a magazine feature
-   No rules between the parts: the page moves from the arch, to her words set large, to the questions matted
-   on her wall colour, and the space between does the separating. All the words share one ink, like the home page. */
+   No rules between the parts. Every part shares one measure (the same two edges, the same centre) and one
+   interval of space, so the page reads in a single, even rhythm: the arch, her words, the questions.
+   All the words share one ink, like the home page. */
+.editing { --ed-space: clamp(88px, 8.4vw, 128px); }
 .editing .eyebrow { color: var(--text); }
+.ed-frame { max-width: calc(1040px + var(--gutter) * 2); }
 
 /* the opening: the service under its name in an arch of her wall colour, like the portrait's window on the
    home page, with a hairline arch drawn just inside its edge */
-.niche-wrap { padding-block: clamp(56px, 6vw, 96px) 0; }
+.niche-wrap { padding-top: clamp(56px, 5.6vw, 84px); }
 .niche {
   position: relative;
   display: flex;
@@ -965,7 +968,7 @@ em, i { font-style: italic; }
   align-items: center;
   width: min(100%, 580px);
   margin-inline: auto;
-  padding: clamp(118px, 11vw, 158px) clamp(28px, 4vw, 64px) clamp(64px, 6vw, 92px);
+  padding: clamp(118px, 11vw, 158px) clamp(28px, 4vw, 64px) clamp(72px, 6.4vw, 96px);
   border-radius: 999px 999px 0 0;
   background: var(--wall);
   text-align: center;
@@ -999,57 +1002,58 @@ em, i { font-style: italic; }
 .niche__list {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-top: clamp(14px, 1.4vw, 20px);
+  gap: 6px;
+  margin-top: clamp(16px, 1.6vw, 22px);
   font-family: var(--serif);
   font-size: clamp(16px, 1.1vw, 17px);
   line-height: 1.7;
 }
 
-/* the approach as a spread: her words set large, the opening quotation mark hanging in the margin beside
-   them; below, a marked-up draft framed in a slim band of her wall colour, like the portrait, with the two
-   paragraphs beside it, their last line level with its foot */
-.spread { align-items: start; padding-block: clamp(96px, 10vw, 160px) clamp(96px, 9vw, 150px); }
-.spread__label { grid-column: 2 / 12; grid-row: 1; margin-bottom: clamp(26px, 2.6vw, 38px); }
+/* the approach: its name, a small quotation mark and her words, all on the page's centre line; then the
+   marked-up draft (framed in a slim band of her wall colour, like the portrait) and the two paragraphs as an
+   even pair that fills the measure edge to edge */
+.spread {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--ed-space);
+  text-align: center;
+}
 .spread__mark {
-  grid-column: 1;
-  grid-row: 2;
-  justify-self: end;
-  height: .5em;
-  margin-top: .1em;
+  display: block;
+  height: .4em;
+  margin-top: clamp(30px, 3vw, 40px);
   font-family: var(--serif);
-  font-size: clamp(56px, 4.8vw, 74px);
+  font-size: clamp(54px, 4.4vw, 64px);
   line-height: .78;
   color: var(--greige);
 }
 .spread__quote {
-  grid-column: 2 / 9;
-  grid-row: 2;
+  max-width: 27em;
+  margin-top: clamp(14px, 1.4vw, 18px);
   font-family: var(--serif);
   font-style: italic;
   font-size: clamp(21px, 1.95vw, 28px);
-  line-height: 1.45;
+  line-height: 1.5;
   letter-spacing: -.004em;
   color: var(--text);
-  text-wrap: pretty;
+  text-wrap: balance;
 }
-.spread__image {
-  grid-column: 1 / 6;
-  grid-row: 3;
-  margin-top: clamp(48px, 5vw, 80px);
-  padding: clamp(6px, .55vw, 8px);
-  background: var(--wall);
+.spread__pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  column-gap: clamp(48px, 6.4vw, 92px);
+  width: 100%;
+  margin-top: clamp(64px, 6.4vw, 92px);
+  text-align: left;
 }
+.spread__image { padding: clamp(6px, .55vw, 8px); background: var(--wall); }
 .spread__image img { width: 100%; }
 .spread__prose {
-  grid-column: 7 / 12;
-  grid-row: 3;
-  align-self: end;
   display: flex;
   flex-direction: column;
   gap: 1.2em;
-  max-width: 31em;
-  margin-top: clamp(48px, 5vw, 80px);
   font-family: var(--serif);
   font-size: clamp(16.5px, 1.12vw, 17.5px);
   line-height: 1.85;
@@ -1059,41 +1063,36 @@ em, i { font-style: italic; }
 /* the first words in spaced capitals, as the home page's introduction opens */
 .spread .lead-in { text-transform: uppercase; letter-spacing: .1em; font-size: .86em; }
 
-/* the questions matted on her wall colour like a framed print: the numbered sheet in the middle */
-.questions { padding-bottom: clamp(88px, 9vw, 140px); }
+/* the questions matted on her wall colour like a framed print, the numbered sheet in the middle */
+.questions { padding-block: var(--ed-space); }
 .mat {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: clamp(28px, 3vw, 40px);
-  max-width: 1040px;
-  margin-inline: auto;
-  padding: clamp(56px, 6vw, 92px) clamp(14px, 6vw, 100px) clamp(64px, 7vw, 108px);
+  padding: clamp(56px, 5.6vw, 84px) clamp(14px, 5vw, 80px);
   background: var(--wall);
 }
 .mat .qa__sheet { width: min(100%, 700px); }
 .editing .faq__answer { color: var(--text); }
 
+/* tablets: the pair stacks into one centred column, the draft above the paragraphs */
 @media (max-width: 900px) {
-  .spread__label, .spread__mark, .spread__quote, .spread__image, .spread__prose { grid-column: 1 / -1; }
-  .spread__mark { grid-row: 2; justify-self: start; height: .42em; margin: 0 0 6px -.04em; font-size: 56px; }
-  .spread__quote { grid-row: 3; }
-  .spread__image { grid-row: 4; width: min(100%, 600px); margin-top: 44px; }
-  .spread__prose { grid-row: 5; margin-top: 40px; }
+  .spread__pair { grid-template-columns: minmax(0, 1fr); row-gap: 44px; width: min(100%, 560px); }
 }
 @media (max-width: 600px) {
+  .editing { --ed-space: 72px; }
   .niche-wrap { padding-top: 32px; }
-  .niche { padding: 104px 22px 52px; }
+  .niche { padding: 104px 22px 56px; }
   .niche::after { inset: 8px; }
   .niche__title { font-size: 38px; }
   .niche__price { margin-top: 26px; font-size: 18px; }
   .niche__list { font-size: 15.5px; }
-  .spread { padding-block: 72px 64px; }
-  .spread__label { margin-bottom: 22px; }
-  .spread__quote { font-size: 19.5px; line-height: 1.5; }
-  .spread__image { margin-top: 36px; padding: 6px; }
+  .spread__mark { margin-top: 24px; font-size: 50px; }
+  .spread__quote { font-size: 19.5px; }
+  .spread__pair { row-gap: 36px; margin-top: 48px; }
+  .spread__image { padding: 6px; }
   .spread__prose { font-size: 16.5px; }
-  .questions { padding-bottom: 64px; }
   .mat { gap: 24px; padding: 36px 10px 10px; }
 }
 
