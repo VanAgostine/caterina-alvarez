@@ -1078,94 +1078,162 @@ em, i { font-style: italic; }
   .mat { gap: 24px; padding: 36px 10px 10px; }
 }
 
-/* ----------------------------------------------------------------- publications: an index of her published work
-   One 1040px measure on the ivory page, split down the middle like the Editing page: the opening sits on the
-   centre line; below it the featured story and every row put their title on the left half and the journal, date
-   and link on the right, so the page has two edges and one centre. Five sizes only: the page title, the featured
-   title, the row titles, one body serif (journals, roles, her sentences) and one small capital style (labels,
-   dates, links). No covers, cards or bands, and nothing waits on a scroll animation. One ink, like Editing. */
-.publications { --pub-space: 72px; --pub-body: 18px; }
-.publications .eyebrow { color: var(--text); }
-.pub-frame { max-width: calc(1040px + var(--gutter) * 2); }
+/* ----------------------------------------------------------------- publications: a literary journal's contents page
+   Black and white with a little warmth, in one 1080px measure: a confident opening with her handwritten circle set
+   like a signature and a fine ink rule beneath; one featured story on her ivory; then the index of her published
+   work and, quieter, her editorial positions, on the same three aligned columns (title, journal and date, link).
+   Terracotta appears only as one small mark and on link hover. No cards, bands or scroll animations. */
+.publications {
+  --p-ink: #201e1b;
+  --p-brown: var(--umber);
+  --p-ivory: var(--wall);
+  --p-accent: var(--clay);
+  --p-space: 72px;
+  --p-cols: minmax(0, 1fr) 16rem 6.5rem;
+  --p-gap: 40px;
+  color: var(--p-ink);
+}
+.page-publications::after { opacity: .06; } /* the paper grain, almost imperceptible here */
+.pub-frame { max-width: calc(1080px + var(--gutter) * 2); }
+.publications .eyebrow,
+.pub-label,
+.pub-feature__honour { font-family: var(--sans); font-weight: 500; font-size: 11px; line-height: 1.5; letter-spacing: .26em; text-transform: uppercase; color: var(--p-brown); }
 
-/* the opening, on the centre line */
-.pub-hero { display: flex; flex-direction: column; align-items: center; gap: 20px; padding-top: var(--pub-space); text-align: center; }
+/* 1. the opening */
+.pub-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
+  column-gap: var(--p-gap);
+  align-items: center;
+  padding-block: 84px 80px;
+  border-bottom: 1px solid var(--p-ink);
+}
+.pub-hero__title {
+  margin-top: 22px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(46px, 5.4vw, 76px);
+  line-height: 1;
+  letter-spacing: -.022em;
+  color: var(--p-ink);
+}
 .pub-hero__quote {
-  max-width: 30em;
-  margin-top: 4px;
+  max-width: 24em;
+  margin-top: 26px;
   font-family: var(--serif);
   font-style: italic;
-  font-size: var(--pub-body);
-  line-height: 1.65;
-  color: var(--text);
-  text-wrap: balance;
+  font-size: 21px;
+  line-height: 1.55;
+  color: var(--p-brown);
+  text-wrap: pretty;
 }
 .pub-hero__quote p::before { content: "\201C"; }
 .pub-hero__quote p::after { content: "\201D"; }
+.pub-hero__art { justify-self: end; width: 184px; margin-right: 8px; }
+.pub-hero__art img { width: 100%; height: auto; }
 
-/* one small capital style for labels, dates and links */
-.pub-row__date,
-.publications .link { font-family: var(--sans); font-weight: 500; font-size: 11px; line-height: 1.5; letter-spacing: .24em; text-transform: uppercase; }
-.pub-row__date { color: var(--mute); }
+/* sections share one interval; their labels sit a short step above what they label */
+.pub-section { padding-top: var(--p-space); }
+.pub-section--last { padding-bottom: 80px; }
+.pub-label { margin-bottom: 22px; }
 
-/* the featured story: its recognition and title on the left; on the right, level with the title, where and when
-   it appeared, her sentence and the link */
+/* the small date style, wherever a date appears */
+.pub-date { font-family: var(--sans); font-size: 13.5px; line-height: 1.5; letter-spacing: .02em; color: var(--p-brown); }
+
+/* the Read link: small capitals with a restrained arrow that steps forward on hover; its underline warms to terracotta */
+.pub-read {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .7em;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 11.5px;
+  line-height: 1.5;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--p-ink);
+}
+/* only the word is underlined, so the line never runs under the arrow */
+.pub-read__word {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .55em;
+  text-decoration-color: rgba(32, 30, 27, .3);
+  transition: text-decoration-color .3s ease;
+}
+.pub-read__arrow { letter-spacing: 0; transition: transform .45s var(--ease-out); }
+.pub-read:hover .pub-read__word { text-decoration-color: var(--p-accent); }
+.pub-read:hover .pub-read__arrow { transform: translateX(4px); }
+.pub-read:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 6px; }
+@media (prefers-reduced-motion: reduce) {
+  .pub-read__arrow { transition: none; }
+  .pub-read:hover .pub-read__arrow { transform: none; }
+}
+
+/* 2. the featured story on her ivory: square, no shadow; a short terracotta mark before its recognition line */
 .pub-feature {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 48px;
-  padding-top: var(--pub-space);
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: var(--p-gap);
+  align-items: end;
+  padding: 44px;
+  background: var(--p-ivory);
 }
-.pub-feature__honour { grid-column: 1; margin-bottom: 14px; }
+.pub-feature__honour { display: flex; align-items: center; gap: 14px; }
+.pub-feature__honour::before { content: ""; flex: none; width: 28px; height: 1px; background: var(--p-accent); }
 .pub-feature__title {
-  grid-column: 1;
-  grid-row: 2;
-  align-self: baseline;
+  margin-top: 18px;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: 34px;
-  line-height: 1.15;
-  letter-spacing: -.01em;
-  color: var(--text);
+  font-size: clamp(36px, 3.2vw, 46px);
+  line-height: 1.1;
+  letter-spacing: -.015em;
+  color: var(--p-ink);
 }
-.pub-feature__about { grid-column: 2; grid-row: 2; align-self: baseline; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
-.pub-feature__text { max-width: 30em; margin-top: 12px; font-family: var(--serif); font-size: var(--pub-body); line-height: 1.65; color: var(--text); }
-.pub-feature__read { margin-top: 14px; }
+.pub-feature__source { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-top: 14px; font-family: var(--serif); font-size: 17px; line-height: 1.5; }
+.pub-feature__text { max-width: 34em; margin-top: 12px; font-family: var(--serif); font-size: 18px; line-height: 1.65; color: var(--p-ink); }
+.pub-feature__read { padding-bottom: 4px; }
 
-/* the indexes: a small label, then one row per entry between fine rules */
-.pub-index { padding-top: var(--pub-space); }
-.publications .pub-index:last-of-type { padding-bottom: 80px; }
-.pub-index > .eyebrow { margin-bottom: 18px; }
+/* 3. the index: three columns that line up on every row, thin rules between */
 .pub-list { border-bottom: 1px solid var(--line); }
 .pub-row {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 48px;
+  grid-template-columns: var(--p-cols);
+  column-gap: var(--p-gap);
   align-items: baseline;
-  padding-block: 26px;
+  padding-block: 32px;
   border-top: 1px solid var(--line);
 }
-.pub-row__title { font-family: var(--serif); font-weight: 400; font-size: 22px; line-height: 1.3; color: var(--text); text-wrap: pretty; }
-.pub-row__about { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 24px; row-gap: 6px; align-items: baseline; }
-.pub-row__journal { grid-column: 1; font-family: var(--serif); font-size: var(--pub-body); line-height: 1.5; color: var(--text); }
-.pub-row__date { grid-column: 1; }
-.pub-row__read { grid-column: 2; grid-row: 1; }
+.pub-row__title { font-family: var(--serif); font-weight: 400; font-size: clamp(27px, 2.05vw, 29px); line-height: 1.22; letter-spacing: -.01em; color: var(--p-ink); text-wrap: pretty; }
+.pub-row__journal { font-family: var(--serif); font-size: 17px; line-height: 1.45; color: var(--p-ink); }
+.pub-row__source .pub-date { margin-top: 4px; }
+.pub-row__read { justify-self: end; }
 
-/* tablets and phones: one column, each entry stacked (title, journal, date, link) */
-@media (max-width: 760px) {
-  .pub-feature, .pub-row { grid-template-columns: minmax(0, 1fr); }
-  .pub-feature__about { grid-column: 1; grid-row: 3; margin-top: 12px; }
-  .pub-row { row-gap: 8px; padding-block: 24px; }
-  .pub-row__about { grid-template-columns: minmax(0, 1fr); }
-  .pub-row__read { grid-column: 1; grid-row: auto; margin-top: 8px; }
+/* 4. her editorial positions: the same columns, compact and quieter */
+.pub-list--quiet .pub-row { padding-block: 18px; }
+.pub-row--quiet .pub-row__title { font-size: 20px; line-height: 1.35; }
+.pub-row__role { font-family: var(--sans); font-size: 14px; line-height: 1.5; color: var(--p-brown); }
+
+/* tablets: the middle column narrows */
+@media (max-width: 1000px) {
+  .publications { --p-cols: minmax(0, 1fr) 13rem 6rem; --p-gap: 28px; }
 }
-@media (max-width: 600px) {
-  .publications { --pub-space: 52px; --pub-body: 17px; }
-  .publications .pub-index:last-of-type { padding-bottom: 56px; }
-  .pub-hero { gap: 16px; }
-  .pub-feature__title { font-size: 24px; } /* still under the page title */
-  .pub-row__title { font-size: 20px; }
-  .pub-row__date, .publications .link { font-size: 10px; letter-spacing: .2em; } /* the labels' size on phones */
+/* phones: the circle follows the opening text; each entry stacks (title, journal and date, link) */
+@media (max-width: 760px) {
+  .publications { --p-space: 56px; }
+  .pub-hero { grid-template-columns: minmax(0, 1fr); padding-block: 52px 48px; }
+  .pub-hero__title { font-size: 44px; margin-top: 16px; }
+  .pub-hero__quote { margin-top: 20px; font-size: 19px; }
+  .pub-hero__art { justify-self: start; width: 124px; margin: 36px 0 0; }
+  .pub-feature { grid-template-columns: minmax(0, 1fr); row-gap: 22px; padding: 24px; }
+  .pub-feature__title { font-size: 32px; }
+  .pub-feature__text { font-size: 17px; }
+  .pub-row { grid-template-columns: minmax(0, 1fr); row-gap: 8px; padding-block: 26px; }
+  .pub-row__title { font-size: 24px; }
+  .pub-row__read { justify-self: start; margin-top: 6px; }
+  .pub-list--quiet .pub-row { row-gap: 2px; padding-block: 16px; }
+  .pub-row--quiet .pub-row__title { font-size: 19px; }
+  .pub-section--last { padding-bottom: 56px; }
 }
 
 /* ----------------------------------------------------------------- a passage of hers, set large on the dark band */
