@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://caterinaalvarez.com/assets/img/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@caterina445">
-  <meta name="theme-color" content="#fcfbf8">
+  <meta name="theme-color" content="#f4eee5">
   <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
@@ -25,161 +25,23 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <script src="assets/js/main.js" defer></script>
 </head>
-<body>
+<body class="cover-page">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header" data-header>
-    <div class="container site-header__inner">
-      <nav class="site-nav site-nav--left" aria-label="Primary">
-        <ul>
-          <li><a href="editing.html">Editing</a></li>
-          <li><a href="publications.html">Publications</a></li>
-        </ul>
-      </nav>
-      <a class="wordmark" href="index.html" aria-current="page" aria-label="Caterina Alvarez, Grand Avenue Editing and Publications, home">
-        <span class="wordmark__name">Caterina Alvarez</span>
-        <span class="wordmark__sub"><span class="wordmark__line">Grand Avenue Editing &amp; Publications</span><span class="wordmark__home" aria-hidden="true">Return to the home page</span></span>
-      </a>
-      <nav class="site-nav site-nav--right" aria-label="Secondary">
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
-        <span class="menu-toggle__label">Menu</span><span class="menu-toggle__icon" aria-hidden="true"></span>
-      </button>
-    </div>
-  </header>
-
-  <div class="menu" id="site-menu" data-menu inert>
-    <div class="container menu__inner">
-      <nav aria-label="Menu">
-        <span class="eyebrow menu__contents" aria-hidden="true">Contents</span>
-        <ul class="menu__list">
-          <li><a href="index.html" aria-current="page"><span></span>Home</a></li>
-          <li><a href="editing.html"><span>I.</span>Editing</a></li>
-          <li><a href="publications.html"><span>II.</span>Publications</a></li>
-          <li><a href="about.html"><span>III.</span>About</a></li>
-          <li><a href="contact.html"><span>IV.</span>Contact</a></li>
-        </ul>
-      </nav>
-      <div class="menu__foot">
-        <span class="eyebrow">Write to me</span>
-        <a class="text-link" href="mailto:caterina@grandavenueediting.com">caterina@grandavenueediting.com</a>
-        <div class="menu__social">
-          <a class="text-link social social--instagram" href="https://www.instagram.com/caterinaAF/" rel="noopener" target="_blank">Instagram</a>
-          <a class="text-link social social--x" href="https://x.com/caterina445" rel="noopener" target="_blank">X</a>
-          <a class="text-link social social--linkedin" href="https://www.linkedin.com/in/caterina-alvarez-fagelson-71098229/" rel="noopener" target="_blank">LinkedIn</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <main id="main" class="home">
-    <!-- Hello: her portrait beside her introduction (her words, from her Wix home page) -->
-    <section class="hello" aria-labelledby="hello-title">
-      <div class="container grid hello__inner">
-        <figure class="hello__portrait window" data-reveal>
-          <div class="window__pane">
-            <picture>
-              <source srcset="assets/img/caterina-alvarez.webp 1x, assets/img/caterina-alvarez@2x.webp 2x" type="image/webp">
-              <img src="assets/img/caterina-alvarez.jpg" srcset="assets/img/caterina-alvarez.jpg 1x, assets/img/caterina-alvarez@2x.jpg 2x" width="394" height="602" fetchpriority="high"
-                   alt="Caterina Alvarez seated at a wooden table, hands clasped beneath her chin, smiling.">
-            </picture>
-          </div>
-        </figure>
-        <div class="hello__text">
-          <h1 id="hello-title" class="hello__title" data-reveal style="--d: 120ms">Hello</h1>
-          <div class="hello__body" data-reveal style="--d: 260ms">
-            <p class="dropcap">M<span class="lead-in">s. Alvarez’s work appears in</span> <em>The Los Angeles Review</em>, <em>The Atticus Review</em>, <em>Flash Boulevard</em> and other journals. Her story “Short Division” won a spot on the Wigleaf Top 50 in 2023. She is a priority editor with <em>Flash Fiction Magazine</em> and senior editor at Thirty West Publishing House. A longtime member of The Lighthouse Writers Workshop, she received her masters at USC in 2000.</p>
-            <p>With Grand Avenue Editing and Publication, she seeks to reach a broader audience for her publications and to provide the deep and thorough feedback she provides to clients as an editor at both <em>Flash Fiction Magazine</em> and Thirty West Publishing House. Focusing on both the strengths and weaknesses of your work, Caterina finds ways to marry your intention for your work with a technical foundation that will free your stories to be fully&nbsp;realized.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- The drawing, hung like a gallery piece, beside her motto -->
-    <section class="hero" aria-labelledby="motto-title">
-      <div class="container grid hero__inner">
-        <div class="hero__art">
-          <figure class="artwork" data-reveal>
-            <div class="artwork__frame" data-ink>
-              <img src="assets/img/drawing-ink.png" width="1169" height="1206" loading="lazy"
+  <!-- The cover: her name, the drawing (traced in as it arrives) and her motto, like the front of a book.
+       Enter opens the site at Hello -->
+  <main id="main" class="home cover">
+    <div class="cover__inner">
+      <h1 class="cover__name" data-reveal><span class="cover__author">Caterina Alvarez</span> <span class="cover__imprint">Grand Avenue Editing &amp; Publications</span></h1>
+      <figure class="cover__art" data-reveal style="--d: 150ms">
+        <div class="artwork__frame" data-ink>
+          <img src="assets/img/drawing-ink.png" width="1169" height="1206" fetchpriority="high"
                    alt="Caterina Alvarez’s ink drawing: the handwritten words “What I mean is this:…” curve above a ring of looping lines that spiral inward toward an open center.">
-            </div>
-          </figure>
         </div>
-
-        <div class="hero__text">
-          <h2 id="motto-title" class="eyebrow" data-reveal>Our motto</h2>
-          <blockquote class="hero__quote" data-sweep style="--d: 300ms">Your options are, of course, limitless, but my gut tells me the heart lies right here. This is the axis upon which your story&nbsp;spins.</blockquote>
-        </div>
-      </div>
-    </section>
-
-    <nav class="pager" aria-label="Grand Avenue: previous and next">
-      <div class="container pager__inner">
-        <a class="pager__link pager__link--prev" href="contact.html">
-          <span class="pager__icon"><svg viewBox="0 0 44 12" aria-hidden="true" focusable="false"><path d="M43.5 6H1M6.5.5 1 6l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></span>
-          <span class="pager__text"><span class="pager__dir">Previous</span><span class="pager__title">Contact</span></span>
-        </a>
-        <div class="pager__where">
-          <span class="eyebrow">Grand Avenue</span>
-          <ol class="pager__dots">
-            <li><a href="index.html" aria-current="page"><span class="visually-hidden">Home</span></a></li>
-            <li><a href="editing.html"><span class="visually-hidden">Editing</span></a></li>
-            <li><a href="publications.html"><span class="visually-hidden">Publications</span></a></li>
-            <li><a href="about.html"><span class="visually-hidden">About</span></a></li>
-            <li><a href="contact.html"><span class="visually-hidden">Contact</span></a></li>
-          </ol>
-        </div>
-        <a class="pager__link pager__link--next" href="editing.html">
-          <span class="pager__text"><span class="pager__dir">Next</span><span class="pager__title">Editing</span></span>
-          <span class="pager__icon"><svg viewBox="0 0 44 12" aria-hidden="true" focusable="false"><path d="M.5 6H43M37.5.5 43 6l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></span>
-        </a>
-      </div>
-    </nav>
-
+      </figure>
+      <blockquote class="hero__quote cover__motto" data-sweep style="--d: 700ms">Your options are, of course, limitless, but my gut tells me the heart lies right here. This is the axis upon which your story&nbsp;spins.</blockquote>
+      <a class="cover__enter" href="home.html" data-reveal style="--d: 1400ms"><span>Enter</span><svg viewBox="0 0 44 12" aria-hidden="true" focusable="false"><path d="M.5 6H43M37.5.5 43 6l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></a>
+    </div>
   </main>
-
-  <footer class="site-footer">
-    <div class="container site-footer__top">
-      <div class="footer-brand">
-        <a class="wordmark" href="index.html" aria-label="Caterina Alvarez, home">
-          <span class="wordmark__name">Caterina Alvarez</span>
-          <span class="wordmark__sub">Grand Avenue Editing &amp; Publications</span>
-        </a>
-        <p>Developmental editing and publications. Available completely remotely.</p>
-        <a class="text-link footer-brand__email" href="mailto:caterina@grandavenueediting.com">caterina@grandavenueediting.com</a>
-      </div>
-      <div class="footer-col">
-        <h2 class="eyebrow">Contents</h2>
-        <ul>
-          <li><a href="index.html" aria-current="page">Home</a></li>
-          <li><a href="editing.html">Editing</a></li>
-          <li><a href="publications.html">Publications</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h2 class="eyebrow">Elsewhere</h2>
-        <ul>
-          <li><a class="social social--instagram" href="https://www.instagram.com/caterinaAF/" rel="noopener" target="_blank">Instagram</a></li>
-          <li><a class="social social--x" href="https://x.com/caterina445" rel="noopener" target="_blank">X</a></li>
-          <li><a class="social social--linkedin" href="https://www.linkedin.com/in/caterina-alvarez-fagelson-71098229/" rel="noopener" target="_blank">LinkedIn</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="container site-footer__bottom">
-      <span>© <span data-year>2026</span> Grand Avenue Editing &amp; Publications</span>
-      <nav class="legal-links" aria-label="Legal">
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="accessibility.html">Accessibility</a>
-      </nav>
-    </div>
-  </footer>
 </body>
 </html>

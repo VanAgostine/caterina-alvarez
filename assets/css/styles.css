@@ -762,7 +762,7 @@ em, i { font-style: italic; }
 .home { background: var(--paper); }
 .home .hero { background: none; }
 /* the greeting and the motto read as one section: no full-screen heights, a modest gap between them */
-.home .hello { min-height: 0; padding-top: var(--space-open); padding-bottom: clamp(36px, 4vw, 64px); }
+.home .hello { min-height: 0; padding-top: var(--space-open); padding-bottom: var(--section); }
 .home .hero { min-height: 0; padding-top: clamp(36px, 4vw, 64px); padding-bottom: var(--section); }
 .home .window,
 .home .window__pane { background: var(--wall); }
@@ -775,6 +775,46 @@ em, i { font-style: italic; }
 .home .hero__quote,
 .home .pager__link,
 .home .pager__dir { color: var(--text); }
+
+/* ----------------------------------------------------------------- the cover (index.html)
+   The front of the book: on her wall colour, filling the first screen, her name in spaced capitals, the drawing in a
+   near-white mat held by a hairline (traced in as it arrives, as before), her motto beneath it, and Enter, which
+   opens the site at Hello. No header or footer: the cover is only the way in */
+.home.cover {
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding: clamp(36px, 6svh, 72px) var(--gutter);
+  background: var(--wall);
+}
+.cover__inner { display: flex; flex-direction: column; align-items: center; gap: clamp(22px, 3.6svh, 40px); width: 100%; text-align: center; }
+.cover__name { display: flex; flex-direction: column; align-items: center; gap: 8px; font-weight: 400; }
+.cover__author { font-family: var(--serif); font-size: clamp(17px, 1.4vw, 20px); letter-spacing: .34em; margin-right: -.34em; text-transform: uppercase; color: var(--text); }
+.cover__imprint { font-family: var(--sans); font-weight: 500; font-size: 10px; letter-spacing: .3em; margin-right: -.3em; text-transform: uppercase; color: var(--umber); }
+/* the drawing: sized to the screen's height as well as its width, so the whole cover fits in one view */
+.cover__art { width: min(380px, 40svh, 72vw); }
+.cover .artwork__frame { background: var(--paper); box-shadow: none; border: 1px solid var(--greige); }
+/* the motto, centred under the drawing */
+.cover .hero__quote.cover__motto { max-width: 31em; margin: 0; padding: 0; text-indent: 0; text-wrap: balance; }
+/* Enter: small capitals and a long, thin arrow that steps forward when pointed at */
+.cover__enter {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 44px;
+  margin-top: 4px;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 11.5px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: color .3s ease;
+}
+.cover__enter svg { display: block; width: 44px; height: 12px; transition: transform .6s var(--ease-out); }
+.cover__enter:hover svg { transform: translateX(8px); }
+.cover__enter:active { color: var(--umber); }
+@media (prefers-reduced-motion: reduce) { .cover__enter svg { transition: none; } .cover__enter:hover svg { transform: none; } }
 
 /* the introduction opens like the first page of a book: a drop capital, then the opening words in spaced capitals.
    The M stands exactly two lines deep: its top level with the capitals beside it, its foot on the second line's
