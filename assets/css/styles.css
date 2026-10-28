@@ -1011,8 +1011,8 @@ em, i { font-style: italic; }
 
 /* the approach: the marked-up draft (framed in a slim band of her wall colour, like the portrait) on the left,
    about two fifths of the measure, and one continuous column of text on the right that starts level with the
-   picture: its name, her words as an introductory passage (upright, a size up, the opening quotation mark
-   hung just outside the edge), her way of working, then her background. Each keeps its natural height */
+   picture: its name, her words (the same size as the text, set apart only by italics and quotation marks, the
+   opening one hung just outside the edge), her way of working, then her background. Each keeps its natural height */
 .spread { padding-top: var(--ed-space); }
 .spread__pair {
   display: grid;
@@ -1031,11 +1031,10 @@ em, i { font-style: italic; }
 }
 .spread__text .eyebrow { margin: -.41em 0 16px; } /* its capitals level with the top of the picture */
 .spread__quote {
-  margin: 0 0 24px -.45em;
-  padding-left: .45em;
-  text-indent: -.45em;
-  font-size: clamp(22px, 1.8vw, 24px);
-  line-height: 1.45;
+  margin: 0 0 24px -.42em;
+  padding-left: .42em;
+  text-indent: -.42em;
+  font-style: italic;
 }
 .spread__quote p::before { content: "\201C"; }
 .spread__quote p::after { content: "\201D"; }
@@ -1070,7 +1069,6 @@ em, i { font-style: italic; }
   .niche__list { font-size: 15.5px; }
   .spread__image { padding: 6px; }
   .spread__text { font-size: 17px; }
-  .spread__quote { font-size: 20px; line-height: 1.5; }
   .mat { gap: 24px; padding: 36px 10px 10px; }
 }
 
