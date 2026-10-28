@@ -1102,16 +1102,16 @@ em, i { font-style: italic; }
 .pub-label,
 .pub-panel__honour { font-family: var(--sans); font-weight: 500; font-size: 11px; line-height: 1.5; letter-spacing: .26em; text-transform: uppercase; color: var(--p-brown); }
 
-/* the opening: compact, so the gallery begins in the first view. The words and the engraving sit side by side,
-   close together, with any spare width to the right rather than in the middle */
+/* the opening as a masthead: a band of her wall colour that runs on from the header (the header's hairline only
+   appears once the page scrolls). The words on the left; on the right the engraving, matted in near-white and
+   hanging below the band's edge into the page, like a plate tipped into a book */
+.pub-masthead { --hang: clamp(44px, 4.4vw, 64px); background: var(--p-ivory); }
 .pub-hero {
   display: grid;
-  grid-template-columns: minmax(0, 27em) auto;
-  justify-content: start;
-  column-gap: clamp(48px, 6vw, 88px);
-  align-items: center;
-  padding-block: var(--space-open) 44px;
-  border-bottom: 1px solid var(--p-ink);
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 48px;
+  align-items: start;
+  padding-block: var(--space-open) var(--space-open);
 }
 /* one heading: "From" on a small upright line, "Grand Avenue" in italics at the site's title size */
 .pub-hero__title {
@@ -1125,19 +1125,33 @@ em, i { font-style: italic; }
 }
 .pub-hero__from { display: block; margin-bottom: .14em; font-size: var(--t-heading); font-style: normal; letter-spacing: -.005em; }
 .pub-hero__title em { display: block; font-style: italic; }
+/* a short terracotta rule between the title and her line, the page's one warm mark besides the Wigleaf dash */
 .pub-hero__quote {
+  position: relative;
   max-width: 24em;
-  margin-top: 20px;
+  margin-top: 28px;
+  padding-top: 24px;
   font-family: var(--serif);
   font-size: var(--t-body);
   line-height: var(--t-body-lh);
   color: var(--p-brown);
   text-wrap: pretty;
 }
+.pub-hero__quote::before { content: ""; position: absolute; top: 0; left: 0; width: 40px; height: 1px; background: var(--p-accent); }
 .pub-hero__quote p::before { content: "\201C"; }
 .pub-hero__quote p::after { content: "\201D"; }
-/* the engraving for Wayne C. Booth's Rhetoric of Fiction, in the same slim band of her wall colour as the Editing photo */
-.pub-hero__art { width: clamp(200px, 20vw, 260px); padding: clamp(6px, .55vw, 8px); background: var(--p-ivory); }
+/* the engraving for Wayne C. Booth's Rhetoric of Fiction: a near-white mat held by a hairline, so it reads on both
+   the band and the page below it */
+.pub-hero__art {
+  position: relative;
+  z-index: 1;
+  align-self: end; /* set low against the words, its foot dropping past the band's edge */
+  width: clamp(250px, 24vw, 330px);
+  margin-bottom: calc(-1 * var(--space-open) - var(--hang));
+  padding: clamp(10px, 1vw, 14px);
+  background: var(--paper);
+  border: 1px solid var(--greige);
+}
 .pub-hero__art img { width: 100%; height: auto; }
 
 /* sections share one interval; labels sit a short step above what they label */
@@ -1176,7 +1190,8 @@ em, i { font-style: italic; }
 
 /* the gallery: a row of small literary compositions that scrolls sideways (touch, trackpad, keys, or the line beneath).
    The native scrollbar is hidden: the line below takes its place */
-.pub-gallery { padding-top: 44px; }
+.pub-gallery { padding-top: calc(var(--hang-room, 0px) + var(--section)); }
+.pub-masthead + .pub-gallery { --hang-room: clamp(8px, 1vw, 16px); } /* a little more room under the hanging plate */
 .pub-gallery .pub-label { margin-bottom: 20px; }
 .pub-gallery__track {
   position: relative; /* keeps the links' hidden screen-reader text inside the row, so the page never widens */
@@ -1270,11 +1285,12 @@ em, i { font-style: italic; }
    the editorial blocks stack */
 @media (max-width: 760px) {
   .publications { --p-gap: 20px; }
-  .pub-hero { grid-template-columns: minmax(0, 1fr); padding-bottom: 36px; }
+  .pub-masthead { --hang: 40px; }
+  .pub-hero { grid-template-columns: minmax(0, 1fr); }
   .pub-hero__title { margin-top: 14px; }
   .pub-hero__quote { margin-top: 18px; }
-  .pub-hero__art { justify-self: start; width: min(100%, 240px); margin: 30px 0 0; }
-  .pub-gallery { padding-top: 36px; }
+  .pub-hero__art { justify-self: end; width: min(72%, 250px); margin-top: 32px; }
+
   .pub-gallery__list { grid-auto-columns: min(78vw, 290px); min-height: 280px; }
   .pub-panel { padding: 22px; }
   .pub-creds { grid-template-columns: minmax(0, 1fr); gap: 24px; }
