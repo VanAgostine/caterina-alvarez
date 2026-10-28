@@ -1463,9 +1463,10 @@ em, i { font-style: italic; }
 .about-hero__text { grid-column: 7 / 13; display: flex; flex-direction: column; gap: 34px; }
 /* her experience, under her story: a fine rule and a small label, then the text */
 .experience { display: flex; flex-direction: column; gap: 16px; padding-top: 30px; border-top: 1px solid var(--line); }
-.name-display { font-family: var(--serif); font-weight: 400; font-size: var(--t-title); line-height: 1.05; letter-spacing: -.015em; }
-.name-display span { display: block; }
-.name-display em { display: block; padding-left: .9em; font-style: italic; }
+/* her name on one line, "Alvarez" in italics, as the other pages set their titles; never broken across two lines,
+   scaling down slightly on the narrowest phones so it still fits */
+.name-display { font-family: var(--serif); font-weight: 400; font-size: min(var(--t-title), 11.5vw); line-height: 1.05; letter-spacing: -.015em; white-space: nowrap; }
+.name-display em { font-style: italic; }
 .role-line { font-family: var(--serif); font-style: italic; font-size: var(--t-lead); color: var(--umber); }
 @media (max-width: 900px) {
   .about-hero__portrait { grid-column: 1 / -1; position: static; width: min(100%, 360px); margin-inline: auto; }
