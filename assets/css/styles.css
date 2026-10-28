@@ -32,20 +32,21 @@
   --serif: "Spectral", Georgia, "Times New Roman", serif;
   --sans: "Jost", "Futura", "Century Gothic", "Helvetica Neue", Arial, sans-serif;
   /* one type scale for the whole site: every page's main title, every section title, every introductory line,
-     all running text and all small notes use these sizes (phones step each one down, below) */
-  --t-title: clamp(42px, 4.4vw, 64px);
-  --t-heading: clamp(26px, 2.1vw, 30px);
-  --t-lead: 20px;
-  --t-body: 18px;
-  --t-body-lh: 1.65;
-  --t-small: 14px;
+     all running text and all small notes use these sizes (phones step each one down, below). Set quiet, after
+     Maven Travel: modest titles, small airy running text, and the space between doing the work */
+  --t-title: clamp(34px, 3vw, 44px);
+  --t-heading: clamp(21px, 1.6vw, 24px);
+  --t-lead: 17.5px;
+  --t-body: 15.5px;
+  --t-body-lh: 1.8;
+  --t-small: 12.5px;
 
   /* space */
   --maxw: 1320px;
   --gutter: clamp(20px, 4.4vw, 72px);
   --gap: clamp(16px, 2.2vw, 32px);
-  --section: clamp(56px, 5.6vw, 80px);  /* one interval between sections, everywhere */
-  --space-open: clamp(48px, 5vw, 72px); /* from the header to a page's opening */
+  --section: clamp(72px, 7.6vw, 112px); /* one interval between sections, everywhere */
+  --space-open: clamp(56px, 6vw, 88px);  /* from the header to a page's opening */
   --header-h: 104px;
   --header-compact: 76px;
 
@@ -82,7 +83,7 @@ body {
   color: var(--text);
   font-family: var(--sans);
   font-weight: 400;
-  font-size: 17px;
+  font-size: 15px;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -155,7 +156,7 @@ em, i { font-style: italic; }
   display: block;
   font-family: var(--sans);
   font-weight: 500;
-  font-size: 11px;
+  font-size: 10px;
   line-height: 1.5;
   letter-spacing: .28em;
   text-transform: uppercase;
@@ -791,13 +792,13 @@ em, i { font-style: italic; }
 /* the masthead: a size above the site header's wordmark, with wider spacing */
 .cover__mark { padding: clamp(36px, 6svh, 60px) var(--gutter) 0; }
 .cover .wordmark.cover__mark { align-items: center; gap: 12px; text-align: center; }
-.cover .cover__mark .wordmark__name { font-size: clamp(20px, 1.75vw, 26px); letter-spacing: .4em; margin-right: -.4em; }
+.cover .cover__mark .wordmark__name { font-size: clamp(17px, 1.35vw, 21px); letter-spacing: .4em; margin-right: -.4em; }
 .cover .cover__mark .wordmark__sub { justify-items: center; font-size: 9.5px; letter-spacing: .38em; margin-right: -.38em; }
 .cover__inner { align-items: center; row-gap: 40px; padding-block: clamp(28px, 5svh, 64px); }
 .cover__art { grid-column: 2 / 6; justify-self: end; width: min(100%, 440px, 58svh); }
 .cover__text { grid-column: 7 / 12; display: flex; flex-direction: column; align-items: flex-start; gap: clamp(28px, 3.4svh, 40px); }
 /* the motto as the cover line: a size up from the running text, in the serif's italic, balanced over its lines */
-.cover .hero__quote.cover__quote { max-width: 19em; font-size: clamp(21px, 1.85vw, 27px); line-height: 1.5; text-wrap: balance; }
+.cover .hero__quote.cover__quote { max-width: 20em; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.5; text-wrap: balance; }
 /* the one cue: a long, thin arrow that steps forward when the cover is pointed at. Its link covers the whole page,
    so a click anywhere enters; it fades in once the motto has arrived */
 .cover__enter { display: block; padding: 10px 0; color: var(--text); animation: cover-cue 1.2s var(--ease) 1.4s both; }
@@ -882,7 +883,7 @@ em, i { font-style: italic; }
 }
 .portrait__name {
   font-family: var(--serif);
-  font-size: 17px;
+  font-size: 15px;
   letter-spacing: .32em;
   text-transform: uppercase;
   margin-right: -.32em;
@@ -894,14 +895,14 @@ em, i { font-style: italic; }
 .testimonials { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 3vw, 40px); }
 /* two note cards, set square so the full testimonials read evenly */
 .testimonial { display: flex; flex-direction: column; gap: 28px; padding: clamp(40px, 4.4vw, 64px); }
-.testimonial__mark { font-family: var(--serif); font-size: 64px; line-height: .5; color: var(--greige); height: 26px; }
+.testimonial__mark { font-family: var(--serif); font-size: 48px; line-height: .5; color: var(--greige); height: 20px; }
 .testimonial blockquote { font-family: var(--serif); font-style: italic; font-size: var(--t-body); line-height: var(--t-body-lh); }
 .testimonial blockquote p + p { margin-top: .9em; }
 /* the rule, name and description sit at the foot of each card, so side by side they line up across the row whatever
    the length of each testimonial (the shorter one simply has more space above its rule) */
 .testimonial figcaption { display: flex; flex-direction: column; gap: 4px; margin-top: auto; padding-top: 22px; border-top: 1px solid var(--line); }
 .testimonial__name { font-size: 11.5px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; }
-.testimonial__work { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--umber); }
+.testimonial__work { font-family: var(--serif); font-style: italic; font-size: 13.5px; color: var(--umber); }
 @media (max-width: 900px) { .testimonials { grid-template-columns: 1fr; } }
 
 /* ----------------------------------------------------------------- section header */
@@ -925,13 +926,13 @@ em, i { font-style: italic; }
 }
 .site-footer .wordmark { align-items: flex-start; text-align: left; }
 .footer-brand { display: flex; flex-direction: column; gap: 26px; }
-.footer-brand p { max-width: 24em; font-size: 15px; color: var(--mute); }
+.footer-brand p { max-width: 24em; font-size: 14px; color: var(--mute); }
 .footer-col { display: flex; flex-direction: column; gap: 18px; }
-.footer-col ul { display: flex; flex-direction: column; gap: 6px; font-size: 15px; }
+.footer-col ul { display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
 .footer-col a { transition: color .3s ease; }
 .footer-col a:hover { color: var(--umber); }
 .footer-col a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .3em; }
-.footer-brand__email { font-size: 15px; }
+.footer-brand__email { font-size: 14px; }
 .site-footer__bottom {
   display: flex;
   flex-wrap: wrap;
@@ -974,7 +975,7 @@ em, i { font-style: italic; }
 .pager__icon svg { display: block; width: 44px; height: 12px; transition: transform .6s var(--ease-out); }
 .pager__text { display: flex; flex-direction: column; gap: 4px; }
 .pager__dir { font-size: 10.5px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: var(--umber); }
-.pager__title { font-family: var(--serif); font-size: clamp(19px, 1.5vw, 22px); line-height: 1.2; }
+.pager__title { font-family: var(--serif); font-size: clamp(17px, 1.3vw, 19px); line-height: 1.2; }
 .pager__link--prev:hover svg { transform: translateX(-8px); }
 .pager__link--next:hover svg { transform: translateX(8px); }
 .pager__link:active { color: var(--umber); }
@@ -999,7 +1000,7 @@ em, i { font-style: italic; }
   .pager__link { gap: 12px; }
   .pager__icon svg { width: 32px; height: 10px; }
   .pager__dir { font-size: 9.5px; letter-spacing: .2em; }
-  .pager__title { font-size: 16.5px; }
+  .pager__title { font-size: 15.5px; }
 }
 
 /* ----------------------------------------------------------------- editing: one page, composed like a magazine feature
@@ -1163,7 +1164,7 @@ em, i { font-style: italic; }
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* the title at the top, her line at the foot of the band */
-  padding-bottom: calc(var(--hang) + clamp(36px, 3.6vw, 52px));
+  padding-bottom: calc(var(--hang) + clamp(28px, 2.8vw, 44px));
 }
 /* one heading: "From" on a small upright line, "Grand Avenue" in italics at the site's title size */
 .pub-hero__title {
@@ -1192,7 +1193,7 @@ em, i { font-style: italic; }
    the band and the page below it */
 .pub-hero__art {
   align-self: start;
-  width: clamp(300px, 29vw, 390px);
+  width: clamp(270px, 23vw, 330px);
   padding: clamp(12px, 1vw, 16px);
   background: var(--paper);
   border: 1px solid var(--greige);
@@ -1370,7 +1371,7 @@ em, i { font-style: italic; }
 .faq.faq--sheet details:last-child { border-bottom: 0; }
 .faq.faq--sheet details:hover, .faq.faq--sheet details[open] { background: transparent; border-color: var(--line); }
 .faq.faq--sheet summary { justify-content: flex-start; gap: 0; padding: 26px 0; }
-.faq.faq--sheet summary::before { content: counter(q, upper-roman) "."; flex: none; width: 52px; font-style: italic; font-size: 15px; color: var(--umber); }
+.faq.faq--sheet summary::before { content: counter(q, upper-roman) "."; flex: none; width: 52px; font-style: italic; font-size: 13.5px; color: var(--umber); }
 .faq.faq--sheet summary .faq__icon { margin-left: auto; }
 .faq.faq--sheet details[open] summary { font-style: italic; }
 .faq.faq--sheet .faq__answer { padding: 0 48px 30px 52px; }
@@ -1649,9 +1650,9 @@ em, i { font-style: italic; }
 
 /* ----------------------------------------------------------------- phones: everything a size smaller, so lines stay whole */
 @media (max-width: 600px) {
-  :root { --section: 56px; --space-open: 44px; --gap: 14px; --t-title: 40px; --t-heading: 24px; --t-lead: 18px; --t-body: 17px; }
-  body { font-size: 16px; line-height: 1.7; }
-  .eyebrow { font-size: 10px; letter-spacing: .2em; }
+  :root { --section: 64px; --space-open: 48px; --gap: 14px; --t-title: 30px; --t-heading: 20px; --t-lead: 16px; --t-body: 15px; }
+  body { font-size: 14.5px; line-height: 1.7; }
+  .eyebrow { font-size: 9.5px; letter-spacing: .2em; }
   .statement { font-size: 19px; line-height: 1.55; }
   .link { font-size: 10.5px; letter-spacing: .2em; }
   .button { min-height: 50px; padding: 0 28px; font-size: 10.5px; letter-spacing: .2em; }
