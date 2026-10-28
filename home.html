@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <script src="assets/js/main.js" defer></script>
 </head>
-<body class="page-home">
+<body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" data-header>
@@ -77,23 +77,22 @@
   </div>
 
   <main id="main" class="home">
-    <!-- Hello, set like the opening spread of a literary magazine: her portrait in a plain rectangle (about 55%) beside
-         her introduction (her words, from her Wix home page), the portrait's top level with "Hello" -->
+    <!-- Hello: her portrait beside her introduction (her words, from her Wix home page) -->
     <section class="hello" aria-labelledby="hello-title">
-      <div class="container hello__inner">
-        <figure class="hello__portrait">
-          <picture>
-            <source type="image/webp" srcset="assets/img/caterina-alvarez.webp 394w, assets/img/caterina-alvarez@2x.webp 788w"
-                    sizes="(max-width: 900px) min(100vw - 40px, 560px), 620px">
-            <img src="assets/img/caterina-alvarez@2x.jpg" srcset="assets/img/caterina-alvarez.jpg 394w, assets/img/caterina-alvarez@2x.jpg 788w"
-                 sizes="(max-width: 900px) min(100vw - 40px, 560px), 620px" width="394" height="602" fetchpriority="high"
-                 alt="Caterina Alvarez seated at a wooden table, hands clasped beneath her chin, smiling.">
-          </picture>
+      <div class="container grid hello__inner">
+        <figure class="hello__portrait window" data-reveal>
+          <div class="window__pane">
+            <picture>
+              <source srcset="assets/img/caterina-alvarez.webp 1x, assets/img/caterina-alvarez@2x.webp 2x" type="image/webp">
+              <img src="assets/img/caterina-alvarez.jpg" srcset="assets/img/caterina-alvarez.jpg 1x, assets/img/caterina-alvarez@2x.jpg 2x" width="394" height="602" fetchpriority="high"
+                   alt="Caterina Alvarez seated at a wooden table, hands clasped beneath her chin, smiling.">
+            </picture>
+          </div>
         </figure>
         <div class="hello__text">
-          <h1 id="hello-title" class="hello__title">Hello</h1>
-          <div class="hello__body">
-            <p>Ms. Alvarez’s work appears in <em>The Los Angeles Review</em>, <em>The Atticus Review</em>, <em>Flash Boulevard</em> and other journals. Her story “Short Division” won a spot on the Wigleaf Top 50 in 2023. She is a priority editor with <em>Flash Fiction Magazine</em> and senior editor at Thirty West Publishing House. A longtime member of The Lighthouse Writers Workshop, she received her masters at USC in 2000.</p>
+          <h1 id="hello-title" class="hello__title" data-reveal style="--d: 120ms">Hello</h1>
+          <div class="hello__body" data-reveal style="--d: 260ms">
+            <p class="dropcap">M<span class="lead-in">s. Alvarez’s work appears in</span> <em>The Los Angeles Review</em>, <em>The Atticus Review</em>, <em>Flash Boulevard</em> and other journals. Her story “Short Division” won a spot on the Wigleaf Top 50 in 2023. She is a priority editor with <em>Flash Fiction Magazine</em> and senior editor at Thirty West Publishing House. A longtime member of The Lighthouse Writers Workshop, she received her masters at USC in 2000.</p>
             <p>With Grand Avenue Editing and Publication, she seeks to reach a broader audience for her publications and to provide the deep and thorough feedback she provides to clients as an editor at both <em>Flash Fiction Magazine</em> and Thirty West Publishing House. Focusing on both the strengths and weaknesses of your work, Caterina finds ways to marry your intention for your work with a technical foundation that will free your stories to be fully&nbsp;realized.</p>
           </div>
         </div>
