@@ -28,24 +28,22 @@
 <body class="cover-page">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- The cover, set like the front of an art book: her near-white on the left, an ink panel on the right holding
-       the drawing in ivory like a single work hung on a dark wall. Her name runs large across the seam ("Alvarez"
-       turns from ink to ivory where it crosses). Small capitals mark the corners; her motto sits at the foot, and
-       Enter opens the site at Hello -->
+  <!-- The cover: her name set as in the site header, then on the Hello page's grid (mirrored) the drawing in its
+       beige-banded frame on the left and, on the right, her motto with Enter beneath it, which opens the site at Hello -->
   <main id="main" class="home cover">
-    <p class="cover__imprint" data-reveal>Grand Avenue Editing &amp; Publications</p>
-    <h1 class="cover__name" data-reveal style="--d: 200ms"><span>Caterina</span> <em>Alvarez</em></h1>
-    <div class="cover__motto" data-reveal style="--d: 900ms">
-      <p class="cover__label">Our motto</p>
-      <blockquote class="cover__quote"><p>Your options are, of course, limitless, but my gut tells me the heart lies right here. This is the axis upon which your story&nbsp;spins.</p></blockquote>
-    </div>
-    <div class="cover__plate">
-      <p class="cover__role" data-reveal style="--d: 400ms">Editor and writer</p>
-      <figure class="cover__art" data-ink>
-        <img src="assets/img/drawing-ink-white.png" width="1169" height="1206" fetchpriority="high"
-             alt="Caterina Alvarez’s ink drawing: the handwritten words “What I mean is this:…” curve above a ring of looping lines that spiral inward toward an open center.">
+    <h1 class="wordmark cover__mark" data-reveal><span class="wordmark__name">Caterina Alvarez</span> <span class="wordmark__sub">Grand Avenue Editing &amp; Publications</span></h1>
+    <div class="container grid cover__inner">
+      <figure class="artwork cover__art" data-reveal style="--d: 150ms">
+        <div class="artwork__frame" data-ink>
+          <img src="assets/img/drawing-ink.png" width="1169" height="1206" fetchpriority="high"
+               alt="Caterina Alvarez’s ink drawing: the handwritten words “What I mean is this:…” curve above a ring of looping lines that spiral inward toward an open center.">
+        </div>
       </figure>
-      <a class="cover__enter" href="home.html" data-reveal style="--d: 1400ms"><span>Enter</span><svg viewBox="0 0 44 12" aria-hidden="true" focusable="false"><path d="M.5 6H43M37.5.5 43 6l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></a>
+      <div class="cover__text">
+        <p class="eyebrow" data-reveal style="--d: 300ms">Our motto</p>
+        <blockquote class="hero__quote" data-sweep style="--d: 450ms">Your options are, of course, limitless, but my gut tells me the heart lies right here. This is the axis upon which your story&nbsp;spins.</blockquote>
+        <a class="cover__enter" href="home.html" data-reveal style="--d: 1100ms"><span>Enter</span><svg viewBox="0 0 44 12" aria-hidden="true" focusable="false"><path d="M.5 6H43M37.5.5 43 6l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></a>
+      </div>
     </div>
   </main>
 </body>

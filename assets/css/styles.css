@@ -777,95 +777,45 @@ em, i { font-style: italic; }
 .home .pager__dir { color: var(--text); }
 
 /* ----------------------------------------------------------------- the cover (index.html)
-   Set like the front of an art book. Two fields: her near-white on the left, an ink panel on the right holding the
-   drawing in ivory, like a single work hung on a dark wall, with a hairline plate-mark inside it. Her name runs large
-   across the seam: it is drawn in a near-white that subtracts from whatever lies beneath it (difference blending), so
-   it reads as ink on the paper and turns to ivory where "Alvarez" crosses into the panel. Small capitals mark the
-   corners, her motto sits at the foot, and Enter (in the panel) opens the site at Hello. No header or footer */
+   Quiet, and plainly part of the same site: her name set exactly as in the header, then the Hello page's grid
+   mirrored, the drawing in its beige-banded frame on the left (traced in as it arrives) and on the right her motto
+   with Enter beneath it. One warm white ground, no header or footer: the cover is only the way in */
 .home.cover {
-  --cover-ink: #201e1b;
-  --cover-split: 58%;
-  --cover-pad: clamp(28px, 4.4vw, 64px);
-  position: relative;
   display: grid;
-  grid-template-columns: var(--cover-split) minmax(0, 1fr);
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto minmax(0, 1fr);
   min-height: 100svh;
   background: var(--paper);
 }
-.cover__imprint,
-.cover__label,
-.cover__role,
-.cover__enter { font-family: var(--sans); font-weight: 500; font-size: 11px; line-height: 1.5; letter-spacing: .3em; text-transform: uppercase; }
-.cover__imprint { grid-area: 1 / 1; padding: var(--cover-pad) var(--cover-pad) 0; color: var(--umber); }
-
-/* the ink panel: the whole right column, with a hairline plate-mark set inside its edge */
-.cover__plate {
-  grid-area: 1 / 2 / -1 / 3;
-  position: relative;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  justify-items: center;
-  padding: var(--cover-pad);
-  background: var(--cover-ink);
-  color: var(--wall);
-}
-.cover__plate::after { content: ""; position: absolute; inset: clamp(14px, 1.4vw, 20px); border: 1px solid rgba(244, 238, 229, .16); pointer-events: none; }
-.cover__role { justify-self: end; color: rgba(244, 238, 229, .7); }
-.cover__art { align-self: start; width: min(74%, 44svh, 400px); margin-top: clamp(24px, 6svh, 64px); } /* in the upper part, so the name passes beneath it */
-.cover__art img { width: 100%; height: auto; }
+.cover__mark { padding: clamp(32px, 5.5svh, 52px) var(--gutter) 0; }
+/* centred on every screen (the header's phone rule sets the wordmark to the left) */
+.cover .wordmark.cover__mark { align-items: center; text-align: center; }
+.cover .cover__mark .wordmark__sub { justify-items: center; }
+.cover__inner { align-items: center; row-gap: 40px; padding-block: clamp(28px, 5svh, 64px); }
+.cover__art { grid-column: 2 / 6; justify-self: end; width: min(100%, 440px, 58svh); }
+.cover__text { grid-column: 7 / 12; display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
+.cover .hero__quote { max-width: 21em; }
+/* Enter: small capitals and a long, thin arrow that steps forward when pointed at */
 .cover__enter {
-  position: relative;
-  z-index: 1;
-  justify-self: end;
   display: inline-flex;
   align-items: center;
   gap: 18px;
   min-height: 44px;
-  color: var(--wall);
+  margin-top: 14px;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--text);
   transition: color .3s ease;
 }
-.cover__enter svg { display: block; width: 56px; height: 12px; transition: transform .6s var(--ease-out); }
+.cover__enter svg { display: block; width: 44px; height: 12px; transition: transform .6s var(--ease-out); }
 .cover__enter:hover svg { transform: translateX(8px); }
-.cover__enter:active { color: var(--clay); }
-.cover__enter:focus-visible { outline-color: var(--wall); }
-
-/* her name, monumental, across the seam */
-.cover__name {
-  grid-area: 2 / 1 / 3 / 3;
-  align-self: end;
-  z-index: 2;
-  padding: 0 var(--cover-pad) clamp(28px, 4svh, 48px);
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(64px, 9.4vw, 200px);
-  line-height: .9;
-  letter-spacing: -.035em;
-  color: var(--paper);
-  mix-blend-mode: difference;
-  pointer-events: none;
-}
-.cover__name span,
-.cover__name em { display: block; }
-.cover__name em { padding-left: 3.5em; font-style: italic; letter-spacing: -.03em; } /* far enough that the word crosses the seam */
-
-/* her motto at the foot of the paper field, under a small label */
-.cover__motto { grid-area: 3 / 1; display: flex; flex-direction: column; gap: 12px; max-width: 34em; padding: 0 var(--cover-pad) var(--cover-pad); }
-.cover__label { color: var(--umber); }
-.cover__quote { font-family: var(--serif); font-style: italic; font-size: var(--t-body); line-height: var(--t-body-lh); color: var(--text); text-wrap: pretty; }
-.cover__quote p::before { content: "\201C"; }
-.cover__quote p::after { content: "\201D"; }
+.cover__enter:active { color: var(--umber); }
 @media (prefers-reduced-motion: reduce) { .cover__enter svg { transition: none; } .cover__enter:hover svg { transform: none; } }
-
-/* tablets and phones: the paper field above (imprint, name, motto), the ink panel beneath it */
 @media (max-width: 900px) {
-  .home.cover { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto auto; }
-  .cover__imprint { grid-area: 1 / 1; }
-  .cover__name { grid-area: 2 / 1; align-self: start; padding-top: clamp(28px, 6svh, 56px); padding-bottom: 24px; font-size: min(19vw, 104px); mix-blend-mode: normal; color: var(--text); }
-  .cover__name em { padding-left: 1.1em; }
-  .cover__motto { grid-area: 3 / 1; }
-  .cover__plate { grid-area: 4 / 1; row-gap: 8px; }
-  .cover__art { width: min(62%, 300px); }
+  .cover__art { grid-column: 1 / -1; justify-self: center; width: min(100%, 340px, 46svh); }
+  .cover__text { grid-column: 1 / -1; }
 }
 
 /* the introduction opens like the first page of a book: a drop capital, then the opening words in spaced capitals.
