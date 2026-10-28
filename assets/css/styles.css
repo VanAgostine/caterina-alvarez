@@ -1232,15 +1232,23 @@ em, i { font-style: italic; }
 .about-hero { padding-block: clamp(64px, 8vw, 136px); row-gap: 64px; align-items: start; }
 .about-hero__portrait { grid-column: 1 / 6; position: sticky; top: calc(var(--header-compact) + 40px); }
 .about-hero__text { grid-column: 7 / 13; display: flex; flex-direction: column; gap: 34px; }
-/* her experience, under her story: a fine rule and a small label, then the text */
-.experience { display: flex; flex-direction: column; gap: 16px; padding-top: 30px; border-top: 1px solid var(--line); }
+/* her experience in a row of its own under her story: beside it, under her portrait and framed the same way
+   (a band of her wall colour inside a hairline), the engraving for Wayne C. Booth's Rhetoric of Fiction.
+   The small label's capitals start level with the top of the picture */
+.about-hero__booth { grid-column: 1 / 6; padding: clamp(12px, 1.4vw, 18px); border: 1px solid var(--greige); background: var(--wall); }
+.about-hero__booth img { width: 100%; }
+.about-hero__experience { grid-column: 7 / 13; }
+.experience { display: flex; flex-direction: column; gap: 16px; }
+.experience .eyebrow { margin-top: -.41em; }
 .name-display { font-family: var(--serif); font-weight: 500; font-size: clamp(34px, 3.4vw, 48px); line-height: 1.1; }
 .name-display span { display: block; }
 .name-display em { display: block; padding-left: .9em; font-style: italic; }
 .role-line { font-family: var(--serif); font-style: italic; font-size: clamp(18px, 1.4vw, 21px); color: var(--umber); }
 @media (max-width: 900px) {
-  .about-hero__portrait { grid-column: 1 / -1; position: static; width: min(100%, 360px); margin-inline: auto; }
-  .about-hero__text { grid-column: 1 / -1; }
+  .about-hero__portrait,
+  .about-hero__booth { grid-column: 1 / -1; position: static; width: min(100%, 360px); margin-inline: auto; }
+  .about-hero__text,
+  .about-hero__experience { grid-column: 1 / -1; }
 }
 
 .bio-plate .plate__label { color: rgba(255, 255, 255, .62); }
@@ -1449,7 +1457,7 @@ em, i { font-style: italic; }
 
   /* about */
   .about-hero { row-gap: 40px; padding-block: 40px 56px; }
-  .about-hero__portrait { width: min(100%, 270px); }
+  .about-hero__portrait, .about-hero__booth { width: min(100%, 270px); }
   .about-hero__text { gap: 22px; }
   .name-display { font-size: 34px; }
   .role-line { font-size: 17px; }
