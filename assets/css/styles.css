@@ -950,77 +950,139 @@ em, i { font-style: italic; }
   .pager__title { font-size: 16.5px; }
 }
 
-/* ----------------------------------------------------------------- editing: one continuous article
-   No bands, cards or boxes: one warm white page, each part named in the margin with its words beside it,
-   a hairline between parts. All the words share one ink, like the home page. */
-.editing .page-hero { border-bottom: 0; padding-bottom: clamp(40px, 4.4vw, 72px); }
-.editing .page-hero .eyebrow { color: var(--text); }
-.article { max-width: calc(1000px + var(--gutter) * 2); padding-bottom: clamp(72px, 7vw, 120px); }
-.article__part {
-  display: grid;
-  grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
-  column-gap: clamp(32px, 5.6vw, 88px);
-  padding-block: clamp(44px, 4.6vw, 68px);
-  border-top: 1px solid var(--line);
-}
-.article .eyebrow { color: var(--text); }
-.article__label { padding-top: 9px; } /* level with the first line beside it */
-.article__body {
+/* ----------------------------------------------------------------- editing: one page, composed like a magazine feature
+   No rules between the parts: the page moves from the arch, to her words set large, to the questions matted
+   on her wall colour, and the space between does the separating. All the words share one ink, like the home page. */
+.editing .eyebrow { color: var(--text); }
+
+/* the opening: the service under its name in an arch of her wall colour, like the portrait's window on the
+   home page, with a hairline arch drawn just inside its edge */
+.niche-wrap { padding-block: clamp(56px, 6vw, 96px) 0; }
+.niche {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: clamp(24px, 2.4vw, 32px);
-  max-width: 36em;
+  align-items: center;
+  width: min(100%, 580px);
+  margin-inline: auto;
+  padding: clamp(118px, 11vw, 158px) clamp(28px, 4vw, 64px) clamp(64px, 6vw, 92px);
+  border-radius: 999px 999px 0 0;
+  background: var(--wall);
+  text-align: center;
+}
+.niche::after {
+  content: "";
+  position: absolute;
+  inset: clamp(9px, .9vw, 13px);
+  border: 1px solid var(--line);
+  border-radius: 999px 999px 0 0;
+  pointer-events: none;
+}
+.niche__title {
+  margin-top: clamp(16px, 1.6vw, 22px);
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(40px, 4.3vw, 62px);
+  line-height: 1;
+  letter-spacing: -.018em;
+  color: var(--text);
+}
+.niche__title em { display: block; }
+.niche__price {
+  margin-top: clamp(30px, 3vw, 42px);
+  font-family: var(--serif);
+  font-size: clamp(19px, 1.5vw, 22px);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.niche__price em { font-size: .82em; }
+.niche__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: clamp(14px, 1.4vw, 20px);
+  font-family: var(--serif);
+  font-size: clamp(16px, 1.1vw, 17px);
+  line-height: 1.7;
+}
+
+/* the approach as a spread: her words set large, the opening quotation mark hanging in the margin beside
+   them, and the two paragraphs stepping down to the right */
+.spread { align-items: start; padding-block: clamp(96px, 10vw, 160px) clamp(96px, 9vw, 150px); }
+.spread__label { grid-column: 2 / 12; grid-row: 1; margin-bottom: clamp(26px, 2.6vw, 38px); }
+.spread__mark {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: end;
+  height: .5em;
+  margin-top: .1em;
+  font-family: var(--serif);
+  font-size: clamp(64px, 5.6vw, 88px);
+  line-height: .78;
+  color: var(--greige);
+}
+.spread__quote {
+  grid-column: 2 / 10;
+  grid-row: 2;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(24px, 2.3vw, 33px);
+  line-height: 1.45;
+  letter-spacing: -.004em;
+  color: var(--text);
+  text-wrap: pretty;
+}
+.spread__prose {
+  grid-column: 7 / 12;
+  grid-row: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+  max-width: 31em;
+  margin-top: clamp(48px, 5vw, 80px);
   font-family: var(--serif);
   font-size: clamp(16.5px, 1.12vw, 17.5px);
   line-height: 1.85;
   color: var(--text);
   text-wrap: pretty;
 }
-.article__prose { display: flex; flex-direction: column; gap: 1.2em; }
-.article__quote {
-  font-style: italic;
-  font-size: clamp(19px, 1.6vw, 23px);
-  line-height: 1.6;
-  text-indent: -.4em; /* the opening quote hangs in the margin */
-  padding-left: .4em;
-  margin-left: -.4em;
-}
-.article__quote::before { content: "\201C"; }
-.article__quote::after { content: "\201D"; }
+/* the first words in spaced capitals, as the home page's introduction opens */
+.spread .lead-in { text-transform: uppercase; letter-spacing: .1em; font-size: .86em; }
 
-/* services: a short list, each with its starting price set level with its name */
-/* the service under its name at the top of the page: the starting price, then what the edit includes */
-.service-sum {
+/* the questions matted on her wall colour like a framed print: the numbered sheet in the middle */
+.questions { padding-bottom: clamp(88px, 9vw, 140px); }
+.mat {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
-  width: min(100%, 30em);
-  font-family: var(--serif);
-  font-size: clamp(16.5px, 1.12vw, 17.5px);
-  line-height: 1.7;
-  color: var(--text);
+  gap: clamp(28px, 3vw, 40px);
+  max-width: 1040px;
+  margin-inline: auto;
+  padding: clamp(56px, 6vw, 92px) clamp(14px, 6vw, 100px) clamp(64px, 7vw, 108px);
+  background: var(--wall);
 }
-.fee__price { white-space: nowrap; font-size: clamp(19px, 1.5vw, 21px); }
-.fee__price em { font-size: .85em; }
-.fee__list { display: flex; flex-direction: column; width: 100%; }
-.fee__list li { padding-block: 9px; }
-.fee__list li + li { border-top: 1px solid var(--line); }
-
-/* questions: the framed, numbered sheet below; its answers share the page's one ink */
-.article .faq__answer { color: var(--text); }
+.mat .qa__sheet { width: min(100%, 700px); }
+.editing .faq__answer { color: var(--text); }
 
 @media (max-width: 900px) {
-  .article__part { grid-template-columns: minmax(0, 1fr); row-gap: 20px; }
-  .article__label { padding-top: 0; }
+  .spread__label, .spread__mark, .spread__quote, .spread__prose { grid-column: 1 / -1; }
+  .spread__mark { grid-row: 2; justify-self: start; height: .42em; margin: 0 0 6px -.04em; font-size: 64px; }
+  .spread__quote { grid-row: 3; }
+  .spread__prose { grid-row: 4; margin-top: 40px; }
 }
 @media (max-width: 600px) {
-  .editing .page-hero { padding-bottom: 28px; }
-  .article { padding-bottom: 64px; }
-  .article__part { padding-block: 36px; row-gap: 16px; }
-  .article__body { font-size: 16.5px; }
-  .article__quote { font-size: 18px; }
-  .fee__price { font-size: 17px; }
+  .niche-wrap { padding-top: 32px; }
+  .niche { padding: 104px 22px 52px; }
+  .niche::after { inset: 8px; }
+  .niche__title { font-size: 38px; }
+  .niche__price { margin-top: 26px; font-size: 18px; }
+  .niche__list { font-size: 15.5px; }
+  .spread { padding-block: 72px 64px; }
+  .spread__label { margin-bottom: 22px; }
+  .spread__quote { font-size: 21px; line-height: 1.5; }
+  .spread__prose { font-size: 16.5px; }
+  .questions { padding-bottom: 64px; }
+  .mat { gap: 24px; padding: 36px 10px 10px; }
 }
 
 /* ----------------------------------------------------------------- a passage of hers, set large on the dark band */
