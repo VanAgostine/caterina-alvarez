@@ -1007,7 +1007,8 @@ em, i { font-style: italic; }
 }
 
 /* the approach as a spread: her words set large, the opening quotation mark hanging in the margin beside
-   them, and the two paragraphs stepping down to the right */
+   them; below, a marked-up draft framed in a slim band of her wall colour, like the portrait, with the two
+   paragraphs beside it, their last line level with its foot */
 .spread { align-items: start; padding-block: clamp(96px, 10vw, 160px) clamp(96px, 9vw, 150px); }
 .spread__label { grid-column: 2 / 12; grid-row: 1; margin-bottom: clamp(26px, 2.6vw, 38px); }
 .spread__mark {
@@ -1017,24 +1018,33 @@ em, i { font-style: italic; }
   height: .5em;
   margin-top: .1em;
   font-family: var(--serif);
-  font-size: clamp(64px, 5.6vw, 88px);
+  font-size: clamp(56px, 4.8vw, 74px);
   line-height: .78;
   color: var(--greige);
 }
 .spread__quote {
-  grid-column: 2 / 10;
+  grid-column: 2 / 9;
   grid-row: 2;
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(24px, 2.3vw, 33px);
+  font-size: clamp(21px, 1.95vw, 28px);
   line-height: 1.45;
   letter-spacing: -.004em;
   color: var(--text);
   text-wrap: pretty;
 }
+.spread__image {
+  grid-column: 1 / 6;
+  grid-row: 3;
+  margin-top: clamp(48px, 5vw, 80px);
+  padding: clamp(6px, .55vw, 8px);
+  background: var(--wall);
+}
+.spread__image img { width: 100%; }
 .spread__prose {
   grid-column: 7 / 12;
   grid-row: 3;
+  align-self: end;
   display: flex;
   flex-direction: column;
   gap: 1.2em;
@@ -1065,10 +1075,11 @@ em, i { font-style: italic; }
 .editing .faq__answer { color: var(--text); }
 
 @media (max-width: 900px) {
-  .spread__label, .spread__mark, .spread__quote, .spread__prose { grid-column: 1 / -1; }
-  .spread__mark { grid-row: 2; justify-self: start; height: .42em; margin: 0 0 6px -.04em; font-size: 64px; }
+  .spread__label, .spread__mark, .spread__quote, .spread__image, .spread__prose { grid-column: 1 / -1; }
+  .spread__mark { grid-row: 2; justify-self: start; height: .42em; margin: 0 0 6px -.04em; font-size: 56px; }
   .spread__quote { grid-row: 3; }
-  .spread__prose { grid-row: 4; margin-top: 40px; }
+  .spread__image { grid-row: 4; width: min(100%, 600px); margin-top: 44px; }
+  .spread__prose { grid-row: 5; margin-top: 40px; }
 }
 @media (max-width: 600px) {
   .niche-wrap { padding-top: 32px; }
@@ -1079,7 +1090,8 @@ em, i { font-style: italic; }
   .niche__list { font-size: 15.5px; }
   .spread { padding-block: 72px 64px; }
   .spread__label { margin-bottom: 22px; }
-  .spread__quote { font-size: 21px; line-height: 1.5; }
+  .spread__quote { font-size: 19.5px; line-height: 1.5; }
+  .spread__image { margin-top: 36px; padding: 6px; }
   .spread__prose { font-size: 16.5px; }
   .questions { padding-bottom: 64px; }
   .mat { gap: 24px; padding: 36px 10px 10px; }
