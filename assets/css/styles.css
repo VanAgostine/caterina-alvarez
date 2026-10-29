@@ -778,45 +778,86 @@ em, i { font-style: italic; }
 .home .pager__dir { color: var(--text); }
 
 /* ----------------------------------------------------------------- the cover (index.html)
-   The entry page of an editorial magazine: her name as the masthead, then on the Hello page's grid (mirrored) the
-   drawing in its beige-banded frame on the left (traced in as it arrives) and her motto as the cover line on the
-   right. No labels and no button: one fine arrow is the only cue, and the whole cover is the way in. One warm white
-   ground, no header or footer */
+   Composed like a commissioned book cover on a 12-column grid, on one warm white ground with no grain. Her name is
+   the anchor, large in two lines at the upper left ("Alvarez" in italics, set in from "Caterina"); her handwritten
+   drawing sits between the name and the portrait, edging into the open space; the portrait, a plain rectangle, sits
+   at the lower right, its top set well below the name; her motto and a single fine arrow close the lower left. The
+   upper right is left open. A click anywhere opens the site at Hello. Natural height: nothing is clipped */
 .home.cover {
+  --edge: clamp(24px, 5vw, 80px);
+  --name: clamp(56px, 8.6vw, 140px);
+  --name-top: clamp(32px, 7svh, 84px);
   position: relative;
   display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-template-rows: auto minmax(0, 1fr);
+  column-gap: clamp(14px, 1.7vw, 24px);
   min-height: 100svh;
+  padding: clamp(28px, 4.5svh, 44px) var(--edge) clamp(36px, 6svh, 64px);
   background: var(--paper);
 }
-/* the masthead: a size above the site header's wordmark, with wider spacing */
-.cover__mark { padding: clamp(36px, 6svh, 60px) var(--gutter) 0; }
-.cover .wordmark.cover__mark { align-items: center; gap: 12px; text-align: center; }
-.cover .cover__mark .wordmark__name { font-size: clamp(17px, 1.35vw, 21px); letter-spacing: .4em; margin-right: -.4em; }
-.cover .cover__mark .wordmark__sub { justify-items: center; font-size: 9.5px; letter-spacing: .38em; margin-right: -.38em; }
-.cover__inner { align-items: center; row-gap: 40px; padding-block: clamp(28px, 5svh, 64px); }
-.cover__art { grid-column: 2 / 6; justify-self: end; width: min(100%, 440px, 58svh); }
-.cover__text { grid-column: 7 / 12; display: flex; flex-direction: column; align-items: flex-start; gap: clamp(28px, 3.4svh, 40px); }
-/* the motto as the cover line: a size up from the running text, in the serif's italic, balanced over its lines */
-.cover .hero__quote.cover__quote { max-width: 20em; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.5; text-wrap: balance; }
-/* the one cue: a long, thin arrow that steps forward when the cover is pointed at. Its link covers the whole page,
-   so a click anywhere enters; it fades in once the motto has arrived */
-.cover__enter { display: block; padding: 10px 0; color: var(--text); animation: cover-cue 1.2s var(--ease) 1.4s both; }
+.cover-page::after { opacity: 0; } /* no paper grain on the cover */
+
+/* the quiet masthead: only the imprint, since her name is the cover */
+.cover__imprint { grid-area: 1 / 1 / 2 / -1; font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .3em; text-transform: uppercase; color: var(--umber); }
+
+/* everything below shares one grid row, placed by column and by its own top or foot, so the four parts read as one
+   diagonal: name (upper left), drawing (following on from "Alvarez"), portrait (lower right); motto at the lower left */
+.cover__name {
+  grid-area: 2 / 1 / 3 / 9;
+  align-self: start;
+  margin-top: var(--name-top);
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--name);
+  line-height: .92;
+  letter-spacing: -.03em;
+  color: var(--text);
+}
+.cover__name span,
+.cover__name em { display: block; }
+.cover__name em { padding-left: 1.35em; font-style: italic; letter-spacing: -.025em; }
+
+/* the drawing: plain on the page, its top level with "Alvarez", carrying on from the end of the word */
+.cover__art { grid-area: 2 / 6 / 3 / 9; align-self: start; margin-top: calc(var(--name-top) + var(--name) * .86); }
+.cover__art img { width: 100%; height: auto; }
+
+/* the portrait: a plain 4:5 rectangle at the lower right, about 28% of the measure */
+.cover__portrait { grid-area: 2 / 10 / 3 / 13; align-self: end; margin-left: -18%; }
+.cover__portrait img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 16%; }
+
+/* the motto and the arrow at the lower left, their foot level with the portrait's */
+.cover__foot { grid-area: 2 / 1 / 3 / 6; align-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 22px; padding-top: 40px; }
+.cover__quote { max-width: 23em; font-family: var(--serif); font-style: italic; font-size: var(--t-lead); line-height: 1.6; color: var(--text); text-wrap: pretty; }
+.cover__quote p::before { content: "\201C"; }
+.cover__quote p::after { content: "\201D"; }
+.cover__enter { display: block; padding: 10px 0 0; color: var(--text); }
 .cover__enter::after { content: ""; position: absolute; inset: 0; z-index: 3; cursor: pointer; }
 .cover__enter svg { display: block; width: 64px; height: 12px; transition: transform .7s var(--ease-out); }
 .home.cover:hover .cover__enter svg { transform: translateX(10px); }
 .cover__enter:focus-visible { outline-offset: 8px; }
-@keyframes cover-cue { from { opacity: 0; } }
+
+/* a brief, quiet entrance: everything fades up once (the drawing also traces itself in); visible without scripts */
+.cover__imprint, .cover__name, .cover__portrait, .cover__foot { animation: cover-in 1s var(--ease) both; }
+.cover__name { animation-delay: .1s; }
+.cover__portrait { animation-delay: .35s; }
+.cover__foot { animation-delay: .6s; }
+@keyframes cover-in { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) {
-  .cover__enter { animation: none; }
+  .cover__imprint, .cover__name, .cover__portrait, .cover__foot { animation: none; }
   .cover__enter svg { transition: none; }
   .home.cover:hover .cover__enter svg { transform: none; }
 }
+
+/* tablets and phones: recomposed in reading order (name, drawing, portrait, motto), still asymmetric */
 @media (max-width: 900px) {
-  .cover .cover__mark .wordmark__name { font-size: min(20px, 4.6vw); letter-spacing: .34em; margin-right: -.34em; }
-  .cover .cover__mark .wordmark__sub { font-size: min(9.5px, 2.3vw); letter-spacing: .3em; margin-right: -.3em; }
-  .cover__art { grid-column: 1 / -1; justify-self: center; width: min(100%, 340px, 46svh); }
-  .cover__text { grid-column: 1 / -1; }
+  .home.cover { grid-template-rows: none; }
+  .cover__imprint { grid-area: auto / 1 / auto / -1; }
+  .cover__name { grid-area: auto / 1 / auto / -1; margin-top: 44px; font-size: min(19vw, 112px); }
+  .cover__name em { padding-left: 1.1em; }
+  .cover__art { grid-area: auto / 6 / auto / -1; margin-top: 24px; }
+  .cover__portrait { grid-area: auto / 1 / auto / 8; align-self: start; margin: 16px 0 0; }
+  .cover__foot { grid-area: auto / 1 / auto / -1; padding-top: 36px; }
 }
 
 /* the introduction opens like the first page of a book: a drop capital, then the opening words in spaced capitals.
