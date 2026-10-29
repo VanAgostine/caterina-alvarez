@@ -28,22 +28,33 @@
 <body class="cover-page">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- The cover, an editor's frontispiece: one centred canvas on her ivory. Her name and motto form a group on the
-       left; her handwritten drawing is the centrepiece to their right, with a muted terracotta disc set behind its
-       lower right. A click anywhere opens the site at Hello; keyboards and screen readers meet one link,
-       "Enter the site" -->
+  <!-- The cover, after the front page of an author's site of the classical kind: one near-white page centred on her
+       wall colour and held by a hairline; her name in spaced capitals with the imprint beneath; a row of contents
+       divided by fine rules; her motto set small above her drawing, which stands at the centre of the page and opens
+       the site at Hello; a small copyright line beneath the page -->
   <main id="main" class="home cover">
-    <p class="cover__imprint">Grand Avenue Editing &amp; Publications</p>
-    <div class="cover__stage">
-      <div class="cover__words">
-        <h1 class="cover__name"><span>Caterina</span> <em>Alvarez</em></h1>
+    <div class="cover__page">
+      <header class="cover__head">
+        <h1 class="cover__name">Caterina Alvarez</h1>
+        <p class="cover__imprint">Grand Avenue Editing &amp; Publications</p>
+      </header>
+      <nav class="cover__nav" aria-label="Contents">
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="editing.html">Editing</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="cover__body">
         <blockquote class="cover__quote"><p>Your options are, of course, limitless, but my gut tells me the heart lies right here. This is the axis upon which your story&nbsp;spins.</p></blockquote>
-        <a class="cover__enter" href="home.html" aria-label="Enter the site"><svg viewBox="0 0 44 12" aria-hidden="true" focusable="false"><path d="M.5 6H43M37.5.5 43 6l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></a>
+        <a class="cover__art" href="home.html" aria-label="Enter the site" data-ink>
+          <img src="assets/img/drawing-ink.png" width="1169" height="1206" fetchpriority="high" alt="Caterina Alvarez’s ink drawing: the handwritten words “What I mean is this:…” curve above a ring of looping lines that spiral inward toward an open center.">
+        </a>
       </div>
-      <figure class="cover__art" data-ink>
-        <img src="assets/img/drawing-ink.png" width="1169" height="1206" fetchpriority="high" alt="Caterina Alvarez’s ink drawing: the handwritten words “What I mean is this:…” curve above a ring of looping lines that spiral inward toward an open center.">
-      </figure>
     </div>
+    <p class="cover__legal">© <span data-year>2026</span> Grand Avenue Editing &amp; Publications</p>
   </main>
 </body>
 </html>
