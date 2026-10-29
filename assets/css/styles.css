@@ -801,8 +801,8 @@ em, i { font-style: italic; }
 /* the quiet masthead: only the imprint, since her name is the cover */
 .cover__imprint { grid-area: 1 / 1 / 2 / -1; font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .3em; text-transform: uppercase; color: var(--umber); }
 
-/* everything below shares one grid row, placed by column and by its own top or foot, so the four parts read as one
-   diagonal: name (upper left), drawing (following on from "Alvarez"), portrait (lower right); motto at the lower left */
+/* everything below shares one grid row, placed by column and by its own top or foot: the name at the upper left,
+   the drawing as the emblem at the lower right, the motto and arrow at the lower left; the upper right is left open */
 .cover__name {
   grid-area: 2 / 1 / 3 / 9;
   align-self: start;
@@ -818,15 +818,12 @@ em, i { font-style: italic; }
 .cover__name em { display: block; }
 .cover__name em { padding-left: 1.35em; font-style: italic; letter-spacing: -.025em; }
 
-/* the drawing: plain on the page, its top level with "Alvarez", carrying on from the end of the word */
-.cover__art { grid-area: 2 / 6 / 3 / 9; align-self: start; margin-top: calc(var(--name-top) + var(--name) * .86); }
+/* the drawing: plain on the page, large, at the lower right; its foot level with the arrow's, its top beside
+   "Alvarez", and sized to the screen's height so the whole cover stays in one view */
+.cover__art { grid-area: 2 / 8 / 3 / 13; align-self: end; justify-self: end; width: min(90%, 52svh); margin-bottom: -2%; }
 .cover__art img { width: 100%; height: auto; }
 
-/* the portrait: a plain 4:5 rectangle at the lower right, about 28% of the measure */
-.cover__portrait { grid-area: 2 / 10 / 3 / 13; align-self: end; margin-left: -18%; }
-.cover__portrait img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 16%; }
-
-/* the motto and the arrow at the lower left, their foot level with the portrait's */
+/* the motto and the arrow at the lower left */
 .cover__foot { grid-area: 2 / 1 / 3 / 6; align-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 22px; padding-top: 40px; }
 .cover__quote { max-width: 23em; font-family: var(--serif); font-style: italic; font-size: var(--t-lead); line-height: 1.6; color: var(--text); text-wrap: pretty; }
 .cover__quote p::before { content: "\201C"; }
@@ -838,25 +835,23 @@ em, i { font-style: italic; }
 .cover__enter:focus-visible { outline-offset: 8px; }
 
 /* a brief, quiet entrance: everything fades up once (the drawing also traces itself in); visible without scripts */
-.cover__imprint, .cover__name, .cover__portrait, .cover__foot { animation: cover-in 1s var(--ease) both; }
+.cover__imprint, .cover__name, .cover__foot { animation: cover-in 1s var(--ease) both; }
 .cover__name { animation-delay: .1s; }
-.cover__portrait { animation-delay: .35s; }
 .cover__foot { animation-delay: .6s; }
 @keyframes cover-in { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) {
-  .cover__imprint, .cover__name, .cover__portrait, .cover__foot { animation: none; }
+  .cover__imprint, .cover__name, .cover__foot { animation: none; }
   .cover__enter svg { transition: none; }
   .home.cover:hover .cover__enter svg { transform: none; }
 }
 
-/* tablets and phones: recomposed in reading order (name, drawing, portrait, motto), still asymmetric */
+/* tablets and phones: recomposed in reading order (name, drawing, motto), still asymmetric */
 @media (max-width: 900px) {
   .home.cover { grid-template-rows: none; }
   .cover__imprint { grid-area: auto / 1 / auto / -1; }
   .cover__name { grid-area: auto / 1 / auto / -1; margin-top: 44px; font-size: min(19vw, 112px); }
   .cover__name em { padding-left: 1.1em; }
-  .cover__art { grid-area: auto / 6 / auto / -1; margin-top: 24px; }
-  .cover__portrait { grid-area: auto / 1 / auto / 8; align-self: start; margin: 16px 0 0; }
+  .cover__art { grid-area: auto / 4 / auto / -1; justify-self: end; width: min(100%, 420px, 44svh); margin: 32px 0 0; }
   .cover__foot { grid-area: auto / 1 / auto / -1; padding-top: 36px; }
 }
 
