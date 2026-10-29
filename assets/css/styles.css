@@ -778,33 +778,23 @@ em, i { font-style: italic; }
 .home .pager__dir { color: var(--text); }
 
 /* ----------------------------------------------------------------- the cover (index.html)
-   After the front page of an author's site of the classical kind (danielmendelsohn.com): one near-white page centred
-   on her wall colour and held by a hairline, reaching the top of the screen. At its head her name in spaced capitals
-   with the imprint beneath; then a band of contents in serif capitals divided by fine vertical rules, hairlines above
-   and below; then, at the centre of the page, her motto set small and her drawing (traced in as it arrives), which
-   opens the site at Hello. A small copyright line sits beneath the page. Symmetrical, bookish, quiet; no grain */
+   After the front page of an author's site of the classical kind (danielmendelsohn.com), on her ivory: her name in
+   spaced capitals with the imprint beneath; a row of contents in serif capitals divided by fine vertical rules,
+   hairlines above and below; then one white square, held by a hairline, with her drawing and her motto beneath it;
+   under the square a single long arrow that opens the site at Hello; a small copyright line at the foot. Still: no
+   animation, no grain */
 .home.cover {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100svh;
-  padding: 0 clamp(12px, 3vw, 32px);
+  padding: 0 clamp(16px, 4vw, 32px);
   background: var(--wall);
 }
 .cover-page::after { opacity: 0; } /* no paper grain on the cover */
-.cover__page {
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 920px;
-  background: var(--paper);
-  border: 1px solid var(--greige);
-  border-top: 0;
-}
 
 /* the head: her name in spaced capitals, the imprint beneath */
-.cover__head { padding: clamp(26px, 4svh, 40px) 20px clamp(18px, 2.6svh, 26px); text-align: center; }
+.cover__head { padding: clamp(28px, 4.4svh, 44px) 0 clamp(18px, 2.6svh, 26px); text-align: center; }
 .cover__name {
   font-family: var(--serif);
   font-weight: 400;
@@ -818,8 +808,8 @@ em, i { font-style: italic; }
 }
 .cover__imprint { margin-top: 12px; font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .3em; margin-right: -.3em; text-transform: uppercase; color: var(--umber); }
 
-/* the contents: serif capitals on a faint band, fine rules between, hairlines above and below */
-.cover__nav { border-block: 1px solid var(--greige); background: var(--stone); }
+/* the contents: serif capitals, fine rules between, hairlines above and below */
+.cover__nav { width: 100%; max-width: 920px; border-block: 1px solid var(--greige); }
 .cover__nav ul { display: flex; flex-wrap: wrap; justify-content: center; }
 .cover__nav li + li { border-left: 1px solid var(--greige); }
 .cover__nav a {
@@ -836,32 +826,51 @@ em, i { font-style: italic; }
 .cover__nav a:hover { color: var(--umber); }
 .cover__nav a:focus-visible { outline-offset: -4px; }
 
-/* the centre of the page: her motto set small, then her drawing, which enters the site */
+/* the square: white, held by a hairline, her drawing with her motto beneath it; it grows only if the words need it */
 .cover__body {
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(22px, 3.4svh, 36px);
-  padding: clamp(32px, 6svh, 64px) 24px clamp(40px, 7svh, 72px);
+  gap: clamp(14px, 2.4svh, 26px);
+  width: 100%;
+  padding-block: clamp(28px, 5svh, 56px) clamp(8px, 2svh, 20px);
+}
+.cover__plate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 2.8svh, 30px);
+  width: min(100%, 520px, 56svh);
+  aspect-ratio: 1;
+  padding: clamp(24px, 4svh, 44px) clamp(24px, 3.4vw, 44px);
+  background: var(--paper);
+  border: 1px solid var(--greige);
   text-align: center;
 }
-.cover__quote { max-width: 30em; font-family: var(--serif); font-style: italic; font-size: 16px; line-height: 1.6; color: var(--mute); text-wrap: balance; }
+.cover__plate img { width: min(62%, 320px); height: auto; }
+.cover__quote { max-width: 24em; font-family: var(--serif); font-style: italic; font-size: 15.5px; line-height: 1.6; color: var(--mute); text-wrap: balance; }
 .cover__quote p::before { content: "\201C"; }
 .cover__quote p::after { content: "\201D"; }
-.cover__art { display: block; width: min(80%, 440px, 46svh); }
-.cover__art img { width: 100%; height: auto; }
-.cover__art:focus-visible { outline-offset: 12px; }
 
-/* beneath the page */
-.cover__legal { padding: 16px 0 20px; font-size: 11px; line-height: 1.5; letter-spacing: .02em; color: var(--mute); text-align: center; }
+/* the arrow: the way forward into the site, stepping on when pointed at */
+.cover__enter { display: block; padding: 14px 10px; color: var(--text); transition: color .3s ease; }
+.cover__enter svg { display: block; width: 72px; height: 14px; transition: transform .6s var(--ease-out); }
+.cover__enter:hover { color: var(--umber); }
+.cover__enter:hover svg { transform: translateX(10px); }
+.cover__enter:focus-visible { outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .cover__enter svg { transition: none; } .cover__enter:hover svg { transform: none; } }
+
+/* at the foot of the page */
+.cover__legal { padding: 12px 0 20px; font-size: 11px; line-height: 1.5; letter-spacing: .02em; color: var(--mute); text-align: center; }
 
 /* phones: the five contents stay on one line, the type and spacing easing with the width */
 @media (max-width: 600px) {
-  .cover__nav ul { flex-wrap: nowrap; }
-  .cover__nav ul { padding-inline: 6px; }
+  .cover__nav ul { flex-wrap: nowrap; padding-inline: 6px; }
   .cover__nav a { padding: 13px min(12px, 1.9vw); font-size: min(13px, 2.75vw); letter-spacing: .03em; }
+  .cover__plate { width: min(100%, 440px); }
 }
 
 /* the introduction opens like the first page of a book: a drop capital, then the opening words in spaced capitals.
