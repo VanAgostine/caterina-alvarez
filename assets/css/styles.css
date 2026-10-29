@@ -779,8 +779,7 @@ em, i { font-style: italic; }
 
 /* ----------------------------------------------------------------- the cover (index.html)
    After the front page of an author's site of the classical kind (danielmendelsohn.com), on her ivory: her name in
-   spaced capitals with the imprint beneath; a row of contents in serif capitals divided by fine vertical rules,
-   hairlines above and below; then one white square, held by a hairline, with her drawing and her motto beneath it;
+   spaced capitals with the imprint beneath; then one white square, held by a hairline, with her drawing and her motto beneath it;
    under the square a single long arrow that opens the site at Hello; a small copyright line at the foot. Still: no
    animation, no grain */
 .home.cover {
@@ -807,24 +806,6 @@ em, i { font-style: italic; }
   color: var(--text);
 }
 .cover__imprint { margin-top: 12px; font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .3em; margin-right: -.3em; text-transform: uppercase; color: var(--umber); }
-
-/* the contents: serif capitals, fine rules between, hairlines above and below */
-.cover__nav { width: 100%; max-width: 920px; border-block: 1px solid var(--greige); }
-.cover__nav ul { display: flex; flex-wrap: wrap; justify-content: center; }
-.cover__nav li + li { border-left: 1px solid var(--greige); }
-.cover__nav a {
-  display: block;
-  padding: 9px clamp(12px, 1.8vw, 20px);
-  font-family: var(--serif);
-  font-size: clamp(13px, 1.15vw, 15.5px);
-  line-height: 1.7;
-  letter-spacing: .07em;
-  text-transform: uppercase;
-  color: var(--text);
-  transition: color .3s ease;
-}
-.cover__nav a:hover { color: var(--umber); }
-.cover__nav a:focus-visible { outline-offset: -4px; }
 
 /* the square: white, held by a hairline, her drawing with her motto beneath it; it grows only if the words need it */
 .cover__body {
@@ -866,10 +847,7 @@ em, i { font-style: italic; }
 /* at the foot of the page */
 .cover__legal { padding: 12px 0 20px; font-size: 11px; line-height: 1.5; letter-spacing: .02em; color: var(--mute); text-align: center; }
 
-/* phones: the five contents stay on one line, the type and spacing easing with the width */
 @media (max-width: 600px) {
-  .cover__nav ul { flex-wrap: nowrap; padding-inline: 6px; }
-  .cover__nav a { padding: 13px min(12px, 1.9vw); font-size: min(13px, 2.75vw); letter-spacing: .03em; }
   .cover__plate { width: min(100%, 440px); }
 }
 
