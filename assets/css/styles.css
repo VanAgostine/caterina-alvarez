@@ -1046,14 +1046,16 @@ em, i { font-style: italic; }
 
 /* ----------------------------------------------------------------- editing: one page, composed like a magazine feature
    No rules between the parts. Every part shares one measure (the same two edges, the same centre) and one
-   interval of space (80px; 52px on phones), so the page reads in a single, even rhythm: the arch, her words,
-   the questions. All the words share one ink, like the home page. */
+   interval of space (80px; 52px on phones), so the page reads in a single, even rhythm: her words, the arch,
+   the writers' kind words. All the words share one ink, like the home page. */
 .editing { --ed-space: var(--section); }
 .ed-frame { max-width: calc(1040px + var(--gutter) * 2); }
+.niche-wrap,
+.spread { padding-top: var(--ed-space); }
+.editing > :first-child { padding-top: var(--space-open); } /* whichever part opens the page */
 
-/* the opening: the service under its name in an arch of her wall colour, like the portrait's window on the
-   home page, with a hairline arch drawn just inside its edge */
-.niche-wrap { padding-top: var(--space-open); }
+/* the service under its name in an arch of her wall colour, like the portrait's window on the home page, with a
+   hairline arch drawn just inside its edge: her rate, then what an author receives */
 .niche {
   position: relative;
   display: flex;
@@ -1092,14 +1094,14 @@ em, i { font-style: italic; }
   white-space: nowrap;
 }
 .niche__price em { font-size: .82em; }
-.niche__list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.niche__text {
+  max-width: 25em;
   margin-top: clamp(16px, 1.6vw, 22px);
   font-family: var(--serif);
   font-size: var(--t-body);
   line-height: 1.7;
+  color: var(--text);
+  text-wrap: balance;
 }
 
 /* the approach: the measure split down the middle of the page. On the left the marked-up draft, framed in a
@@ -1107,7 +1109,6 @@ em, i { font-style: italic; }
    never stretched); on the right one continuous column that starts level with the picture's top and ends with
    its last line on the picture's foot: its name, her words (the same size as the text, set apart only by
    italics and quotation marks, the opening one hung just outside the edge), her way of working, her background */
-.spread { padding-top: var(--ed-space); }
 .spread__pair {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1135,8 +1136,10 @@ em, i { font-style: italic; }
 .spread__quote p::after { content: "\201D"; }
 .spread__text > p + p { margin-top: 24px; }
 
-/* the questions matted on her wall colour like a framed print, the numbered sheet in the middle */
-.questions { padding-block: var(--ed-space); }
+/* the kind words (Editing) and the questions (Contact), each matted on her wall colour like a framed print: the
+   two testimonial cards side by side, or the numbered sheet in the middle */
+.kind,
+.questions { padding-block: var(--section); }
 .mat {
   display: flex;
   flex-direction: column;
@@ -1146,12 +1149,14 @@ em, i { font-style: italic; }
   background: var(--wall);
 }
 .mat .qa__sheet { width: min(100%, 700px); }
-.editing .faq__answer { color: var(--text); }
+.questions .faq__answer { color: var(--text); }
+.mat .testimonials { width: 100%; }
+.mat .testimonial { padding: clamp(32px, 3.6vw, 52px); }
 
-/* tablets: the approach and the questions narrow to the arch's width, so all three share the same two edges;
-   the draft stands above its words */
+/* tablets: the approach, the kind words and the questions narrow to the arch's width, so all the parts share the
+   same two edges; the draft stands above its words */
 @media (max-width: 900px) {
-  .spread, .questions { max-width: calc(580px + var(--gutter) * 2); }
+  .spread, .kind, .questions { max-width: calc(580px + var(--gutter) * 2); }
   .spread__pair { grid-template-columns: minmax(0, 1fr); row-gap: 30px; }
   /* stacked, the picture keeps its own proportions */
   .spread__image picture { position: static; display: block; }
@@ -1164,6 +1169,7 @@ em, i { font-style: italic; }
   .niche__price { margin-top: 26px; }
   .spread__image { padding: 6px; }
   .mat { gap: 24px; padding: 36px 10px 10px; }
+  .mat .testimonial { padding: 28px 22px; }
 }
 
 /* ----------------------------------------------------------------- publications: a gallery of her published work
