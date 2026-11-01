@@ -703,7 +703,8 @@ em, i { font-style: italic; }
 }
 
 /* ----------------------------------------------------------------- home: hello (her portrait beside her introduction)
-   Quiet and editorial: the arched portrait, an upright greeting, the introduction set in the serif. */
+   Quiet and editorial: the arched portrait, an upright heading ("Introduction", as a book opens), her introduction set
+   in the serif. */
 .hello {
   display: grid;
   align-items: center;
@@ -780,7 +781,7 @@ em, i { font-style: italic; }
 /* ----------------------------------------------------------------- the cover (index.html)
    After the front page of an author's site of the classical kind (danielmendelsohn.com), on her ivory: her name in
    spaced capitals with the imprint beneath; then her spiral set straight on the ivory, unframed, with her motto
-   beneath it; under the motto a single long arrow that opens the site at Hello; a small copyright line at the foot.
+   beneath it; under the motto a single long arrow that opens the site at the Introduction; a small copyright line at the foot.
    Still: no animation, no grain */
 .home.cover {
   display: flex;
