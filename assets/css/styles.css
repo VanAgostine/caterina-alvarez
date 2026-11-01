@@ -809,7 +809,8 @@ em, i { font-style: italic; }
 
 /* the spiral, unframed on the ivory, and her motto beneath it on the same centre line: the spiral takes the height the
    name, motto, arrow and copyright leave free (--cover-words), so the whole cover fits in one view, and never grows
-   past 540px; the motto is set no wider than the drawing (on the narrowest phones, the width of the page), in her brown */
+   past 540px; the motto, in her brown, is set no wider than the drawing (on the narrowest phones, the width of the
+   page); on larger screens it opens out to one sentence a line, the first about as wide as the drawing */
 .cover { --cover-words: 410px; }
 .cover__body {
   flex: 1 0 auto;
@@ -834,6 +835,12 @@ em, i { font-style: italic; }
 .cover__quote { max-width: 27em; margin-top: clamp(28px, 4.6svh, 48px); font-family: var(--serif); font-style: italic; font-size: 16px; line-height: 1.65; color: var(--umber); text-wrap: balance; }
 .cover__quote p::before { content: "\201C"; }
 .cover__quote p::after { content: "\201D"; }
+.cover__break { display: none; }
+@media (min-width: 900px) {
+  .cover { --cover-words: 388px; } /* two lines of motto at most, so the spiral can take a little more */
+  .cover__quote { width: max-content; max-width: calc(100vw - 64px); line-height: 1.8; }
+  .cover__break { display: inline; }
+}
 
 /* the arrow: the way forward into the site, stepping on when pointed at */
 .cover__enter { display: block; padding: 14px 10px; color: var(--text); transition: color .3s ease; }
