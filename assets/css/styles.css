@@ -779,9 +779,9 @@ em, i { font-style: italic; }
 
 /* ----------------------------------------------------------------- the cover (index.html)
    After the front page of an author's site of the classical kind (danielmendelsohn.com), on her ivory: her name in
-   spaced capitals with the imprint beneath; then one white square, held by a hairline, with her drawing and her motto beneath it;
-   under the square a single long arrow that opens the site at Hello; a small copyright line at the foot. Still: no
-   animation, no grain */
+   spaced capitals with the imprint beneath; then her spiral set straight on the ivory, unframed, with her motto
+   beneath it; under the motto a single long arrow that opens the site at Hello; a small copyright line at the foot.
+   Still: no animation, no grain */
 .home.cover {
   display: flex;
   flex-direction: column;
@@ -807,32 +807,31 @@ em, i { font-style: italic; }
 }
 .cover__imprint { margin-top: 12px; font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .3em; margin-right: -.3em; text-transform: uppercase; color: var(--umber); }
 
-/* the square: white, held by a hairline, her drawing with her motto beneath it; it grows only if the words need it */
+/* the spiral, unframed on the ivory, and her motto beneath it on the same centre line: the spiral takes the height the
+   name, motto, arrow and copyright leave free (--cover-words), so the whole cover fits in one view, and never grows
+   past 540px; the motto is set no wider than the drawing (on the narrowest phones, the width of the page), in her brown */
+.cover { --cover-words: 410px; }
 .cover__body {
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(14px, 2.4svh, 26px);
+  gap: clamp(12px, 2.2svh, 24px);
   width: 100%;
-  padding-block: clamp(28px, 5svh, 56px) clamp(8px, 2svh, 20px);
+  padding-block: clamp(24px, 4.4svh, 52px) clamp(8px, 2svh, 20px);
 }
 .cover__plate {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: clamp(18px, 2.8svh, 30px);
-  width: min(100%, 520px, 56svh);
-  aspect-ratio: 1;
-  padding: clamp(24px, 4svh, 44px) clamp(24px, 3.4vw, 44px);
-  background: var(--paper);
-  border: 1px solid var(--greige);
+  width: min(86vw, 540px, 52vh, max(240px, 100vh - var(--cover-words)));
+  width: min(86vw, 540px, 52svh, max(240px, 100svh - var(--cover-words)));
   text-align: center;
 }
-.cover__plate img { width: min(62%, 320px); height: auto; }
-.cover__quote { max-width: 24em; font-family: var(--serif); font-style: italic; font-size: 15.5px; line-height: 1.6; color: var(--mute); text-wrap: balance; }
+.cover__plate picture,
+.cover__plate img { display: block; width: 100%; height: auto; }
+.cover__quote { max-width: 27em; margin-top: clamp(28px, 4.6svh, 48px); font-family: var(--serif); font-style: italic; font-size: 16px; line-height: 1.65; color: var(--umber); text-wrap: balance; }
 .cover__quote p::before { content: "\201C"; }
 .cover__quote p::after { content: "\201D"; }
 
@@ -847,8 +846,10 @@ em, i { font-style: italic; }
 /* at the foot of the page */
 .cover__legal { padding: 12px 0 20px; font-size: 11px; line-height: 1.5; letter-spacing: .02em; color: var(--mute); text-align: center; }
 
+/* phones: a smaller name, a longer motto */
 @media (max-width: 600px) {
-  .cover__plate { width: min(100%, 440px); }
+  .cover { --cover-words: 378px; }
+  .cover__quote { width: max(100%, min(320px, 100vw - 32px)); }
 }
 
 /* the introduction opens like the first page of a book: a drop capital, then the opening words in spaced capitals.
