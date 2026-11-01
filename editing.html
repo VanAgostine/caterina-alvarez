@@ -77,8 +77,13 @@
   </div>
 
   <main id="main" class="editing">
-    <!-- The approach, the page's opening, like a prologue before Part I: the marked-up draft beside one continuous column:
-         its name, her words as the lead, her way of working, then her background -->
+    <!-- The part's running head, as at the top of a book's page -->
+    <header class="container ed-frame ed-head">
+      <p class="eyebrow">Part I · Editing</p>
+    </header>
+
+    <!-- The approach: the marked-up draft beside one continuous column: its name, her words as the lead, her way of
+         working, then her background -->
     <section id="approach" class="container ed-frame spread" aria-labelledby="approach-title">
       <div class="spread__pair">
         <figure class="spread__image" data-reveal>
@@ -97,14 +102,17 @@
       </div>
     </section>
 
-    <!-- Part I: the service under its name, set in an arch of her wall colour like the portrait's window on the home
-         page: her rate, then what an author receives (her words) -->
-    <section id="services" class="container ed-frame niche-wrap" aria-labelledby="services-title">
-      <div class="niche" data-reveal>
-        <span class="eyebrow">Part I · Editing</span>
-        <h1 id="services-title" class="niche__title">Developmental <em>editing</em></h1>
-        <p class="niche__price">$55 <em>per hour</em></p>
-        <p class="niche__text">Authors will receive a detailed editorial letter and inline commentary with a focus on structure, character development, rhythm and pacing, narration, voice, and setting tailored to the story’s strengths and weaknesses.</p>
+    <!-- The service, the story turning from her approach to what she offers, the approach mirrored: on the right, under
+         her words, the service's name and rate set large and flush right; on the left, under the draft, what an author
+         receives (her words) -->
+    <section id="services" class="container ed-frame service" aria-labelledby="services-title">
+      <div class="service__pair">
+        <div class="service__head" data-reveal>
+          <p class="eyebrow">The service</p>
+          <h1 id="services-title" class="service__title">Developmental <em>editing</em></h1>
+          <p class="service__price">$55 <em>per hour</em></p>
+        </div>
+        <p class="service__text" data-reveal style="--d: 150ms">Authors will receive a detailed editorial letter and inline commentary with a focus on structure, character development, rhythm and pacing, narration, voice, and setting tailored to the story’s strengths and weaknesses.</p>
       </div>
     </section>
 
