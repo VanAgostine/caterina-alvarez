@@ -79,10 +79,17 @@
   </div>
 
   <main id="main">
-    <!-- The opening, as the other parts open: the part's label, then "Write" on a small line above "to me" in italics -->
+    <!-- The opening, composed like the Developmental editing title: the part's label with a fine rule running on from
+         it; then "Write", and on the next line "to me", a little larger in italics, stepped two columns in; in the space
+         beside it, where she works -->
     <header class="container contact-hero">
-      <span class="eyebrow" data-reveal>Part IV · Contact</span>
-      <h1 class="pub-hero__title" data-reveal style="--d: 120ms"><span class="pub-hero__from">Write</span> <em>to me</em></h1>
+      <div class="contact-hero__intro" data-reveal>
+        <span class="eyebrow">Part IV · Contact</span>
+      </div>
+      <div class="contact-hero__composition">
+        <h1 class="contact-hero__title"><span class="contact-hero__word" data-reveal>Write</span> <em class="contact-hero__word contact-hero__word--second" data-reveal style="--d: 180ms">to me</em></h1>
+        <p class="contact-hero__aside" data-reveal style="--d: 360ms">Available completely<br>remotely.</p>
+      </div>
     </header>
 
     <section class="section band-stone">
@@ -112,31 +119,32 @@
               <input id="f-title" name="title" type="text">
             </div>
             <fieldset class="field field--full chips">
-              <legend>Form</legend>
+              <legend>Form <span class="optional">optional</span></legend>
               <div class="chips__list">
-                <label class="chip"><input type="radio" name="form" value="Novel" required><span>Novel</span></label>
+                <label class="chip"><input type="radio" name="form" value="Novel"><span>Novel</span></label>
                 <label class="chip"><input type="radio" name="form" value="Story collection"><span>Story collection</span></label>
                 <label class="chip"><input type="radio" name="form" value="Short story"><span>Short story</span></label>
                 <label class="chip"><input type="radio" name="form" value="Flash fiction"><span>Flash fiction</span></label>
+                <label class="chip"><input type="radio" name="form" value="Poetry"><span>Poetry</span></label>
                 <label class="chip"><input type="radio" name="form" value="Something else"><span>Something else</span></label>
               </div>
             </fieldset>
             <fieldset class="field field--full chips">
-              <legend>Where is it in its life?</legend>
+              <legend>Where is it in its life? <span class="optional">optional</span></legend>
               <div class="chips__list">
-                <label class="chip"><input type="radio" name="stage" value="An idea" required><span>An idea</span></label>
+                <label class="chip"><input type="radio" name="stage" value="An idea"><span>An idea</span></label>
                 <label class="chip"><input type="radio" name="stage" value="A first draft"><span>A first draft</span></label>
                 <label class="chip"><input type="radio" name="stage" value="A revised draft"><span>A revised draft</span></label>
                 <label class="chip"><input type="radio" name="stage" value="A finished manuscript"><span>A finished manuscript</span></label>
               </div>
             </fieldset>
             <div class="field">
-              <label for="f-length">Word count <span class="optional">approximate</span></label>
+              <label for="f-length">Word count <span class="optional">optional, approximate</span></label>
               <input id="f-length" name="wordcount" type="text" inputmode="numeric" placeholder="e.g. 85,000">
             </div>
             <div class="field field--full">
-              <label for="f-message">Tell me about your story</label>
-              <textarea id="f-message" name="message" rows="6" placeholder="Dear Caterina," required></textarea>
+              <label for="f-message">Tell me about your story <span class="optional">optional</span></label>
+              <textarea id="f-message" name="message" rows="6" placeholder="Dear Caterina,"></textarea>
             </div>
           </div>
           <div class="form__foot">
@@ -152,10 +160,6 @@
             <a class="aside-block__big text-link" href="mailto:caterina@grandavenueediting.com">caterina@grandavenueediting.com</a>
           </div>
           <div class="aside-block frame" data-reveal style="--d: 250ms">
-            <span class="eyebrow">Where</span>
-            <p class="aside-block__big"><em>Available completely remotely.</em></p>
-          </div>
-          <div class="aside-block frame" data-reveal style="--d: 350ms">
             <span class="eyebrow">Elsewhere</span>
             <p><a class="text-link social social--instagram" href="https://www.instagram.com/caterinaAF/" rel="noopener" target="_blank">Instagram · @caterinaAF</a></p>
             <p><a class="text-link social social--x" href="https://x.com/caterina445" rel="noopener" target="_blank">X · @caterina445</a></p>
@@ -163,7 +167,7 @@
           </div>
           <!-- the questions, under the other ways to reach her: the numbered sheet, each answer opening under its question
                (her answers, in her words) -->
-          <div id="questions" class="aside-block aside-block--questions frame" data-reveal style="--d: 450ms">
+          <div id="questions" class="aside-block aside-block--questions frame" data-reveal style="--d: 350ms">
             <h2 id="questions-title" class="eyebrow">Questions</h2>
               <div class="faq faq--sheet">
                 <details>
@@ -229,7 +233,6 @@
           <span class="wordmark__name">Caterina Alvarez</span>
           <span class="wordmark__sub">Grand Avenue Editing &amp; Publications</span>
         </a>
-        <p>Developmental editing and publications. Available completely remotely.</p>
         <a class="text-link footer-brand__email" href="mailto:caterina@grandavenueediting.com">caterina@grandavenueediting.com</a>
       </div>
       <div class="footer-col">

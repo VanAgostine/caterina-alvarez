@@ -1357,31 +1357,6 @@ em, i { font-style: italic; }
 /* the small date style, wherever a date appears */
 .pub-date { font-family: var(--sans); font-size: var(--t-small); line-height: 1.5; letter-spacing: .02em; color: var(--p-brown); }
 
-/* the Read link: small capitals with a restrained arrow that steps forward on hover; its underline warms to terracotta */
-.pub-read {
-  display: inline-flex;
-  align-items: baseline;
-  gap: .7em;
-  font-family: var(--sans);
-  font-weight: 500;
-  font-size: 10px;
-  line-height: 1.5;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--p-ink);
-}
-/* only the word is underlined, so the line never runs under the arrow */
-.pub-read__word {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: .55em;
-  text-decoration-color: rgba(32, 30, 27, .3);
-  transition: text-decoration-color .3s ease;
-}
-.pub-read__arrow { letter-spacing: 0; transition: transform .45s var(--ease-out); }
-.pub-read:hover .pub-read__word { text-decoration-color: var(--p-accent); }
-.pub-read:hover .pub-read__arrow { transform: translateX(4px); }
-.pub-read:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 6px; }
 
 /* the gallery: a row of small literary compositions that scrolls sideways (touch, trackpad, keys, or the line beneath).
    The native scrollbar is hidden: the line below takes its place */
@@ -1423,9 +1398,7 @@ em, i { font-style: italic; }
 .pub-panel--ink { background: var(--p-ink); color: var(--p-ivory); }
 .pub-panel--ink .pub-panel__honour,
 .pub-panel--ink .pub-date { color: rgba(244, 238, 229, .72); }
-.pub-panel--ink .pub-read { color: var(--p-ivory); }
-.pub-panel--ink .pub-read__word { text-decoration-color: rgba(244, 238, 229, .4); }
-.pub-panel--ink .pub-read:focus-visible { outline-color: var(--p-ivory); }
+.pub-panel--ink .button--light:focus-visible { outline-color: var(--p-ivory); }
 
 .pub-panel__honour { grid-row: 1; display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 /* the honour marked with a small medal on its ribbon, drawn in a fine terracotta line: the ribbon's two tails
@@ -1447,7 +1420,7 @@ em, i { font-style: italic; }
 }
 .pub-panel__title--long { font-size: calc(var(--t-heading) * .87); } /* a long title, a size down so it still reads as one shape */
 .pub-panel__text { margin-top: 12px; font-family: var(--serif); font-size: var(--t-body); line-height: 1.55; }
-.pub-panel__read { grid-row: 5; margin-top: 16px; }
+.pub-panel__read { grid-row: 5; margin-top: 18px; } /* the site's button, as everywhere (white on the ink panel) */
 
 /* the navigation line: one continuous hairline with an equal part for each work; the part for the work in view is her
    deep brown. Each part is a generous invisible button named after its work */
@@ -1470,8 +1443,7 @@ em, i { font-style: italic; }
 .pub-line__part:focus-visible { outline: 1px solid var(--p-ink); outline-offset: -6px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .pub-read__arrow, .pub-line__part::before { transition: none; }
-  .pub-read:hover .pub-read__arrow { transform: none; }
+  .pub-line__part::before { transition: none; }
 }
 
 
@@ -1755,12 +1727,11 @@ em, i { font-style: italic; }
 .reading__via { font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .28em; text-transform: uppercase; color: var(--umber); }
 .reading__name { margin-top: 10px; font-family: var(--serif); font-weight: 400; font-size: var(--t-heading); line-height: 1.15; color: var(--text); }
 .reading__by { margin-top: 2px; font-family: var(--serif); font-size: var(--t-body); line-height: 1.5; color: var(--umber); }
-.reading__go { margin-top: 12px; }
+.reading__go { position: static; margin-top: 14px; } /* the site's button; static, so its link can cover the card */
 .reading__go::after { content: ""; position: absolute; inset: 0; } /* the whole card opens the newsletter */
-.reading__letter:hover .pub-read__word { text-decoration-color: currentColor; }
-.reading__letter:hover .pub-read__arrow { transform: translateX(4px); }
+.reading__letter:hover .reading__go { background: transparent; color: var(--ink); }
 @media (prefers-reduced-motion: reduce) {
-  .reading__letter:hover .pub-read__arrow, .reading__letter:hover, .reading__book:hover .reading__volume { transform: none; }
+  .reading__letter:hover, .reading__book:hover .reading__volume { transform: none; }
   .reading__ribbon { transition: none; }
 }
 @media (max-width: 760px) {
@@ -1785,9 +1756,38 @@ em, i { font-style: italic; }
 @media (max-width: 900px) { .motto__art, .motto__text { grid-column: 1 / -1; } }
 
 /* ----------------------------------------------------------------- contact */
-/* the opening, as the other parts open: the part's label, then "Write" on a small upright line above "to me" in
-   italics at the title size (the Publications title's measures, see .pub-hero__title) */
-.contact-hero { --p-ink: var(--text); padding-block: var(--space-open) clamp(40px, 4.4vw, 64px); }
+/* the opening, composed like the Developmental editing title (see .service__composition): the part's label with a
+   fine rule running on from it; "Write", then "to me" a tenth larger in italics, stepped two columns in */
+.contact-hero { padding-block: var(--space-open) clamp(48px, 5vw, 76px); container-type: inline-size; }
+.contact-hero__intro { display: flex; align-items: center; gap: 22px; }
+.contact-hero__intro::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.contact-hero__composition {
+  --ts: min(92px, 100cqi / 8);
+  --indent: calc((100cqi + 24px) / 6);
+  position: relative;
+  margin-top: clamp(36px, 4.4vw, 64px);
+}
+.contact-hero__title { font-family: var(--serif); font-weight: 400; font-size: var(--ts); line-height: .92; letter-spacing: -.026em; color: var(--text); }
+.contact-hero__word { display: block; }
+.contact-hero__word--second { margin-left: var(--indent); margin-top: .06em; font-size: 1.1em; font-style: italic; letter-spacing: -.02em; }
+.js .contact-hero__title [data-reveal] { translate: 0 10px; }
+/* in the space beneath "Write" and before "to me", where she works, its last line on "to me"'s baseline */
+.contact-hero__aside {
+  position: absolute;
+  left: 0;
+  bottom: calc(var(--ts) * .2 - .61em);
+  width: calc(var(--indent) - 28px);
+  font-family: var(--serif);
+  font-size: var(--t-body);
+  line-height: 1.5;
+  color: var(--umber);
+}
+@media (max-width: 1000px) {
+  .contact-hero__aside { position: static; width: auto; margin-top: 26px; }
+  .contact-hero__composition { --indent: 9cqi; }
+}
+@media (max-width: 600px) { .contact-hero__composition { --indent: 7cqi; margin-top: 32px; } }
+@media (prefers-reduced-motion: reduce) { .js .contact-hero__title [data-reveal] { translate: none; } }
 /* the form is a sheet of her letter paper: her name in spaced capitals and her imprint at its head, as on the cover,
    above a fine rule */
 .letterhead { margin-bottom: clamp(30px, 3.2vw, 44px); padding-bottom: clamp(22px, 2.4vw, 30px); border-bottom: 1px solid var(--line); text-align: center; }
@@ -1845,38 +1845,26 @@ em, i { font-style: italic; }
 .field textarea:focus { background-color: #fffefb; }
 .field:focus-within > label { color: var(--umber); }
 
-/* choice chips: the selected option is filled, so it is always clear what is chosen */
+/* choice chips, in the site's button format (.button): the same height, small spaced capitals and square edge, set in
+   outline; the one chosen is filled in ink, exactly as the button, so it is always clear what is chosen */
 .chips__list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
-.chip, .field .chip { position: relative; cursor: pointer; font-size: 14px; font-weight: 400; letter-spacing: .02em; text-transform: none; color: var(--text); }
+.chip, .field .chip { position: relative; cursor: pointer; font-size: 11.5px; font-weight: 500; letter-spacing: .26em; text-transform: uppercase; color: var(--ink); }
 .chip input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
 .chip span {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  min-height: 44px;
-  padding: 0 20px;
-  border: 1px solid var(--line-mid);
-  background: var(--white);
-  font-size: 14px;
-  letter-spacing: .03em;
-  transition: background-color .4s var(--ease), color .4s var(--ease), border-color .4s var(--ease), transform .15s var(--ease);
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 26px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  transition: background-color .5s var(--ease), color .5s var(--ease), border-color .5s var(--ease), transform .2s var(--ease);
 }
-.chip span::before {
-  content: "";
-  flex: none;
-  width: 9px;
-  height: 9px;
-  border: 1px solid var(--mute);
-  border-radius: 50%;
-  transition: background-color .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
-}
-.chip:hover span { border-color: var(--ink); background: #fbfaf7; }
-.chip:hover span::before { border-color: var(--ink); }
-.chip input:active + span { transform: scale(.97); }
-/* chosen: a faint grey card with its bubble filled in, like a ballot marked in ink */
-.chip input:checked + span { background: var(--select); border-color: var(--ink); color: var(--ink); }
-.chip input:checked + span::before { background: var(--ink); border-color: var(--ink); box-shadow: 0 0 0 2px var(--select), 0 0 0 3px var(--ink); }
-.chip input:focus-visible + span { outline: 1px solid var(--ink); outline-offset: 3px; }
+.chip:hover span { background: var(--sand); }
+.chip input:active + span { transform: scale(.985); }
+.chip input:checked + span { background: var(--ink); color: var(--paper); }
+.chip input:focus-visible + span { outline: 1px solid var(--ink); outline-offset: 5px; }
 
 .form__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 32px; margin-top: 48px; }
 .form__note { font-size: 14px; color: var(--mute); max-width: 32em; }
@@ -2007,8 +1995,8 @@ em, i { font-style: italic; }
   .field textarea { min-height: 200px; padding-left: 40px; background-image: linear-gradient(90deg, transparent 27px, rgba(84, 69, 58, .28) 27px, rgba(84, 69, 58, .28) 28px, transparent 28px), repeating-linear-gradient(180deg, transparent 0 31px, rgba(40, 30, 22, .12) 31px 32px); }
   .chips__list { gap: 8px; }
   .chip, .field .chip { flex: 1 1 auto; }
-  .chip span { justify-content: center; width: 100%; gap: 8px; min-height: 42px; padding: 0 12px; font-size: 13px; letter-spacing: .01em; white-space: nowrap; }
-  .chip span::before { width: 7px; height: 7px; }
+  .chip, .field .chip { font-size: 10.5px; letter-spacing: .2em; }
+  .chip span { width: 100%; min-height: 50px; padding: 0 14px; white-space: nowrap; }
   .form__foot { gap: 16px; margin-top: 32px; }
   .form__foot .button { width: 100%; }
   .form__note { font-size: 13.5px; }
