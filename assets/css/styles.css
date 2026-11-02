@@ -1427,8 +1427,13 @@ em, i { font-style: italic; }
 .pub-panel--ink .pub-read__word { text-decoration-color: rgba(244, 238, 229, .4); }
 .pub-panel--ink .pub-read:focus-visible { outline-color: var(--p-ivory); }
 
-.pub-panel__honour { grid-row: 1; display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
-.pub-panel__honour::before { content: ""; flex: none; width: 24px; height: 1px; background: var(--p-accent); }
+.pub-panel__honour { grid-row: 1; display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+/* the honour marked with a small medal on its ribbon, drawn in a fine terracotta line: the ribbon's two tails
+   crossing above it, lightly filled, and a filled star at its centre */
+.pub-panel__medal { flex: none; width: 16px; height: 20px; overflow: visible; }
+.pub-panel__medal path, .pub-panel__medal circle { fill: none; stroke: var(--p-accent); stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
+.pub-panel__medal .pub-panel__star { fill: var(--p-accent); stroke: none; }
+.pub-panel__medal .pub-panel__ribbon { fill: var(--p-accent); fill-opacity: .35; } /* the ribbon's two tails, crossing */
 .pub-panel__journal { grid-row: 2; font-family: var(--serif); font-size: var(--t-body); line-height: 1.45; }
 .pub-panel .pub-date { grid-row: 3; margin-top: 2px; }
 .pub-panel__body { grid-row: 4; align-self: start; padding-top: 18px; }
