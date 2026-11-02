@@ -123,9 +123,9 @@
 
   /* ---- scroll cue: on the longer pages (body[data-scroll-cue]) a soft band of her wall colour at the foot of the
      screen with a fine point in its middle, pointing down; pressed, the point moves the page on by most of a screen.
-     The point goes as soon as the page is scrolled (and returns at the top); the band sinks away into the footer once
-     the previous / next links (the footer's first band) come into view, and stays away when the page has nothing more
-     below, while the menu is open, or while someone is typing in a form */
+     It shows only at the top of the page: as soon as the page is scrolled it sinks away (and returns at the top), and
+     it stays away when the page has nothing more below or the previous / next links (the footer's first band) are
+     already in view, while the menu is open, or while someone is typing in a form */
   if (body.hasAttribute('data-scroll-cue') && 'IntersectionObserver' in window) {
     const end = document.querySelector('.pager') || document.querySelector('.site-footer');
     const cue = document.createElement('div');
@@ -139,16 +139,18 @@
     let ready = false;
     let endInView = false;
     let typing = false;
+    let scrolled = window.scrollY > 24;
     const update = () => {
       const more = doc.scrollHeight > window.innerHeight + 8;
-      cue.classList.toggle('is-hidden', !ready || !more || endInView || typing);
+      cue.classList.toggle('is-hidden', !ready || !more || endInView || typing || scrolled);
     };
     if (end) {
       new IntersectionObserver(([entry]) => { endInView = entry.isIntersecting; update(); }, { rootMargin: '0px 0px -24px 0px' }).observe(end);
     }
-    const onScrolled = () => cue.classList.toggle('is-scrolled', window.scrollY > 24);
-    onScrolled();
-    window.addEventListener('scroll', onScrolled, { passive: true });
+    window.addEventListener('scroll', () => {
+      const now = window.scrollY > 24;
+      if (now !== scrolled) { scrolled = now; update(); }
+    }, { passive: true });
     document.addEventListener('focusin', (e) => { typing = e.target.matches('input, textarea, select'); update(); });
     document.addEventListener('focusout', () => { typing = false; update(); });
     window.addEventListener('resize', update);
