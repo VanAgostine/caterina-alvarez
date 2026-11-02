@@ -1124,44 +1124,66 @@ em, i { font-style: italic; }
 .ed-approach .pub-hero__art img { height: 100%; object-fit: cover; object-position: 0 50%; }
 .ed-approach .pub-hero__quote { max-width: 30em; font-style: italic; }
 
-/* the service: no box, set on its own on the page, flush left on the page's edge, so it reads at once as her offer
-   by its size: its label; its name large (the largest words on the page), "editing" in italics on a line of its own;
-   the rate beneath; a short fine rule in her brown; then what an author receives, at the reading size */
+/* the service: no box, set flush left on the page's edge and kept compact, like an entry in a fine catalogue. Its
+   label, its name (the page's title), one line on what it is; then a sheet of three rows between fine rules, each with
+   a small label on the left: what an author receives, two things, each numbered in her brown like the questions; the
+   areas of focus, set apart by fine dots, with her line on tailoring beneath; and the rate, with the way to begin,
+   an outlined button that fills with ink when pointed at, and where she works */
 .service__title {
-  margin-top: clamp(20px, 2vw, 28px);
+  margin-top: clamp(18px, 1.8vw, 24px);
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(44px, 5vw, 72px);
-  line-height: 1;
+  font-size: clamp(40px, 4.2vw, 58px);
+  line-height: 1.05;
   letter-spacing: -.022em;
   color: var(--text);
 }
-.service__title em { display: block; }
-.service__price {
-  margin-top: clamp(24px, 2.4vw, 32px);
-  font-family: var(--serif);
-  font-size: var(--t-lead);
-  line-height: 1.4;
-  color: var(--text);
-}
-.service__price em { font-size: .82em; color: var(--umber); }
-.service__text {
+.service__intro {
   max-width: 30em;
+  margin-top: clamp(16px, 1.6vw, 22px);
   font-family: var(--serif);
   font-size: var(--t-lead);
-  line-height: 1.75;
-  color: var(--text);
+  line-height: 1.6;
+  color: var(--umber);
   text-wrap: pretty;
 }
-.service__text::before {
-  content: "";
-  display: block;
-  width: 28px;
-  height: 1px;
-  margin: clamp(30px, 3vw, 40px) 0 clamp(28px, 2.8vw, 36px);
-  background: var(--umber);
-  opacity: .55;
+.service__sheet { margin-top: clamp(36px, 3.6vw, 48px); border-top: 1px solid var(--line-mid); }
+.service__row {
+  display: grid;
+  grid-template-columns: clamp(130px, 14vw, 190px) minmax(0, 1fr);
+  column-gap: 24px;
+  align-items: baseline;
+  padding-block: clamp(22px, 2.2vw, 30px);
+  border-bottom: 1px solid var(--line);
 }
+.service__row:last-child { border-bottom-color: var(--line-mid); }
+.service__key { font-family: var(--sans); font-weight: 500; font-size: 10.5px; line-height: 1.5; letter-spacing: .24em; text-transform: uppercase; color: var(--umber); }
+.service__row dd { margin: 0; }
+.service__gets { display: flex; flex-wrap: wrap; gap: 10px clamp(32px, 4vw, 64px); counter-reset: get; }
+.service__gets li {
+  counter-increment: get;
+  font-family: var(--serif);
+  font-size: var(--t-heading);
+  line-height: 1.3;
+  color: var(--text);
+}
+.service__gets li::before { content: counter(get, upper-roman) "."; margin-right: .6em; font-style: italic; font-size: .64em; color: var(--umber); }
+.service__focus { display: flex; flex-wrap: wrap; font-family: var(--serif); font-size: var(--t-lead); line-height: 1.75; color: var(--text); }
+.service__focus li + li::before { content: "\00B7"; margin: 0 .55em; color: var(--umber); }
+/* where the six would not fit on one line, they sit in a small grid instead, so no line ever starts with a dot */
+@media (max-width: 1100px) {
+  .service__focus { display: grid; grid-template-columns: repeat(auto-fill, minmax(10.5em, 1fr)); column-gap: 24px; line-height: 1.7; }
+  .service__focus li + li::before { content: none; }
+}
+.service__note { margin-top: 6px; font-family: var(--serif); font-size: var(--t-body); line-height: var(--t-body-lh); color: var(--umber); }
+.service__row--rate { align-items: center; }
+.service__rate { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; }
+.service__price { font-family: var(--serif); font-size: clamp(28px, 2.6vw, 34px); line-height: 1.1; letter-spacing: -.01em; color: var(--text); }
+.service__price em { font-size: .56em; letter-spacing: 0; color: var(--umber); }
+.service__begin { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.service__button { min-height: 50px; padding: 0 30px; background: transparent; color: var(--text); border-color: var(--text); }
+.service__button:hover { background: var(--text); color: var(--paper); }
+.service__remote { font-size: var(--t-small); line-height: 1.5; letter-spacing: .02em; color: var(--umber); }
 
 /* the kind words: two cards of paper side by side, each as tall as its own words. Each opens with a line from the
    testimonial set large in italics (the only italics in the testimonials); then the testimonial in full, upright;
@@ -1225,7 +1247,18 @@ em, i { font-style: italic; }
   .ed-approach .pub-hero__art img { height: auto; }
 }
 @media (max-width: 600px) {
-  .service__title { font-size: min(44px, calc((100vw - 48px) / 6.6)); } /* "Developmental" always fits the page */
+  .service__title { font-size: min(40px, calc((100vw - 48px) / 6.6)); } /* "Developmental" always fits the page */
+  /* the sheet stacks: each label above its row; the rate, then the button across the column */
+  .service__row { grid-template-columns: minmax(0, 1fr); row-gap: 12px; }
+  .service__gets { flex-direction: column; }
+  .service__focus { grid-template-columns: repeat(2, auto); justify-content: start; column-gap: 28px; font-size: var(--t-body); }
+  .service__begin { align-items: stretch; width: 100%; }
+  .service__button { width: 100%; }
+  .service__remote { text-align: center; }
+@media (max-width: 359px) {
+  .service__focus { grid-template-columns: minmax(0, 1fr); }
+  .service__gets li { font-size: 18px; }
+}
   .mat { gap: 24px; padding: 36px 10px 10px; }
   .editing .testimonial { padding: 34px 24px 32px; }
 }
@@ -1234,9 +1267,8 @@ em, i { font-style: italic; }
    Black and white with a little warmth, in one 1080px measure. A compact opening (her title and line on the left, her
    handwritten circle on the right like a signature, a fine ink rule beneath), then her work as one horizontal gallery
    after the "Been there, Done That" row on Maven Travel's experiences page: square panels on her ivory, about two and
-   a half in view, small details at the top and the title at the foot where a caption would sit. Her editorial
-   positions follow as quiet rows. Terracotta appears only as one small mark and on hover. Nothing waits on a scroll
-   animation. */
+   a half in view, small details at the top and the title at the foot where a caption would sit. Terracotta appears
+   only as one small mark and on hover. Nothing waits on a scroll animation. */
 .publications {
   --p-ink: #201e1b;
   --p-brown: var(--umber);
@@ -1425,12 +1457,6 @@ em, i { font-style: italic; }
   .pub-read:hover .pub-read__arrow { transform: none; }
 }
 
-/* her editorial positions: a two-by-two grid on the page's own ground; in each block the role or credential (small,
-   sans-serif) sits above the organisation (larger, serif) under a thin rule. No fills, shadows or boxes */
-.pub-creds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px var(--p-gap); }
-.pub-cred { padding-top: 16px; border-top: 1px solid var(--line); }
-.pub-cred__role { font-family: var(--sans); font-weight: 500; font-size: 11px; line-height: 1.5; letter-spacing: .22em; text-transform: uppercase; color: var(--p-brown); }
-.pub-cred__org { margin-top: 8px; font-family: var(--serif); font-weight: 400; font-size: var(--t-lead); line-height: 1.35; color: var(--p-ink); }
 
 /* tablets and phones: the opening stacks, the engraving at the right below her line, still crossing the band's edge */
 @media (max-width: 900px) {
@@ -1447,7 +1473,6 @@ em, i { font-style: italic; }
 
   .pub-gallery__list { grid-auto-columns: min(78vw, 290px); min-height: 280px; }
   .pub-panel { padding: 22px; }
-  .pub-creds { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .pub-section--last { padding-bottom: 56px; }
 }
 
