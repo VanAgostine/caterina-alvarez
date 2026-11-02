@@ -1756,38 +1756,6 @@ em, i { font-style: italic; }
 @media (max-width: 900px) { .motto__art, .motto__text { grid-column: 1 / -1; } }
 
 /* ----------------------------------------------------------------- contact */
-/* the opening, composed like the Developmental editing title (see .service__composition): the part's label with a
-   fine rule running on from it; "Write", then "to me" a tenth larger in italics, stepped two columns in */
-.contact-hero { padding-block: var(--space-open) clamp(48px, 5vw, 76px); container-type: inline-size; }
-.contact-hero__intro { display: flex; align-items: center; gap: 22px; }
-.contact-hero__intro::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-.contact-hero__composition {
-  --ts: min(92px, 100cqi / 8);
-  --indent: calc((100cqi + 24px) / 6);
-  position: relative;
-  margin-top: clamp(36px, 4.4vw, 64px);
-}
-.contact-hero__title { font-family: var(--serif); font-weight: 400; font-size: var(--ts); line-height: .92; letter-spacing: -.026em; color: var(--text); }
-.contact-hero__word { display: block; }
-.contact-hero__word--second { margin-left: var(--indent); margin-top: .06em; font-size: 1.1em; font-style: italic; letter-spacing: -.02em; }
-.js .contact-hero__title [data-reveal] { translate: 0 10px; }
-/* in the space beneath "Write" and before "to me", where she works, its last line on "to me"'s baseline */
-.contact-hero__aside {
-  position: absolute;
-  left: 0;
-  bottom: calc(var(--ts) * .2 - .61em);
-  width: calc(var(--indent) - 28px);
-  font-family: var(--serif);
-  font-size: var(--t-body);
-  line-height: 1.5;
-  color: var(--umber);
-}
-@media (max-width: 1000px) {
-  .contact-hero__aside { position: static; width: auto; margin-top: 26px; }
-  .contact-hero__composition { --indent: 9cqi; }
-}
-@media (max-width: 600px) { .contact-hero__composition { --indent: 7cqi; margin-top: 32px; } }
-@media (prefers-reduced-motion: reduce) { .js .contact-hero__title [data-reveal] { translate: none; } }
 /* the form is a sheet of her letter paper: her name in spaced capitals and her imprint at its head, as on the cover,
    above a fine rule */
 .letterhead { margin-bottom: clamp(30px, 3.2vw, 44px); padding-bottom: clamp(22px, 2.4vw, 30px); border-bottom: 1px solid var(--line); text-align: center; }
