@@ -1096,8 +1096,8 @@ em, i { font-style: italic; }
 
 /* ----------------------------------------------------------------- editing: one page, composed like a magazine feature
    No rules between the parts. Every part shares one measure (the same two edges) and one interval of space, and each
-   part's name stands over it like a running head, flush left. Each part has its own composition: the approach opens
-   with her first sentence set large, then the draft (five parts) beside her words (six); the service is a plain box
+   part's name stands over it like a running head, flush left. Each part has its own composition: the approach sets
+   the draft (five parts) beside her words (six); the service is a plain box
    of her wall colour set like a spread, its name large on the left, what an author receives on the right, on the same
    edge as her words above; the writers' kind words are two cards, each opening with a line of it in italics. Ink
    (#1c1b1a) for the words, her brown (#54453a) for what is secondary */
@@ -1108,20 +1108,10 @@ em, i { font-style: italic; }
 /* each part's name, standing over it */
 .ed-label { margin-bottom: clamp(28px, 3vw, 40px); }
 
-/* the approach: her first sentence as the opening statement; beneath it the draft, in its own proportions, framed in
-   a slim band of her wall colour like the portrait, beside her words: the first capitals level with the picture's
-   top, her philosophy at the larger reading size, then, set apart and a little smaller in her brown, her background */
-.spread__lead {
-  max-width: 18em;
-  margin-bottom: clamp(40px, 4.6vw, 64px);
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(27px, 3vw, 42px);
-  line-height: 1.24;
-  letter-spacing: -.014em;
-  color: var(--text);
-  text-wrap: balance;
-}
+/* the approach: the draft, in its own proportions, framed in a slim band of her wall colour like the portrait, beside
+   her words: the first capitals level with the picture's top; her own words first, set apart only by italics and
+   quotation marks (the opening one hung just outside the edge), then her way of working, both at the larger reading
+   size; then, set apart and a little smaller in her brown, her background */
 .spread__pair {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
@@ -1138,7 +1128,10 @@ em, i { font-style: italic; }
   text-wrap: pretty;
 }
 .spread__text > :first-child { margin-top: -.5em; } /* its first capitals level with the top of the picture */
-.spread__text > p + p { margin-top: 1.15em; }
+.spread__quote { margin-left: -.42em; padding-left: .42em; text-indent: -.42em; font-style: italic; }
+.spread__quote p::before { content: "\201C"; }
+.spread__quote p::after { content: "\201D"; }
+.spread__text > * + * { margin-top: 1.15em; }
 .spread__text > .spread__credits {
   margin-top: clamp(36px, 3.6vw, 48px);
   font-size: var(--t-body);
