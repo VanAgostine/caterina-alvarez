@@ -1096,10 +1096,9 @@ em, i { font-style: italic; }
 
 /* ----------------------------------------------------------------- editing: one page, composed like a magazine feature
    No rules between the parts. Every part shares one measure (the same two edges) and one interval of space. The
-   approach opens the page as a masthead, in the manner of the Publications page (Part I beside Part II); after it
-   each part's name stands over it like a running head, flush left: the service, a plain box of her wall colour set
-   like a spread, its name large on the left, what an author receives on the right; the writers' kind words, two
-   cards, each opening with a line of it in italics. Ink (#1c1b1a) for the words, her brown (#54453a) for what is
+   approach opens the page as a masthead, in the manner of the Publications page (Part I beside Part II); the
+   service stands on its own, centred like a book's title page; the writers' kind words, their name over them like a
+   running head, are two cards, each opening with a line of it in italics. Ink (#1c1b1a) for the words, her brown (#54453a) for what is
    secondary */
 .editing {
   --ed-space: var(--section);
@@ -1135,31 +1134,23 @@ em, i { font-style: italic; }
   text-wrap: pretty;
 }
 
-/* the service: one plain box of her wall colour, set like a spread on the approach's columns. On the left its name,
-   the page's title and its focal point, with the rate beneath, smaller; on the right, starting on the edge of her
-   words above, what an author receives, its last line level with the rate. The name borrows a little of the gap so
-   it can stand large */
-.service__box {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-  column-gap: var(--ed-gap);
-  align-items: end;
-  align-items: last baseline;
-  padding-block: clamp(64px, 7vw, 104px);
-  background: var(--wall);
-}
-.service__head { padding-left: clamp(40px, 5.6vw, 80px); margin-right: calc(40px - var(--ed-gap)); }
+/* the service: no box, set on its own on the page and centred like a book's title page, the one centred moment on
+   the page, so it reads at once as her offer: its label; its name large (the largest words on the page), "editing"
+   in italics on a line of its own; the rate beneath; a short fine rule in her brown; then what an author receives,
+   at the reading size, in a measure narrow enough to sit well centred */
+.service__page { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .service__title {
+  margin-top: clamp(20px, 2vw, 28px);
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(40px, 4.3vw, 60px);
+  font-size: clamp(44px, 5vw, 72px);
   line-height: 1;
-  letter-spacing: -.02em;
+  letter-spacing: -.022em;
   color: var(--text);
 }
 .service__title em { display: block; }
 .service__price {
-  margin-top: clamp(22px, 2.2vw, 30px);
+  margin-top: clamp(24px, 2.4vw, 32px);
   font-family: var(--serif);
   font-size: var(--t-lead);
   line-height: 1.4;
@@ -1167,13 +1158,21 @@ em, i { font-style: italic; }
 }
 .service__price em { font-size: .82em; color: var(--umber); }
 .service__text {
-  max-width: 27em;
-  padding-right: clamp(40px, 5.6vw, 80px);
+  max-width: 30em;
   font-family: var(--serif);
   font-size: var(--t-lead);
   line-height: 1.75;
   color: var(--text);
-  text-wrap: pretty;
+  text-wrap: balance;
+}
+.service__text::before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 1px;
+  margin: clamp(30px, 3vw, 40px) auto clamp(28px, 2.8vw, 36px);
+  background: var(--umber);
+  opacity: .55;
 }
 
 /* the kind words: two cards of paper side by side, each as tall as its own words. Each opens with a line from the
@@ -1238,13 +1237,9 @@ em, i { font-style: italic; }
   .ed-approach .pub-hero__art { align-self: auto; width: min(88%, 440px); }
   .ed-approach .pub-hero__art img { height: auto; }
   .ed-approach__more p { max-width: none; margin-top: 40px; }
-  .service__box { grid-template-columns: minmax(0, 1fr); padding: 56px 40px 52px; }
-  .service__head { padding-left: 0; margin-right: 0; }
-  .service__text { margin-top: 28px; padding-right: 0; }
 }
 @media (max-width: 600px) {
-  .service__box { padding: 44px 26px 40px; }
-  .service__title { font-size: min(40px, calc((100vw - 96px) / 6.6)); } /* "Developmental" always fits the box */
+  .service__title { font-size: min(44px, calc((100vw - 48px) / 6.6)); } /* "Developmental" always fits the page */
   .mat { gap: 24px; padding: 36px 10px 10px; }
   .editing .testimonial { padding: 34px 24px 32px; }
 }
