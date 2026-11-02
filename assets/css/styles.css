@@ -1243,8 +1243,7 @@ em, i { font-style: italic; }
 /* the kind words: two cards of paper side by side, each as tall as its own words. Each opens with a line from the
    testimonial set large in italics (the only italics in the testimonials); then the testimonial in full, upright;
    then a short, fine rule in her brown and the writer. Pointed at, a card lifts a little toward you */
-.kind,
-.questions { padding-block: var(--section); }
+.kind { padding-block: var(--section); }
 .editing .testimonials { column-gap: clamp(32px, 4vw, 56px); align-items: start; }
 .editing .testimonial {
   gap: 0;
@@ -1278,21 +1277,12 @@ em, i { font-style: italic; }
   .editing .testimonial:hover { transform: none; }
 }
 
-/* the questions (Contact): straight on the page, no backing: the label, then the numbered sheet, centred */
-.mat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(28px, 3vw, 40px);
-}
-.mat .qa__sheet { width: min(100%, 700px); }
-.questions .faq__answer { color: var(--text); }
 
 /* tablets: every part narrows to one 580px column, so all the parts share the same two edges, and each stacks in its
    reading order: the statement, the draft, her words; the service's name and rate, then what an author receives; one
    card after the other */
 @media (max-width: 900px) {
-  .service__inner, .kind, .questions { max-width: calc(580px + var(--gutter) * 2); }
+  .service__inner, .kind { max-width: calc(580px + var(--gutter) * 2); }
   /* the service: "editing" stepped in less; the annotation beneath the whole title; the three columns as groups */
   .service__composition { --indent: 9cqi; }
   .service__grid { grid-template-columns: minmax(0, 1fr); row-gap: 30px; }
@@ -1304,7 +1294,6 @@ em, i { font-style: italic; }
 @media (max-width: 600px) {
   .service__composition { --indent: 7cqi; margin-top: 32px; }
   .service__commission { flex-direction: column; align-items: flex-start; }
-  .mat { gap: 24px; }
   .editing .testimonial { padding: 26px 22px 24px; }
 }
 
@@ -1879,6 +1868,14 @@ em, i { font-style: italic; }
 .form__status[hidden] { display: none; }
 
 .aside-block { display: flex; flex-direction: column; gap: 12px; padding: 30px 32px; container-type: inline-size; }
+/* the questions, in the column beside the form: the numbered sheet set close, each answer opening under its question */
+.aside-block--questions { gap: 4px; padding-bottom: 14px; }
+.aside-block--questions .faq.faq--sheet summary { padding: 15px 0; font-size: var(--t-body); line-height: 1.4; }
+.aside-block--questions .faq.faq--sheet summary::before { width: 30px; font-size: 13px; }
+.aside-block--questions .faq__icon { width: 26px; height: 26px; margin-left: 12px; }
+.aside-block--questions .faq__icon::before, .aside-block--questions .faq__icon::after { left: 7px; right: 7px; top: 12px; }
+.aside-block--questions .faq.faq--sheet .faq__answer { padding: 0 0 18px 30px; font-size: var(--t-body); color: var(--text); }
+.aside-block--questions .faq__answer a { overflow-wrap: anywhere; } /* her email address, in the narrow column, may break */
 /* every line in these tiles stays whole: the text keeps its size wherever it fits and only steps down, measured from
    the tile's own width, where the column is narrow (the email address is about 15.3em long at this size, the
    LinkedIn line with its mark about 16.9em) */
