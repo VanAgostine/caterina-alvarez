@@ -170,7 +170,7 @@ em, i { font-style: italic; }
   font-weight: 400;
   font-size: var(--t-title);
   line-height: 1.05;
-  letter-spacing: -.015em;
+  letter-spacing: -.018em;
   text-wrap: balance;
 }
 .display em, .h2 em, .h3 em { font-style: italic; }
@@ -721,8 +721,8 @@ em, i { font-style: italic; }
   font-family: var(--serif);
   font-weight: 400;
   font-size: var(--t-title);
-  line-height: .95;
-  letter-spacing: -.02em;
+  line-height: 1.05;
+  letter-spacing: -.018em;
   color: var(--ink);
 }
 /* the home page's body paragraphs share one style */
@@ -914,7 +914,7 @@ em, i { font-style: italic; }
   margin-right: -.32em;
   text-align: center;
 }
-.portrait__role { margin-top: 6px; font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--umber); text-align: center; }
+.portrait__role { margin-top: 6px; font-family: var(--serif); font-style: italic; font-size: var(--t-body); color: var(--umber); text-align: center; }
 
 /* ----------------------------------------------------------------- testimonials */
 .testimonials { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 3vw, 40px); }
@@ -926,8 +926,8 @@ em, i { font-style: italic; }
 /* the rule, name and description sit at the foot of each card, so side by side they line up across the row whatever
    the length of each testimonial (the shorter one simply has more space above its rule) */
 .testimonial figcaption { display: flex; flex-direction: column; gap: 4px; margin-top: auto; padding-top: 22px; border-top: 1px solid var(--line); }
-.testimonial__name { font-size: 11.5px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; }
-.testimonial__work { font-family: var(--serif); font-style: italic; font-size: 13.5px; color: var(--umber); }
+.testimonial__name { font-size: 10px; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; }
+.testimonial__work { font-family: var(--serif); font-style: italic; font-size: var(--t-body); color: var(--umber); }
 @media (max-width: 900px) { .testimonials { grid-template-columns: 1fr; } }
 
 /* ----------------------------------------------------------------- section header */
@@ -1049,8 +1049,8 @@ em, i { font-style: italic; }
 .pager__icon { display: block; flex: none; line-height: 0; }
 .pager__icon svg { display: block; width: 44px; height: 12px; transition: transform .6s var(--ease-out); }
 .pager__text { display: flex; flex-direction: column; gap: 4px; }
-.pager__dir { font-size: 10.5px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: var(--umber); }
-.pager__title { font-family: var(--serif); font-size: clamp(17px, 1.3vw, 19px); line-height: 1.2; }
+.pager__dir { font-size: 10px; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: var(--umber); }
+.pager__title { font-family: var(--serif); font-size: var(--t-lead); line-height: 1.2; }
 .pager__link--prev:hover svg { transform: translateX(-8px); }
 .pager__link--next:hover svg { transform: translateX(8px); }
 .pager__link:active { color: var(--umber); }
@@ -1106,7 +1106,7 @@ em, i { font-style: italic; }
 .ed-approach .pub-hero__art { align-self: stretch; display: flex; flex-direction: column; width: var(--ed-art); }
 .ed-approach .pub-hero__art picture { flex: 1 0 auto; display: block; }
 .ed-approach .pub-hero__art img { height: 100%; object-fit: cover; object-position: 0 50%; }
-.ed-approach .pub-hero__quote { max-width: 30em; font-style: italic; }
+.ed-approach .pub-hero__quote { max-width: 30em; }
 
 /* the service: no box, set flush left on the page's edge and kept compact, like an entry in a fine catalogue. Its
    label, its name (the page's title), one line on what it is; then a sheet of three rows between fine rules, each with
@@ -1117,9 +1117,9 @@ em, i { font-style: italic; }
   margin-top: clamp(18px, 1.8vw, 24px);
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(40px, 4.2vw, 58px);
+  font-size: var(--t-title);
   line-height: 1.05;
-  letter-spacing: -.022em;
+  letter-spacing: -.018em;
   color: var(--text);
 }
 .service__intro {
@@ -1141,7 +1141,7 @@ em, i { font-style: italic; }
   border-bottom: 1px solid var(--line);
 }
 .service__row:last-child { border-bottom-color: var(--line-mid); }
-.service__key { font-family: var(--sans); font-weight: 500; font-size: 10.5px; line-height: 1.5; letter-spacing: .24em; text-transform: uppercase; color: var(--umber); }
+.service__key { font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .28em; text-transform: uppercase; color: var(--umber); }
 .service__row dd { margin: 0; }
 .service__gets { display: flex; flex-wrap: wrap; gap: 10px clamp(32px, 4vw, 64px); counter-reset: get; }
 .service__gets li {
@@ -1162,8 +1162,8 @@ em, i { font-style: italic; }
 .service__note { margin-top: 6px; font-family: var(--serif); font-size: var(--t-body); line-height: var(--t-body-lh); color: var(--umber); }
 .service__row--rate { align-items: center; }
 .service__rate { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; }
-.service__price { font-family: var(--serif); font-size: clamp(28px, 2.6vw, 34px); line-height: 1.1; letter-spacing: -.01em; color: var(--text); }
-.service__price em { font-size: .56em; letter-spacing: 0; color: var(--umber); }
+.service__price { font-family: var(--serif); font-size: var(--t-heading); line-height: 1.3; color: var(--text); }
+.service__price em { font-size: .68em; color: var(--umber); }
 .service__begin { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
 .service__button { min-height: 50px; padding: 0 30px; background: var(--wall); color: var(--text); border-color: var(--wall); }
 .service__button:hover { background: var(--greige); border-color: var(--greige); color: var(--text); }
@@ -1187,9 +1187,8 @@ em, i { font-style: italic; }
   font-family: var(--serif);
   font-style: italic;
   max-width: 12em; /* both lines break the same way: two lines each */
-  font-size: clamp(22px, 2.1vw, 28px);
+  font-size: var(--t-heading);
   line-height: 1.3;
-  letter-spacing: -.01em;
   color: var(--text);
   text-wrap: balance;
 }
@@ -1232,7 +1231,7 @@ em, i { font-style: italic; }
   .ed-approach .pub-hero__art img { height: auto; }
 }
 @media (max-width: 600px) {
-  .service__title { font-size: min(40px, calc((100vw - 48px) / 6.6)); } /* "Developmental" always fits the page */
+  .service__title { font-size: min(var(--t-title), calc((100vw - 48px) / 6.6)); } /* "Developmental" always fits the page */
   /* the sheet stacks: each label above its row; the rate, then the button across the column */
   .service__row { grid-template-columns: minmax(0, 1fr); row-gap: 12px; }
   .service__gets { flex-direction: column; }
@@ -1267,7 +1266,7 @@ em, i { font-style: italic; }
 .pub-frame { max-width: calc(1080px + var(--gutter) * 2); }
 .publications .eyebrow,
 .pub-label,
-.pub-panel__honour { font-family: var(--sans); font-weight: 500; font-size: 11px; line-height: 1.5; letter-spacing: .26em; text-transform: uppercase; color: var(--p-brown); }
+.pub-panel__honour { font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .28em; text-transform: uppercase; color: var(--p-brown); }
 
 /* the opening as a masthead: a band of her wall colour that runs on from the header (the header's hairline only
    appears once the page scrolls). The engraving is the anchor: its top level with the page label, matted in
@@ -1294,8 +1293,8 @@ em, i { font-style: italic; }
   font-family: var(--serif);
   font-weight: 400;
   font-size: var(--t-title);
-  line-height: 1;
-  letter-spacing: -.022em;
+  line-height: 1.05;
+  letter-spacing: -.018em;
   color: var(--p-ink);
 }
 .pub-hero__from { display: block; margin-bottom: .14em; font-size: var(--t-heading); font-style: normal; letter-spacing: -.005em; }
@@ -1306,6 +1305,7 @@ em, i { font-style: italic; }
   font-family: var(--serif);
   font-size: var(--t-body);
   line-height: var(--t-body-lh);
+  font-style: italic;
   color: var(--p-brown);
   text-wrap: pretty;
 }
@@ -1337,9 +1337,9 @@ em, i { font-style: italic; }
   gap: .7em;
   font-family: var(--sans);
   font-weight: 500;
-  font-size: 11.5px;
+  font-size: 10px;
   line-height: 1.5;
-  letter-spacing: .22em;
+  letter-spacing: .28em;
   text-transform: uppercase;
   color: var(--p-ink);
 }
@@ -1625,7 +1625,7 @@ em, i { font-style: italic; }
 .experience { display: flex; flex-direction: column; gap: 16px; padding-top: 30px; border-top: 1px solid var(--line); }
 /* her name on one line, "Alvarez" in italics, as the other pages set their titles; never broken across two lines,
    scaling down slightly on the narrowest phones so it still fits */
-.name-display { font-family: var(--serif); font-weight: 400; font-size: min(var(--t-title), 11.5vw); line-height: 1.05; letter-spacing: -.015em; white-space: nowrap; }
+.name-display { font-family: var(--serif); font-weight: 400; font-size: min(var(--t-title), 11.5vw); line-height: 1.05; letter-spacing: -.018em; white-space: nowrap; }
 .name-display em { font-style: italic; }
 .role-line { font-family: var(--serif); font-style: italic; font-size: var(--t-lead); color: var(--umber); }
 @media (max-width: 900px) {
@@ -1635,8 +1635,7 @@ em, i { font-style: italic; }
 
 /* her reading (About, below her story): the books on craft she loves, their covers at one height in a row that scrolls
    sideways like the Publications gallery (the same track and navigation line), each a little lifted off the page like
-   a book set on a shelf, its title and author beneath; then the craft newsletters she reads, three links side by side,
-   each under a fine rule, the arrow stepping forward when pointed at */
+   a book set on a shelf, its title and author beneath; then the craft newsletters she reads (see below) */
 .reading {
   --p-ink: var(--text);
   --p-brown: var(--umber);
@@ -1659,28 +1658,33 @@ em, i { font-style: italic; }
   box-shadow: 0 0 0 1px rgba(40, 30, 22, .08), 0 1px 2px rgba(60, 40, 25, .06), 0 20px 30px -22px rgba(60, 40, 25, .45);
 }
 .reading__title { margin-top: 20px; font-family: var(--serif); font-weight: 400; font-size: var(--t-body); line-height: 1.35; color: var(--text); }
-.reading__author { margin-top: 6px; font-family: var(--sans); font-weight: 500; font-size: 10.5px; line-height: 1.5; letter-spacing: .2em; text-transform: uppercase; color: var(--umber); }
+.reading__author { margin-top: 6px; font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .28em; text-transform: uppercase; color: var(--umber); }
 
 .reading__lead--letters { margin-top: clamp(64px, 6.4vw, 96px); }
-.reading__letters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(28px, 3vw, 44px); }
+/* the newsletters: three small cards of her wall colour, in the manner of the Publications panels: where it is read
+   at the top, the name in italics, the writer, and the Read link at the foot; the whole card opens the newsletter */
+.reading__letters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 1.8vw, 24px); }
 .reading__letter {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  row-gap: 6px;
-  padding-top: 18px;
-  border-top: 1px solid var(--line-mid);
-  transition: border-color .35s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 210px;
+  padding: 24px 26px;
+  background: var(--wall);
 }
-.reading__name { font-family: var(--serif); font-size: var(--t-heading); line-height: 1.25; color: var(--text); }
-.reading__by { grid-row: 2; font-family: var(--sans); font-weight: 500; font-size: 10.5px; line-height: 1.5; letter-spacing: .2em; text-transform: uppercase; color: var(--umber); }
-.reading__arrow { grid-column: 2; grid-row: 1; align-self: center; color: var(--umber); transition: transform .45s var(--ease-out); }
-.reading__letter:hover { border-top-color: var(--text); }
-.reading__letter:hover .reading__arrow { transform: translateX(4px); }
-.reading__letter:focus-visible { outline: 1px solid var(--text); outline-offset: 6px; }
-@media (prefers-reduced-motion: reduce) { .reading__arrow { transition: none; } .reading__letter:hover .reading__arrow { transform: none; } }
+.reading__via { font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .28em; text-transform: uppercase; color: var(--umber); }
+.reading__name { margin-top: auto; padding-top: 28px; font-family: var(--serif); font-weight: 400; font-size: var(--t-heading); line-height: 1.15; color: var(--text); }
+.reading__by { margin-top: 6px; font-family: var(--serif); font-size: var(--t-body); line-height: 1.5; color: var(--umber); }
+.reading__go { margin-top: 20px; }
+.reading__go::after { content: ""; position: absolute; inset: 0; } /* the whole card opens the newsletter */
+.reading__letter:hover .pub-read__word { text-decoration-color: currentColor; }
+.reading__letter:hover .pub-read__arrow { transform: translateX(4px); }
+@media (prefers-reduced-motion: reduce) { .reading__letter:hover .pub-read__arrow { transform: none; } }
 @media (max-width: 760px) {
   .reading { --shelf-h: 250px; }
-  .reading__letters { grid-template-columns: minmax(0, 1fr); row-gap: 20px; }
+  .reading__letters { grid-template-columns: minmax(0, 1fr); }
+  .reading__letter { min-height: 0; }
 }
 
 .bio-plate .plate__label { color: rgba(255, 255, 255, .62); }
@@ -1709,9 +1713,9 @@ em, i { font-style: italic; }
 .field--full { grid-column: 1 / -1; }
 .field label, .field legend, .field .label {
   padding: 0;
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 500;
-  letter-spacing: .24em;
+  letter-spacing: .28em;
   text-transform: uppercase;
   color: var(--ink);
   transition: color .3s ease;
@@ -1794,14 +1798,15 @@ em, i { font-style: italic; }
    the tile's own width, where the column is narrow (the email address is about 15.3em long at this size, the
    LinkedIn line with its mark about 16.9em) */
 .aside-block__big { font-family: var(--serif); font-size: var(--t-lead); font-size: min(var(--t-lead), 100cqi / 15.6); line-height: 1.35; white-space: nowrap; }
-.aside-block .social { font-size: min(1em, 100cqi / 17.2); white-space: nowrap; }
+.aside-block p { font-family: var(--serif); font-size: var(--t-body); } /* the body serif, like the rest of the page */
+.aside-block .social { font-size: min(1em, 100cqi / 18.6); white-space: nowrap; } /* the longest line, in the serif, always fits */
 .aside-block__big em { font-style: italic; }
 
 /* ----------------------------------------------------------------- legal pages */
 .legal { padding-block: var(--section); }
 .legal__box { padding: clamp(32px, 5vw, 80px); }
 .legal__meta { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-bottom: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--line); font-size: 14px; color: var(--mute); }
-.legal h2 { margin: 52px 0 16px; font-family: var(--serif); font-weight: 400; font-size: var(--t-lead); line-height: 1.3; }
+.legal h2 { margin: 52px 0 16px; font-family: var(--serif); font-weight: 400; font-size: var(--t-heading); line-height: 1.3; }
 .legal h2:first-child { margin-top: 0; } /* only when nothing comes before it */
 .legal p, .legal li { font-family: var(--serif); font-size: var(--t-body); line-height: var(--t-body-lh); color: var(--text); }
 .legal .legal__meta { font-family: var(--sans); font-size: var(--t-small); line-height: 1.5; color: var(--mute); } /* the dates stay small notes */
