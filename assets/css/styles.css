@@ -1097,8 +1097,8 @@ em, i { font-style: italic; }
 /* ----------------------------------------------------------------- editing: one page, composed like a magazine feature
    No rules between the parts. Every part shares one measure (the same two edges) and one interval of space. The
    approach opens the page as a masthead, in the manner of the Publications page (Part I beside Part II); the
-   service stands on its own, centred like a book's title page; the writers' kind words, their name over them like a
-   running head, are two cards, each opening with a line of it in italics. Ink (#1c1b1a) for the words, her brown (#54453a) for what is
+   service stands on its own, flush left, without a box; the writers' kind words, their name over them like a running
+   head, are two cards, each opening with a line of it in italics. Ink (#1c1b1a) for the words, her brown (#54453a) for what is
    secondary */
 .editing {
   --ed-space: var(--section);
@@ -1116,29 +1116,17 @@ em, i { font-style: italic; }
 /* the approach: the Publications masthead (see there), with the marked-up draft as its plate. The draft is wider than
    the engraving, being a landscape page; its top is level with the page label and it crosses the band's edge by the
    same amount as there. Where her words run longer than the draft is tall, the plate grows to their height and the
-   draft is trimmed a little at its right side, never stretched. Her words are set in italics. Her way of working
-   follows just below the band, in the column beside the hanging draft */
+   draft is trimmed a little at its right side, never stretched. Her words are set in italics */
 .ed-approach { --hang: clamp(48px, 4.4vw, 64px); --ed-art: clamp(360px, calc(30vw + 80px), 470px); }
 .ed-approach .pub-masthead { --hang: inherit; }
 .ed-approach .pub-hero__art { align-self: stretch; display: flex; flex-direction: column; width: var(--ed-art); }
 .ed-approach .pub-hero__art picture { flex: 1 0 auto; display: block; }
 .ed-approach .pub-hero__art img { height: 100%; object-fit: cover; object-position: 0 50%; }
 .ed-approach .pub-hero__quote { max-width: 30em; font-style: italic; }
-.ed-approach__more p {
-  max-width: min(30em, calc(100% - var(--ed-art) - 56px));
-  margin-top: calc(40px - var(--hang)); /* a short step below the band, beside the draft's foot */
-  font-family: var(--serif);
-  font-size: var(--t-lead);
-  line-height: 1.75;
-  color: var(--text);
-  text-wrap: pretty;
-}
 
-/* the service: no box, set on its own on the page and centred like a book's title page, the one centred moment on
-   the page, so it reads at once as her offer: its label; its name large (the largest words on the page), "editing"
-   in italics on a line of its own; the rate beneath; a short fine rule in her brown; then what an author receives,
-   at the reading size, in a measure narrow enough to sit well centred */
-.service__page { display: flex; flex-direction: column; align-items: center; text-align: center; }
+/* the service: no box, set on its own on the page, flush left on the page's edge, so it reads at once as her offer
+   by its size: its label; its name large (the largest words on the page), "editing" in italics on a line of its own;
+   the rate beneath; a short fine rule in her brown; then what an author receives, at the reading size */
 .service__title {
   margin-top: clamp(20px, 2vw, 28px);
   font-family: var(--serif);
@@ -1163,14 +1151,14 @@ em, i { font-style: italic; }
   font-size: var(--t-lead);
   line-height: 1.75;
   color: var(--text);
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 .service__text::before {
   content: "";
   display: block;
   width: 28px;
   height: 1px;
-  margin: clamp(30px, 3vw, 40px) auto clamp(28px, 2.8vw, 36px);
+  margin: clamp(30px, 3vw, 40px) 0 clamp(28px, 2.8vw, 36px);
   background: var(--umber);
   opacity: .55;
 }
@@ -1230,13 +1218,11 @@ em, i { font-style: italic; }
    reading order: the statement, the draft, her words; the service's name and rate, then what an author receives; one
    card after the other */
 @media (max-width: 900px) {
-  .ed-approach__more, .service, .kind, .questions { max-width: calc(580px + var(--gutter) * 2); }
-  /* the masthead stacks as on Publications: the draft at the right below her words, still crossing the band's edge;
-     her way of working follows below it */
+  .service, .kind, .questions { max-width: calc(580px + var(--gutter) * 2); }
+  /* the masthead stacks as on Publications: the draft at the right below her words, still crossing the band's edge */
   .ed-approach { --hang: 40px; }
   .ed-approach .pub-hero__art { align-self: auto; width: min(88%, 440px); }
   .ed-approach .pub-hero__art img { height: auto; }
-  .ed-approach__more p { max-width: none; margin-top: 40px; }
 }
 @media (max-width: 600px) {
   .service__title { font-size: min(44px, calc((100vw - 48px) / 6.6)); } /* "Developmental" always fits the page */
