@@ -699,8 +699,11 @@ em, i { font-style: italic; }
 /* the portrait is set into the page like an arched window: a slim band of her wall colour, flat and even,
    around the photo; no shading, so it stays crisp */
 .hello__portrait { grid-column: 2 / 6; justify-self: end; width: min(100%, 440px); }
+/* every picture on the site is framed alike, as a window in the book: a slim band of her wall colour held by a
+   fine greige outline, so it reads on the page and on her tan bands alike (the portraits, the draft, the engraving) */
 .window {
   padding: clamp(6px, .55vw, 8px);
+  border: 1px solid var(--greige);
   border-radius: 999px 999px 0 0;
   background: var(--wall);
 }
@@ -894,7 +897,7 @@ em, i { font-style: italic; }
 .portrait__arch {
   position: relative;
   width: 100%;
-  padding: clamp(12px, 1.4vw, 18px);
+  padding: clamp(6px, .55vw, 8px); /* framed like every picture: see .window */
   border: 1px solid var(--greige);
   border-radius: 999px 999px 0 0;
   background: var(--wall);
@@ -1105,7 +1108,18 @@ em, i { font-style: italic; }
 .ed-approach .pub-masthead { --hang: inherit; }
 .ed-approach .pub-masthead::before { content: none; } /* on the page's own ground: the service below has the band */
 .ed-approach .pub-hero__art { align-self: stretch; display: flex; flex-direction: column; width: var(--ed-art); }
-.ed-approach .pub-hero__art picture { flex: 1 0 auto; display: block; }
+/* the draft seen through a window, as the portraits are: a slim band of her wall colour, and, the draft being a
+   landscape page, a wide elliptical arch over it (a fanlight's curve rather than the portrait's half circle) so the
+   whole page stays in view */
+.ed-approach .ed-window {
+  --arch: 50% 50% 0 0 / 46% 46% 0 0;
+  padding: clamp(6px, .55vw, 8px); /* framed like every picture: see .window */
+  border: 1px solid var(--greige);
+  border-radius: var(--arch);
+  background: var(--wall);
+}
+.ed-window__pane { flex: 1 0 auto; display: flex; flex-direction: column; overflow: hidden; border-radius: var(--arch); background: var(--wall); }
+.ed-window__pane picture { flex: 1 0 auto; display: block; }
 .ed-approach .pub-hero__art img { height: 100%; object-fit: cover; object-position: 0 50%; }
 .ed-approach .pub-hero__quote { max-width: 30em; }
 
@@ -1124,7 +1138,7 @@ em, i { font-style: italic; }
 .service { padding-block: clamp(64px, 7vw, 112px); background: var(--wall); }
 .service__inner { container-type: inline-size; }
 .service__intro { display: flex; align-items: center; gap: 22px; }
-.service__intro::after { content: ""; flex: 1; height: 1px; background: var(--line-mid); }
+.service__intro::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
 .service__composition {
   --ts: min(92px, 100cqi / 8);
@@ -1160,7 +1174,7 @@ em, i { font-style: italic; }
   column-gap: clamp(28px, 3.6vw, 52px);
   margin-top: clamp(48px, 5.2vw, 76px);
   padding-top: clamp(26px, 2.6vw, 34px);
-  border-top: 1px solid var(--line-mid);
+  border-top: 1px solid var(--line);
 }
 .service__key { margin-bottom: 14px; font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .28em; text-transform: uppercase; color: var(--umber); }
 .service__col p,
@@ -1275,7 +1289,7 @@ em, i { font-style: italic; }
   .service__grid { grid-template-columns: minmax(0, 1fr); row-gap: 30px; }
   /* the masthead stacks as on Publications: the draft at the right below her words, still crossing the band's edge */
   .ed-approach { --hang: 0px; }
-  .ed-approach .pub-hero__art { align-self: auto; width: min(88%, 440px); }
+  .ed-approach .pub-hero__art { align-self: auto; width: min(100%, 440px); }
   .ed-approach .pub-hero__art img { height: auto; }
 }
 @media (max-width: 600px) {
@@ -1349,14 +1363,14 @@ em, i { font-style: italic; }
 }
 .pub-hero__quote p::before { content: "\201C"; }
 .pub-hero__quote p::after { content: "\201D"; }
-/* the engraving for Wayne C. Booth's Rhetoric of Fiction: a near-white mat held by a hairline, so it reads on both
-   the band and the page below it */
+/* the engraving for Wayne C. Booth's Rhetoric of Fiction, framed like every picture on the site (see .window), square
+   rather than arched, its own lettering running to its top */
 .pub-hero__art {
   align-self: start;
   width: clamp(270px, 23vw, 330px);
-  padding: clamp(12px, 1vw, 16px);
-  background: var(--paper);
+  padding: clamp(6px, .55vw, 8px); /* framed like every picture: see .window */
   border: 1px solid var(--greige);
+  background: var(--wall);
 }
 .pub-hero__art img { width: 100%; height: auto; }
 
