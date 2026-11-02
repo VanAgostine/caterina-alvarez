@@ -1111,7 +1111,7 @@ em, i { font-style: italic; }
 /* the approach: the draft, in its own proportions, framed in a slim band of her wall colour like the portrait, beside
    her words: the first capitals level with the picture's top; her own words first, set apart only by italics and
    quotation marks (the opening one hung just outside the edge), then her way of working, both at the larger reading
-   size; then, set apart and a little smaller in her brown, her background */
+   size */
 .spread__pair {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
@@ -1132,12 +1132,6 @@ em, i { font-style: italic; }
 .spread__quote p::before { content: "\201C"; }
 .spread__quote p::after { content: "\201D"; }
 .spread__text > * + * { margin-top: 1.15em; }
-.spread__text > .spread__credits {
-  margin-top: clamp(36px, 3.6vw, 48px);
-  font-size: var(--t-body);
-  line-height: var(--t-body-lh);
-  color: var(--umber);
-}
 
 /* the service: one plain box of her wall colour, set like a spread on the approach's columns. On the left its name,
    the page's title and its focal point, with the rate beneath, smaller; on the right, starting on the edge of her
