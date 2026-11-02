@@ -170,18 +170,13 @@
       // namedItem, not elements[name]: a field called e.g. "length" would collide with the collection's own properties
       const v = (name) => { const el = form.elements.namedItem(name); return el && typeof el.value === 'string' ? el.value.trim() : ''; };
       const to = form.getAttribute('data-inquiry');
-      const title = v('title');
-      const subject = `Editing inquiry${title ? `: ${title}` : ''}`;
+      const subject = 'Editing inquiry';
       const lines = [
         `Name: ${v('first')} ${v('last')}`.trim(),
         `Email: ${v('email')}`,
-        title ? `Working title: ${title}` : null,
-        v('form') ? `Form: ${v('form')}` : null,
-        v('wordcount') ? `Length: ${v('wordcount')} words` : null,
-        v('stage') ? `Stage: ${v('stage')}` : null,
         '',
         v('message'),
-      ].filter((line) => line !== null);
+      ];
       const href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
       form.setAttribute('data-last-mailto', href);
       if (status) status.hidden = false;
