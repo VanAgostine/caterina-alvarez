@@ -1046,15 +1046,16 @@ em, i { font-style: italic; }
 
 /* ----------------------------------------------------------------- editing: one page, composed like a magazine feature
    No rules between the parts. Every part shares one measure (the same two edges, the same centre) and one
-   interval of space (80px; 52px on phones), so the page reads in a single, even rhythm, like a story: the part's
-   running head; her approach (the draft left, her words right); the service in its box on the same two columns
-   (its name left, what an author receives right); the writers' kind words. All the words share one ink, like the
-   home page. */
+   interval of space (80px; 52px on phones), so the page reads in a single, even rhythm, like a story. Each part's
+   name stands over it like a running head, flush left: the approach (the draft left, her words right); the service
+   in its box on the same two columns (its name left, what an author receives right); the writers' kind words. All the
+   words share one ink, like the home page. */
 .editing { --ed-space: var(--section); }
 .ed-frame { max-width: calc(1040px + var(--gutter) * 2); }
 .service { padding-top: var(--ed-space); }
-.ed-head { padding-top: var(--space-open); }
-.ed-head + .spread { padding-top: clamp(28px, 3vw, 40px); }
+.editing > :first-child { padding-top: var(--space-open); } /* whichever part opens the page */
+/* each part's name, standing over it */
+.ed-label { margin-bottom: clamp(28px, 3vw, 40px); }
 
 /* the service, unmistakably the offer: one box of her wall colour with a hairline drawn just inside its edge, opened
    like a book. A fine spine runs down the middle of the gap between its two pages, on the same centre line as the
@@ -1109,9 +1110,9 @@ em, i { font-style: italic; }
 
 /* the approach: the measure split down the middle of the page. On the left the marked-up draft, framed in a
    slim band of her wall colour like the portrait, exactly as tall as the text beside it (trimmed at its sides,
-   never stretched); on the right one continuous column that starts level with the picture's top and ends with
-   its last line on the picture's foot: its name, her words (the same size as the text, set apart only by
-   italics and quotation marks, the opening one hung just outside the edge), her way of working, her background */
+   never stretched); on the right one continuous column whose first capitals are level with the picture's top and
+   whose last line sits on the picture's foot: her words (the same size as the text, set apart only by italics and
+   quotation marks, the opening one hung just outside the edge), her way of working, her background */
 .spread__pair {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1128,9 +1129,8 @@ em, i { font-style: italic; }
   color: var(--text);
   text-wrap: pretty;
 }
-.spread__text .eyebrow { margin: -.41em 0 16px; } /* its capitals level with the top of the picture */
 .spread__quote {
-  margin: 0 0 24px -.42em;
+  margin: -.52em 0 24px -.42em; /* its first capitals level with the top of the picture */
   padding-left: .42em;
   text-indent: -.42em;
   font-style: italic;
@@ -1154,8 +1154,7 @@ em, i { font-style: italic; }
 }
 .mat .qa__sheet { width: min(100%, 700px); }
 .questions .faq__answer { color: var(--text); }
-.kind__body { display: flex; flex-direction: column; gap: clamp(28px, 3vw, 40px); } /* its label flush left, like every label on the page */
-.kind .testimonials { width: 100%; column-gap: 48px; }
+.kind .testimonials { column-gap: 48px; }
 .kind .testimonial { padding: clamp(36px, 4vw, 56px); transition: transform .6s var(--ease-out), box-shadow .6s var(--ease-out); }
 /* pointed at, a card lifts a little toward you: it rises and grows slightly, its shadow deepening beneath it */
 @media (hover: hover) {
@@ -1173,7 +1172,7 @@ em, i { font-style: italic; }
 /* tablets: every part narrows to one 580px column, so all the parts share the same two edges; the draft stands
    above its words */
 @media (max-width: 900px) {
-  .ed-head, .spread, .kind, .questions { max-width: calc(580px + var(--gutter) * 2); }
+  .spread, .kind, .questions { max-width: calc(580px + var(--gutter) * 2); }
   .spread__pair { grid-template-columns: minmax(0, 1fr); row-gap: 30px; }
   /* stacked, the picture keeps its own proportions */
   .spread__image picture { position: static; display: block; }
