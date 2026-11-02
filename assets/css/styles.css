@@ -772,7 +772,7 @@ em, i { font-style: italic; }
    arrow that opens the site at the Introduction, and a small copyright line at the foot. The spiral takes the height
    the rest leaves free (--cover-words), so the whole cover fits in one view. Still: no animation, no grain */
 .home.cover {
-  --cover-words: 470px;
+  --cover-words: 430px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -790,14 +790,14 @@ em, i { font-style: italic; }
   align-items: center;
   justify-content: center;
   width: min(100%, 760px);
-  padding: clamp(30px, 5svh, 56px) clamp(24px, 5vw, 64px) clamp(30px, 5svh, 52px);
+  position: relative;
+  padding: clamp(30px, 5svh, 56px) clamp(24px, 5vw, 64px) clamp(62px, 8.4svh, 84px);
   text-align: center;
 }
 .cover__page::after { inset: clamp(7px, 1vw, 10px); }
 
-/* the head: her name in spaced capitals, the imprint beneath, then a short rule */
+/* the head: her name in spaced capitals, the imprint beneath */
 .cover__head { display: flex; flex-direction: column; align-items: center; }
-.cover__head::after { content: ""; width: 40px; height: 1px; margin-top: clamp(18px, 2.8svh, 28px); background: var(--umber); opacity: .5; }
 .cover__name {
   font-family: var(--serif);
   font-weight: 400;
@@ -817,7 +817,7 @@ em, i { font-style: italic; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: clamp(20px, 3.4svh, 36px);
+  margin-top: clamp(24px, 4svh, 44px);
 }
 .cover__plate picture { display: block; width: min(64vw, 460px, 52vh, max(200px, 100vh - var(--cover-words))); width: min(64vw, 460px, 52svh, max(200px, 100svh - var(--cover-words))); }
 .cover__plate img { display: block; width: 100%; height: auto; }
@@ -830,20 +830,30 @@ em, i { font-style: italic; }
   .cover__break { display: inline; }
 }
 
-/* the arrow: the way forward into the site, stepping on when pointed at */
-.cover__enter { display: block; margin-top: clamp(8px, 1.6svh, 16px); padding: 14px 10px; color: var(--text); transition: color .3s ease; }
-.cover__enter svg { display: block; width: 72px; height: 14px; transition: transform .6s var(--ease-out); }
-.cover__enter:hover { color: var(--umber); }
-.cover__enter:hover svg { transform: translateX(10px); }
-.cover__enter:focus-visible { outline-offset: 4px; }
+/* the arrow: in the page's lower right corner, just inside its inner hairline, where a book is turned; a long, fine
+   line with a curved head drawn as with a pen, in her brown, gliding on when pointed at */
+.cover__enter {
+  position: absolute;
+  right: clamp(20px, 2.8vw, 34px);
+  bottom: clamp(16px, 2.6svh, 26px);
+  display: block;
+  padding: 10px 6px;
+  color: var(--umber);
+  transition: color .4s ease;
+}
+.cover__enter svg { display: block; width: clamp(76px, 7vw, 104px); height: auto; overflow: visible; transition: transform .7s var(--ease-out); }
+.cover__enter path { fill: none; stroke: currentColor; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.cover__enter:hover { color: var(--text); }
+.cover__enter:hover svg { transform: translateX(8px); }
+.cover__enter:focus-visible { outline: 1px solid var(--text); outline-offset: 4px; }
 @media (prefers-reduced-motion: reduce) { .cover__enter svg { transition: none; } .cover__enter:hover svg { transform: none; } }
 
 /* at the foot of the page */
-.cover__legal { padding: 12px 0 20px; font-size: 11px; line-height: 1.5; letter-spacing: .02em; color: var(--mute); text-align: center; }
+.cover__legal { padding: clamp(12px, 2svh, 18px) 0 clamp(14px, 2.4svh, 20px); font-size: 11px; line-height: 1.5; letter-spacing: .02em; color: var(--mute); text-align: center; }
 
 /* phones: a smaller name, a longer motto, a narrower margin inside the page */
 @media (max-width: 600px) {
-  .home.cover { --cover-words: 440px; }
+  .home.cover { --cover-words: 410px; }
   .cover__plate picture { width: min(72vw, 52vh, max(180px, 100vh - var(--cover-words))); width: min(72vw, 52svh, max(180px, 100svh - var(--cover-words))); }
 }
 
