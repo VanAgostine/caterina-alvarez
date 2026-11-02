@@ -4,6 +4,6 @@
     { "source": "/editing-questions.html", "destination": "/contact.html#questions", "permanent": true },
     { "source": "/editing-begin.html", "destination": "/contact.html", "permanent": true },
     { "source": "/publications-short-fiction.html", "destination": "/publications.html#short-fiction", "permanent": true },
-    { "source": "/publications-editorial.html", "destination": "/publications.html#editorial", "permanent": true }
+    { "source": "/publications-editorial.html", "destination": "/about.html", "permanent": true }
   ]
 }
