@@ -113,7 +113,7 @@
 
     <!-- Her reading: the books on the art and craft of fiction she loves, their covers in one row that scrolls sideways
          like the gallery on the Publications page (the line beneath built by main.js); then the craft newsletters she
-         reads, three small cards of her wall colour in the manner of the Publications panels, each opening its Substack -->
+         reads, three small cards of her wall colour, each its cover beside its name, writer and link to its Substack -->
     <section class="container reading" aria-labelledby="books-title">
       <div class="reading__books" data-gallery>
         <h2 id="books-title" class="reading__lead">Caterina’s favorite books on the art and craft of fiction include:</h2>
@@ -166,22 +166,40 @@
       <h2 id="letters-title" class="reading__lead reading__lead--letters">Her favorite craft newsletters, on Substack:</h2>
       <ul class="reading__letters" aria-labelledby="letters-title">
         <li class="reading__letter">
-          <p class="reading__via">Substack</p>
-          <h3 class="reading__name"><em>Stunning Sentences</em></h3>
-          <p class="reading__by">Nina Schuyler</p>
-          <a class="pub-read reading__go" href="https://ninaschuyler.substack.com/" rel="noopener" target="_blank"><span class="pub-read__word">Read</span><span class="visually-hidden"> Stunning Sentences, by Nina Schuyler (opens Substack)</span><span class="pub-read__arrow" aria-hidden="true">→</span></a>
+          <picture class="reading__cover">
+            <source srcset="assets/img/newsletter-stunning-sentences.webp" type="image/webp">
+            <img src="assets/img/newsletter-stunning-sentences.jpg" width="288" height="288" loading="lazy" decoding="async" alt="">
+          </picture>
+          <div class="reading__about">
+            <p class="reading__via">Substack</p>
+            <h3 class="reading__name"><em>Stunning Sentences</em></h3>
+            <p class="reading__by">Nina Schuyler</p>
+            <a class="pub-read reading__go" href="https://ninaschuyler.substack.com/" rel="noopener" target="_blank"><span class="pub-read__word">Read</span><span class="visually-hidden"> Stunning Sentences, by Nina Schuyler (opens Substack)</span><span class="pub-read__arrow" aria-hidden="true">→</span></a>
+          </div>
         </li>
         <li class="reading__letter">
-          <p class="reading__via">Substack</p>
-          <h3 class="reading__name"><em>SubMakk</em></h3>
-          <p class="reading__by">Rebecca Makkai</p>
-          <a class="pub-read reading__go" href="https://rebeccamakkai.substack.com/" rel="noopener" target="_blank"><span class="pub-read__word">Read</span><span class="visually-hidden"> SubMakk, by Rebecca Makkai (opens Substack)</span><span class="pub-read__arrow" aria-hidden="true">→</span></a>
+          <picture class="reading__cover">
+            <source srcset="assets/img/newsletter-submakk.webp" type="image/webp">
+            <img src="assets/img/newsletter-submakk.jpg" width="288" height="288" loading="lazy" decoding="async" alt="">
+          </picture>
+          <div class="reading__about">
+            <p class="reading__via">Substack</p>
+            <h3 class="reading__name"><em>SubMakk</em></h3>
+            <p class="reading__by">Rebecca Makkai</p>
+            <a class="pub-read reading__go" href="https://rebeccamakkai.substack.com/" rel="noopener" target="_blank"><span class="pub-read__word">Read</span><span class="visually-hidden"> SubMakk, by Rebecca Makkai (opens Substack)</span><span class="pub-read__arrow" aria-hidden="true">→</span></a>
+          </div>
         </li>
         <li class="reading__letter">
-          <p class="reading__via">Substack</p>
-          <h3 class="reading__name"><em>Craft Talk</em></h3>
-          <p class="reading__by">Jami Attenberg</p>
-          <a class="pub-read reading__go" href="https://1000wordsofsummer.substack.com/" rel="noopener" target="_blank"><span class="pub-read__word">Read</span><span class="visually-hidden"> Craft Talk, by Jami Attenberg (opens Substack)</span><span class="pub-read__arrow" aria-hidden="true">→</span></a>
+          <picture class="reading__cover">
+            <source srcset="assets/img/newsletter-craft-talk.webp" type="image/webp">
+            <img src="assets/img/newsletter-craft-talk.jpg" width="288" height="288" loading="lazy" decoding="async" alt="">
+          </picture>
+          <div class="reading__about">
+            <p class="reading__via">Substack</p>
+            <h3 class="reading__name"><em>Craft Talk</em></h3>
+            <p class="reading__by">Jami Attenberg</p>
+            <a class="pub-read reading__go" href="https://1000wordsofsummer.substack.com/" rel="noopener" target="_blank"><span class="pub-read__word">Read</span><span class="visually-hidden"> Craft Talk, by Jami Attenberg (opens Substack)</span><span class="pub-read__arrow" aria-hidden="true">→</span></a>
+          </div>
         </li>
       </ul>
     </section>
