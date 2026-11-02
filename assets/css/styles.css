@@ -1141,8 +1141,8 @@ em, i { font-style: italic; }
      annotation in her brown, its last line on "editing"'s baseline;
    - then three white cards of paper: for your manuscript, what you receive, what we explore (her description,
      divided, each detail once);
-   - generous space, a hairline, then the commission line: the rate on the left, the way to begin on the right, its
-     underline running on to the arrow when pointed at or focused.
+   - generous space, then the commission line: the rate on the left, the way to begin on the right, a button like
+     the Contact page's "Send inquiry".
    The title's two words arrive as words, fading up from 10px; everything is visible without scripts */
 .service { padding-block: clamp(64px, 7vw, 112px); background: var(--wall); }
 .service__inner { container-type: inline-size; }
@@ -1202,47 +1202,17 @@ em, i { font-style: italic; }
   align-items: flex-end;
   justify-content: space-between;
   gap: 24px 48px;
-  margin-top: clamp(56px, 6vw, 92px);
-  padding-top: clamp(24px, 2.4vw, 32px);
-  border-top: 1px solid var(--line);
+  margin-top: clamp(48px, 5vw, 76px);
 }
 .service__price { font-family: var(--serif); font-size: clamp(30px, 2.9vw, 40px); line-height: 1; letter-spacing: -.01em; font-variant-numeric: oldstyle-nums; color: var(--text); }
 .service__per { margin-left: .3em; font-size: var(--t-lead); font-style: italic; letter-spacing: 0; color: var(--umber); }
 .service__remote { margin-top: 10px; font-size: var(--t-small); line-height: 1.5; letter-spacing: .02em; color: var(--umber); }
-/* the way to begin: her words and a fine drawn arrow; the underline runs on from the words to the arrow's point when
-   pointed at or focused. A generous target: the whole line, at least 48px tall */
-.service__cta {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 18px;
-  min-height: 48px;
-  padding-block: 8px;
-  font-family: var(--serif);
-  font-size: var(--t-heading);
-  line-height: 1.3;
-  color: var(--text);
-}
-.service__cta::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 6px;
-  width: calc(100% - 64px); /* under the words: the arrow (46px) and the gap (18px) left uncovered */
-  height: 1px;
-  background: currentColor;
-  transition: width .6s var(--ease-out);
-}
-.service__cta:hover::after,
-.service__cta:focus-visible::after { width: 100%; }
-.service__cta-arrow { flex: none; width: 46px; height: 12px; }
-.service__cta:focus-visible { outline: 1px solid var(--text); outline-offset: 8px; }
+/* the way to begin: the site's button, as "Send inquiry" on the Contact page (.button) */
 /* where the title is too small to leave room beneath its first line, the annotation follows the whole title */
 @media (max-width: 1000px) {
   .service__aside { position: static; width: auto; margin-top: 26px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .service__cta::after { transition: none; }
   .js .service__title [data-reveal] { translate: none; }
 }
 
@@ -1300,6 +1270,7 @@ em, i { font-style: italic; }
 @media (max-width: 600px) {
   .service__composition { --indent: 7cqi; margin-top: 32px; }
   .service__commission { flex-direction: column; align-items: flex-start; }
+  .service__button { width: 100%; } /* as "Send inquiry" on phones */
   .editing .testimonial { padding: 26px 22px 24px; }
 }
 
