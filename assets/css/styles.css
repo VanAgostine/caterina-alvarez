@@ -1097,33 +1097,28 @@ em, i { font-style: italic; }
 /* each part's name, standing over it */
 .ed-label { margin-bottom: clamp(28px, 3vw, 40px); }
 
-/* the approach: the Publications masthead (see there), without a plate: the band runs to its own foot, her words in
-   italics settling there (the marked-up draft illustrates the service below) */
-.ed-approach { --hang: 0px; }
+/* the approach: the Publications masthead (see there), with the marked-up draft as its plate. The draft is wider than
+   the engraving, being a landscape page; its top is level with the page label and it crosses the band's edge by the
+   same amount as there. Where her words run longer than the draft is tall, the plate grows to their height and the
+   draft is trimmed a little at its right side, never stretched. Her words are set in italics */
+.ed-approach { --hang: clamp(48px, 4.4vw, 64px); --ed-art: clamp(360px, calc(30vw + 80px), 470px); }
 .ed-approach .pub-masthead { --hang: inherit; }
-.ed-approach .pub-hero__quote { max-width: 34em; }
+.ed-approach .pub-hero__art { align-self: stretch; display: flex; flex-direction: column; width: var(--ed-art); }
+.ed-approach .pub-hero__art picture { flex: 1 0 auto; display: block; }
+.ed-approach .pub-hero__art img { height: 100%; object-fit: cover; object-position: 0 50%; }
+.ed-approach .pub-hero__quote { max-width: 30em; }
 
-/* the service, set as a spread in a literary magazine on a twelve-column grid (the page's own edges):
-   - across the first six columns, its label; its name in two deliberate lines at the site's title size, "Developmental" and
-     beneath it "editing" in italics, underlined in one stroke of her terracotta ink (the colour of the draft's margin
-     line; the proofreader's mark for italics), drawn in once as it comes into view; then the rate as a small detail,
-     in old-style figures; then the way to begin, the tan button, and where she works;
-   - across the last five (a column of space between), the marked-up draft in its own proportions, its top level with the label, and a
-     short caption in italics beneath;
-   - beneath both, a fine rule, then two open columns on the same lines as the spread above (the title's and the
-     photograph's): what an author receives, numbered; what the edit explores, each area circled in ink when pointed
-     at (a flourish only: everything reads without it), and her line on tailoring.
-   No boxes, shadows or ornaments: the luxury is in the type, the photograph and the space */
-.service { --pen: var(--clay); --cols: repeat(12, minmax(0, 1fr)); --col-gap: 24px; }
-.service__spread,
-.service__details { display: grid; grid-template-columns: var(--cols); column-gap: var(--col-gap); }
-.service__head { grid-column: 1 / 7; }
-.service__plate { grid-column: 8 / 13; align-self: start; margin-top: .3em; } /* its top level with the label's capitals */
-.service__plate img { width: 100%; height: auto; }
-.service__plate figcaption { margin-top: 14px; font-family: var(--serif); font-style: italic; font-size: var(--t-body); line-height: 1.5; color: var(--umber); }
-
+/* the service: no box, set flush left on the page's edge and kept compact, like an entry in a fine catalogue, and
+   marked as if by her own pen, in the terracotta of the draft's margin line (--clay), the page's only pen colour:
+   - its label; its name, the page's title, with "editing" underlined in one stroke of ink, drawn in once as it comes
+     into view (the proofreader's mark for italics); one line on what it is, in italics;
+   - then a sheet ruled like the lined paper of the draft: fine rules across, a terracotta margin line down, the labels
+     set in the margin against it and everything else beyond it: what an author receives, two things numbered in her
+     brown; the areas of focus, each circled in ink when pointed at, like the circle she draws; and the rate, in
+     old-style figures, with the way to begin, a tan button whose fine arrow lengthens when pointed at */
+.service { --pen: var(--clay); --key: clamp(118px, 12.5vw, 172px); --margin: clamp(48px, 5vw, 72px); }
 .service__title {
-  margin-top: clamp(20px, 2vw, 28px);
+  margin-top: clamp(18px, 1.8vw, 24px);
   font-family: var(--serif);
   font-weight: 400;
   font-size: var(--t-title);
@@ -1131,8 +1126,7 @@ em, i { font-style: italic; }
   letter-spacing: -.018em;
   color: var(--text);
 }
-.service__line { display: block; }
-.service__marked { position: relative; display: block; width: fit-content; font-style: italic; }
+.service__marked { position: relative; display: inline-block; }
 .service__stroke {
   position: absolute;
   left: -.04em;
@@ -1163,33 +1157,41 @@ em, i { font-style: italic; }
 /* with scripts running, the stroke waits until the title comes into view, then is drawn in, left to right */
 .js .service__marked:not(.is-inked) .service__stroke { --pen-reach: -8%; }
 .js .service__marked .service__stroke { transition: --pen-reach 1.4s cubic-bezier(.6, 0, .3, 1) .35s; }
-
-.service__price {
-  margin-top: clamp(28px, 2.8vw, 38px);
+.service__intro {
+  max-width: 30em;
+  margin-top: clamp(22px, 2.2vw, 30px);
   font-family: var(--serif);
+  font-style: italic;
   font-size: var(--t-lead);
-  line-height: 1.4;
-  font-variant-numeric: oldstyle-nums;
-  color: var(--text);
+  line-height: 1.6;
+  color: var(--umber);
+  text-wrap: pretty;
 }
-.service__per { margin-left: .15em; font-style: italic; color: var(--umber); }
-.service__begin { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: clamp(20px, 2vw, 26px); }
-.service__button { min-height: 50px; padding: 0 30px; gap: 1em; background: var(--wall); color: var(--text); border-color: var(--wall); }
-.service__button:hover { background: var(--greige); border-color: var(--greige); color: var(--text); }
-.service__button:active { background: var(--greige); }
-/* the fine arrow lengthens when pointed at, its head moving on */
-.service__go { width: 26px; height: 10px; overflow: visible; transition: width .55s var(--ease-out); }
-.service__go path { transition: d .55s var(--ease-out); }
-.service__button:hover .service__go { width: 38px; }
-.service__button:hover .service__go path { d: path("M.5 5H41M36.5.5 41 5l-4.5 4.5"); }
-.service__remote { font-size: var(--t-small); line-height: 1.5; letter-spacing: .02em; color: var(--umber); }
 
-/* beneath the spread: a fine rule, then two open columns on the title's and the photograph's lines */
-.service__details { margin-top: clamp(56px, 5.6vw, 80px); padding-top: clamp(30px, 3vw, 40px); border-top: 1px solid var(--line-mid); }
-.service__col:first-child { grid-column: 1 / 7; }
-.service__col:last-child { grid-column: 8 / 13; }
-.service__key { margin-bottom: 18px; }
-.service__gets { counter-reset: get; }
+/* the ruled sheet: rules across, the margin line down, through every rule, from the top rule to the bottom one */
+.service__sheet { position: relative; margin-top: clamp(40px, 4vw, 56px); border-top: 1px solid var(--line-mid); }
+.service__sheet::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--key) + var(--margin) / 2);
+  width: 1px;
+  background: var(--pen);
+  opacity: .55;
+}
+.service__row {
+  display: grid;
+  grid-template-columns: var(--key) minmax(0, 1fr);
+  column-gap: var(--margin);
+  align-items: baseline;
+  padding-block: clamp(24px, 2.4vw, 32px);
+  border-bottom: 1px solid var(--line);
+}
+.service__row:last-child { border-bottom-color: var(--line-mid); }
+.service__key { font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .28em; margin-right: -.28em; text-transform: uppercase; text-align: right; color: var(--umber); }
+.service__row dd { margin: 0; }
+.service__gets { display: flex; flex-wrap: wrap; gap: 10px clamp(32px, 4vw, 64px); counter-reset: get; }
 .service__gets li {
   counter-increment: get;
   font-family: var(--serif);
@@ -1197,17 +1199,17 @@ em, i { font-style: italic; }
   line-height: 1.3;
   color: var(--text);
 }
-.service__gets li + li { margin-top: 10px; }
-.service__gets li::before { content: counter(get, upper-roman) "."; display: inline-block; min-width: 1.9em; font-style: italic; font-size: .64em; color: var(--umber); }
-.service__focus { font-family: var(--serif); font-size: var(--t-lead); line-height: 1.85; color: var(--text); }
+.service__gets li::before { content: counter(get, upper-roman) "."; margin-right: .6em; font-style: italic; font-size: .64em; color: var(--umber); }
+.service__focus { display: flex; flex-wrap: wrap; font-family: var(--serif); font-size: var(--t-lead); line-height: 1.75; color: var(--text); }
+.service__focus li + li::before { content: "\00B7"; margin: 0 .55em; color: var(--umber); }
 /* each area of focus, circled in one loop of ink when pointed at, the pen overshooting where it began */
 .service__term { position: relative; display: inline-block; }
 .service__circle {
   position: absolute;
   left: -.42em;
-  top: -.34em;
+  top: -.4em;
   width: calc(100% + .84em);
-  height: calc(100% + .68em);
+  height: calc(100% + .8em);
   overflow: visible;
   pointer-events: none;
   --pen-loop: 0deg;
@@ -1218,7 +1220,27 @@ em, i { font-style: italic; }
 @media (hover: hover) {
   .service__term:hover .service__circle { --pen-loop: 400deg; transition: --pen-loop .75s cubic-bezier(.5, 0, .3, 1); }
 }
-.service__note { margin-top: 16px; font-family: var(--serif); font-style: italic; font-size: var(--t-body); line-height: var(--t-body-lh); color: var(--umber); }
+/* where the six would not fit on one line, they sit in a small grid instead, so no line ever starts with a dot */
+@media (max-width: 1100px) {
+  .service__focus { display: grid; grid-template-columns: repeat(auto-fill, minmax(10.5em, 1fr)); column-gap: 24px; line-height: 1.7; }
+  .service__focus li + li::before { content: none; }
+  .service__focus li { justify-self: start; }
+}
+.service__note { margin-top: 8px; font-family: var(--serif); font-size: var(--t-body); line-height: var(--t-body-lh); color: var(--umber); }
+.service__row--rate { align-items: center; }
+.service__rate { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; }
+.service__price { font-family: var(--serif); font-size: var(--t-heading); line-height: 1.3; font-variant-numeric: oldstyle-nums; color: var(--text); }
+.service__price em { font-size: .68em; color: var(--umber); }
+.service__begin { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.service__button { min-height: 50px; padding: 0 30px; gap: 1em; background: var(--wall); color: var(--text); border-color: var(--wall); }
+.service__button:hover { background: var(--greige); border-color: var(--greige); color: var(--text); }
+.service__button:active { background: var(--greige); }
+/* the fine arrow lengthens when pointed at, its head moving on */
+.service__go { width: 26px; height: 10px; overflow: visible; transition: width .55s var(--ease-out); }
+.service__go path { transition: d .55s var(--ease-out); }
+.service__button:hover .service__go { width: 38px; }
+.service__button:hover .service__go path { d: path("M.5 5H41M36.5.5 41 5l-4.5 4.5"); }
+.service__remote { font-size: var(--t-small); line-height: 1.5; letter-spacing: .02em; color: var(--umber); }
 @media (prefers-reduced-motion: reduce) {
   .js .service__marked .service__stroke, .service__circle, .service__term:hover .service__circle { transition: none; }
   .js .service__marked:not(.is-inked) .service__stroke { --pen-reach: 110%; }
@@ -1276,20 +1298,31 @@ em, i { font-style: italic; }
 .questions .faq__answer { color: var(--text); }
 
 /* tablets: every part narrows to one 580px column, so all the parts share the same two edges, and each stacks in its
-   reading order: the service's label, name, rate and the way to begin, then the photograph, then what an author
-   receives and what the edit explores; one card after the other */
+   reading order: the statement, the draft, her words; the service's name and rate, then what an author receives; one
+   card after the other */
 @media (max-width: 900px) {
   .service, .kind, .questions { max-width: calc(580px + var(--gutter) * 2); }
-  .service { --cols: minmax(0, 1fr); }
-  .service__head, .service__plate, .service__col:first-child, .service__col:last-child { grid-column: 1; }
-  .service__plate { margin-top: 44px; }
-  .service__details { margin-top: 48px; row-gap: 36px; }
+  /* the masthead stacks as on Publications: the draft at the right below her words, still crossing the band's edge */
+  .ed-approach { --hang: 40px; }
+  .ed-approach .pub-hero__art { align-self: auto; width: min(88%, 440px); }
+  .ed-approach .pub-hero__art img { height: auto; }
 }
 @media (max-width: 600px) {
   .service__title { font-size: min(var(--t-title), calc((100vw - 48px) / 6.6)); } /* "Developmental" always fits the page */
-  .service__begin { flex-direction: column; align-items: stretch; }
+  /* the sheet stacks: each label above its row; the rate, then the button across the column */
+  /* stacked: no margin line; each label above its row, flush left */
+  .service__sheet::before { content: none; }
+  .service__row { grid-template-columns: minmax(0, 1fr); row-gap: 12px; }
+  .service__key { text-align: left; margin-right: 0; }
+  .service__gets { flex-direction: column; }
+  .service__focus { grid-template-columns: repeat(2, auto); justify-content: start; column-gap: 28px; font-size: var(--t-body); }
+  .service__begin { align-items: stretch; width: 100%; }
   .service__button { width: 100%; }
   .service__remote { text-align: center; }
+@media (max-width: 359px) {
+  .service__focus { grid-template-columns: minmax(0, 1fr); }
+  .service__gets li { font-size: 18px; }
+}
   .mat { gap: 24px; padding: 36px 10px 10px; }
   .editing .testimonial { padding: 34px 24px 32px; }
 }
