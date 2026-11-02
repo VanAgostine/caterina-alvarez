@@ -766,26 +766,42 @@ em, i { font-style: italic; }
 .home .pager__dir { color: var(--text); }
 
 /* ----------------------------------------------------------------- the cover (index.html)
-   After the front page of an author's site of the classical kind (danielmendelsohn.com), on her ivory: her name in
-   spaced capitals with the imprint beneath; then her spiral set straight on the ivory, unframed, with her motto
-   beneath it; under the motto a single long arrow that opens the site at the Introduction; a small copyright line at the foot.
-   Still: no animation, no grain */
+   Set as the title page of a fine book: one white page resting on her ivory, framed like the site's cards (.frame: a
+   fine outline, a second hairline just inside it, a soft shadow). On it, centred, her name in spaced capitals with the
+   imprint beneath, a short rule, her spiral and her motto beneath it; under the page, on the ivory, a single long
+   arrow that opens the site at the Introduction, and a small copyright line at the foot. The spiral takes the height
+   the rest leaves free (--cover-words), so the whole cover fits in one view. Still: no animation, no grain */
 .home.cover {
+  --cover-words: 470px;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100svh;
-  padding: 0 clamp(16px, 4vw, 32px);
+  padding: clamp(18px, 3.4svh, 36px) clamp(16px, 4vw, 32px) 0;
   background: var(--wall);
 }
 .cover-page::after { opacity: 0; } /* no paper grain on the cover */
 
-/* the head: her name in spaced capitals, the imprint beneath */
-.cover__head { padding: clamp(28px, 4.4svh, 44px) 0 clamp(18px, 2.6svh, 26px); text-align: center; }
+/* the page */
+.cover__page {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 760px);
+  padding: clamp(30px, 5svh, 56px) clamp(24px, 5vw, 64px) clamp(30px, 5svh, 52px);
+  text-align: center;
+}
+.cover__page::after { inset: clamp(7px, 1vw, 10px); }
+
+/* the head: her name in spaced capitals, the imprint beneath, then a short rule */
+.cover__head { display: flex; flex-direction: column; align-items: center; }
+.cover__head::after { content: ""; width: 40px; height: 1px; margin-top: clamp(18px, 2.8svh, 28px); background: var(--umber); opacity: .5; }
 .cover__name {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(19px, 6.2vw, 50px);
+  font-size: clamp(19px, 5.4vw, 46px);
   line-height: 1.05;
   letter-spacing: .1em;
   margin-right: -.1em;
@@ -795,43 +811,27 @@ em, i { font-style: italic; }
 }
 .cover__imprint { margin-top: 12px; font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .3em; margin-right: -.3em; text-transform: uppercase; color: var(--umber); }
 
-/* the spiral, unframed on the ivory, and her motto beneath it on the same centre line: the spiral takes the height the
-   name, motto, arrow and copyright leave free (--cover-words), so the whole cover fits in one view, and never grows
-   past 540px; the motto, in her brown, is set no wider than the drawing (on the narrowest phones, the width of the
-   page); on larger screens it opens out to one sentence a line, the first about as wide as the drawing */
-.cover { --cover-words: 410px; }
-.cover__body {
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(12px, 2.2svh, 24px);
-  width: 100%;
-  padding-block: clamp(24px, 4.4svh, 52px) clamp(8px, 2svh, 20px);
-}
+/* the spiral and her motto beneath it on the same centre line; the motto, in her brown, set no wider than the drawing
+   (on the narrowest phones, the width of the page); on larger screens one sentence a line */
 .cover__plate {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: min(86vw, 540px, 52vh, max(240px, 100vh - var(--cover-words)));
-  width: min(86vw, 540px, 52svh, max(240px, 100svh - var(--cover-words)));
-  text-align: center;
+  margin-top: clamp(20px, 3.4svh, 36px);
 }
-.cover__plate picture,
+.cover__plate picture { display: block; width: min(64vw, 460px, 52vh, max(200px, 100vh - var(--cover-words))); width: min(64vw, 460px, 52svh, max(200px, 100svh - var(--cover-words))); }
 .cover__plate img { display: block; width: 100%; height: auto; }
-.cover__quote { max-width: 27em; margin-top: clamp(28px, 4.6svh, 48px); font-family: var(--serif); font-style: italic; font-size: 16px; line-height: 1.65; color: var(--umber); text-wrap: balance; }
+.cover__quote { max-width: 27em; margin-top: clamp(20px, 3.4svh, 36px); font-family: var(--serif); font-style: italic; font-size: 16px; line-height: 1.65; color: var(--umber); text-wrap: balance; }
 .cover__quote p::before { content: "\201C"; }
 .cover__quote p::after { content: "\201D"; }
 .cover__break { display: none; }
 @media (min-width: 900px) {
-  .cover { --cover-words: 388px; } /* two lines of motto at most, so the spiral can take a little more */
-  .cover__quote { width: max-content; max-width: calc(100vw - 64px); line-height: 1.8; }
+  .cover__quote { width: max-content; max-width: 100%; line-height: 1.8; }
   .cover__break { display: inline; }
 }
 
 /* the arrow: the way forward into the site, stepping on when pointed at */
-.cover__enter { display: block; padding: 14px 10px; color: var(--text); transition: color .3s ease; }
+.cover__enter { display: block; margin-top: clamp(8px, 1.6svh, 16px); padding: 14px 10px; color: var(--text); transition: color .3s ease; }
 .cover__enter svg { display: block; width: 72px; height: 14px; transition: transform .6s var(--ease-out); }
 .cover__enter:hover { color: var(--umber); }
 .cover__enter:hover svg { transform: translateX(10px); }
@@ -841,10 +841,10 @@ em, i { font-style: italic; }
 /* at the foot of the page */
 .cover__legal { padding: 12px 0 20px; font-size: 11px; line-height: 1.5; letter-spacing: .02em; color: var(--mute); text-align: center; }
 
-/* phones: a smaller name, a longer motto */
+/* phones: a smaller name, a longer motto, a narrower margin inside the page */
 @media (max-width: 600px) {
-  .cover { --cover-words: 378px; }
-  .cover__quote { width: max(100%, min(320px, 100vw - 32px)); }
+  .home.cover { --cover-words: 440px; }
+  .cover__plate picture { width: min(72vw, 52vh, max(180px, 100vh - var(--cover-words))); width: min(72vw, 52svh, max(180px, 100svh - var(--cover-words))); }
 }
 
 /* the introduction opens like the first page of a book: a drop capital, then the opening words in spaced capitals.
