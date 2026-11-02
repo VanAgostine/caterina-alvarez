@@ -1002,6 +1002,53 @@ em, i { font-style: italic; }
 
 /* ----------------------------------------------------------------- pager: previous and next, wrapping round within the section */
 .pager { background: var(--wall); border-top: 1px solid var(--line); } /* part of the footer */
+
+/* ----------------------------------------------------------------- the scroll cue (the longer pages)
+   A soft band of her wall colour, the header's and footer's, at the foot of the screen: clear at its top, fading down
+   into the wall colour, a fine arrow pointing down in its middle that drifts gently. Once the previous / next links
+   come into view it sinks down into them, the same colour. Built by main.js on pages with body[data-scroll-cue] */
+.scroll-cue {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: calc(76px + env(safe-area-inset-bottom));
+  padding-bottom: calc(8px + env(safe-area-inset-bottom));
+  background: linear-gradient(to bottom, rgba(244, 238, 229, 0), rgba(244, 238, 229, .86) 55%, rgba(244, 238, 229, .97));
+  pointer-events: none;
+  transition: opacity .7s var(--ease), transform .7s var(--ease-out), visibility 0s;
+}
+.scroll-cue.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(100%);
+  transition: opacity .6s var(--ease), transform .7s var(--ease), visibility 0s .7s;
+}
+.scroll-cue__arrow {
+  display: block;
+  padding: 8px 16px;
+  border: 0;
+  background: none;
+  color: var(--umber);
+  pointer-events: auto;
+  cursor: pointer;
+  transition: color .3s ease;
+}
+.scroll-cue__arrow svg { display: block; width: 12px; height: 26px; animation: scroll-cue 2.8s var(--ease) infinite; }
+.scroll-cue__arrow:hover { color: var(--text); }
+.scroll-cue__arrow:focus-visible { outline-offset: 2px; }
+@keyframes scroll-cue { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
+.menu-open .scroll-cue { opacity: 0; visibility: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue, .scroll-cue.is-hidden { transform: none; transition: opacity .3s ease, visibility 0s .3s; }
+  .scroll-cue:not(.is-hidden) { transition: opacity .3s ease, visibility 0s; }
+  .scroll-cue__arrow svg { animation: none; }
+}
+@media print { .scroll-cue { display: none; } }
 .pager__inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);

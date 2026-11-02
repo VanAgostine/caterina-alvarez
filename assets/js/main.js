@@ -121,6 +121,36 @@
     update();
   });
 
+  /* ---- scroll cue: on the longer pages (body[data-scroll-cue]) a soft band of her wall colour at the foot of the
+     screen with a fine arrow pointing down; pressed, the arrow moves the page on by most of a screen. It sinks away
+     into the footer once the previous / next links (the footer's first band) come into view, and stays away when the
+     page has nothing more below, while the menu is open, or while someone is typing in a form */
+  if (body.hasAttribute('data-scroll-cue') && 'IntersectionObserver' in window) {
+    const end = document.querySelector('.pager') || document.querySelector('.site-footer');
+    const cue = document.createElement('div');
+    cue.className = 'scroll-cue is-hidden';
+    cue.innerHTML = '<button class="scroll-cue__arrow" type="button" aria-label="Scroll down"><svg viewBox="0 0 14 30" aria-hidden="true" focusable="false"><path d="M7 .5v28M1.5 23 7 28.5 12.5 23" fill="none" stroke="currentColor" stroke-width="1"/></svg></button>';
+    body.appendChild(cue);
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+    cue.querySelector('button').addEventListener('click', () => {
+      window.scrollBy({ top: Math.round(window.innerHeight * 0.8), behavior: calm.matches ? 'auto' : 'smooth' });
+    });
+    let ready = false;
+    let endInView = false;
+    let typing = false;
+    const update = () => {
+      const more = doc.scrollHeight > window.innerHeight + 8;
+      cue.classList.toggle('is-hidden', !ready || !more || endInView || typing);
+    };
+    if (end) {
+      new IntersectionObserver(([entry]) => { endInView = entry.isIntersecting; update(); }, { rootMargin: '0px 0px -24px 0px' }).observe(end);
+    }
+    document.addEventListener('focusin', (e) => { typing = e.target.matches('input, textarea, select'); update(); });
+    document.addEventListener('focusout', () => { typing = false; update(); });
+    window.addEventListener('resize', update);
+    setTimeout(() => { ready = true; update(); }, 700); // a moment after the page arrives
+  }
+
   /* ---- footer year */
   document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
 
