@@ -1141,10 +1141,10 @@ em, i { font-style: italic; }
      annotation in her brown, its last line on "editing"'s baseline;
    - then three white cards of paper: for your manuscript, what you receive, what we explore (her description,
      divided, each detail once);
-   - generous space, then the commission line: the rate on the left, the way to begin on the right, a button like
-     the Contact page's "Send inquiry".
+   - generous space, then the commission line: the rate on the left, the way to begin on the right, in the site's
+     Read style (small capitals, a fine underline and an arrow that steps forward).
    The title's two words arrive as words, fading up from 10px; everything is visible without scripts */
-.service { padding-block: clamp(64px, 7vw, 112px); background: var(--wall); }
+.service { --p-ink: var(--text); --p-accent: var(--clay); padding-block: clamp(64px, 7vw, 112px); background: var(--wall); }
 .service__inner { container-type: inline-size; }
 .service__intro { display: flex; align-items: center; gap: 22px; }
 .service__intro::after { content: ""; flex: 1; height: 1px; background: var(--line); }
@@ -1207,7 +1207,7 @@ em, i { font-style: italic; }
 .service__price { font-family: var(--serif); font-size: clamp(30px, 2.9vw, 40px); line-height: 1; letter-spacing: -.01em; font-variant-numeric: oldstyle-nums; color: var(--text); }
 .service__per { margin-left: .3em; font-size: var(--t-lead); font-style: italic; letter-spacing: 0; color: var(--umber); }
 .service__remote { margin-top: 10px; font-size: var(--t-small); line-height: 1.5; letter-spacing: .02em; color: var(--umber); }
-/* the way to begin: the site's button, as "Send inquiry" on the Contact page (.button) */
+/* the way to begin: in the site's Read style (see .pub-read) */
 /* where the title is too small to leave room beneath its first line, the annotation follows the whole title */
 @media (max-width: 1000px) {
   .service__aside { position: static; width: auto; margin-top: 26px; }
@@ -1270,7 +1270,6 @@ em, i { font-style: italic; }
 @media (max-width: 600px) {
   .service__composition { --indent: 7cqi; margin-top: 32px; }
   .service__commission { flex-direction: column; align-items: flex-start; }
-  .service__button { width: 100%; } /* as "Send inquiry" on phones */
   .editing .testimonial { padding: 26px 22px 24px; }
 }
 
@@ -1358,6 +1357,33 @@ em, i { font-style: italic; }
 .pub-date { font-family: var(--sans); font-size: var(--t-small); line-height: 1.5; letter-spacing: .02em; color: var(--p-brown); }
 
 
+/* the Read link (Publications, the newsletters on About, and "Discuss your manuscript" on Editing): small capitals with
+   a restrained arrow that steps forward on hover; its underline warms to terracotta */
+.pub-read {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .7em;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--p-ink);
+}
+/* only the word is underlined, so the line never runs under the arrow */
+.pub-read__word {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .55em;
+  text-decoration-color: rgba(32, 30, 27, .3);
+  transition: text-decoration-color .3s ease;
+}
+.pub-read__arrow { letter-spacing: 0; transition: transform .45s var(--ease-out); }
+.pub-read:hover .pub-read__word { text-decoration-color: var(--p-accent); }
+.pub-read:hover .pub-read__arrow { transform: translateX(4px); }
+.pub-read:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 6px; }
+
 /* the gallery: a row of small literary compositions that scrolls sideways (touch, trackpad, keys, or the line beneath).
    The native scrollbar is hidden: the line below takes its place */
 .pub-gallery { padding-top: var(--section); }
@@ -1398,7 +1424,9 @@ em, i { font-style: italic; }
 .pub-panel--ink { background: var(--p-ink); color: var(--p-ivory); }
 .pub-panel--ink .pub-panel__honour,
 .pub-panel--ink .pub-date { color: rgba(244, 238, 229, .72); }
-.pub-panel--ink .button--light:focus-visible { outline-color: var(--p-ivory); }
+.pub-panel--ink .pub-read { color: var(--p-ivory); }
+.pub-panel--ink .pub-read__word { text-decoration-color: rgba(244, 238, 229, .4); }
+.pub-panel--ink .pub-read:focus-visible { outline-color: var(--p-ivory); }
 
 .pub-panel__honour { grid-row: 1; display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 /* the honour marked with a small medal on its ribbon, drawn in a fine terracotta line: the ribbon's two tails
@@ -1420,7 +1448,7 @@ em, i { font-style: italic; }
 }
 .pub-panel__title--long { font-size: calc(var(--t-heading) * .87); } /* a long title, a size down so it still reads as one shape */
 .pub-panel__text { margin-top: 12px; font-family: var(--serif); font-size: var(--t-body); line-height: 1.55; }
-.pub-panel__read { grid-row: 5; margin-top: 18px; } /* the site's button, as everywhere (white on the ink panel) */
+.pub-panel__read { grid-row: 5; margin-top: 16px; }
 
 /* the navigation line: one continuous hairline with an equal part for each work; the part for the work in view is her
    deep brown. Each part is a generous invisible button named after its work */
@@ -1443,7 +1471,8 @@ em, i { font-style: italic; }
 .pub-line__part:focus-visible { outline: 1px solid var(--p-ink); outline-offset: -6px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .pub-line__part::before { transition: none; }
+  .pub-read__arrow, .pub-line__part::before { transition: none; }
+  .pub-read:hover .pub-read__arrow { transform: none; }
 }
 
 
@@ -1727,11 +1756,12 @@ em, i { font-style: italic; }
 .reading__via { font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .28em; text-transform: uppercase; color: var(--umber); }
 .reading__name { margin-top: 10px; font-family: var(--serif); font-weight: 400; font-size: var(--t-heading); line-height: 1.15; color: var(--text); }
 .reading__by { margin-top: 2px; font-family: var(--serif); font-size: var(--t-body); line-height: 1.5; color: var(--umber); }
-.reading__go { position: static; margin-top: 14px; } /* the site's button; static, so its link can cover the card */
+.reading__go { margin-top: 12px; }
 .reading__go::after { content: ""; position: absolute; inset: 0; } /* the whole card opens the newsletter */
-.reading__letter:hover .reading__go { background: transparent; color: var(--ink); }
+.reading__letter:hover .pub-read__word { text-decoration-color: currentColor; }
+.reading__letter:hover .pub-read__arrow { transform: translateX(4px); }
 @media (prefers-reduced-motion: reduce) {
-  .reading__letter:hover, .reading__book:hover .reading__volume { transform: none; }
+  .reading__letter:hover .pub-read__arrow, .reading__letter:hover, .reading__book:hover .reading__volume { transform: none; }
   .reading__ribbon { transition: none; }
 }
 @media (max-width: 760px) {
