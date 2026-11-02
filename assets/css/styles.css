@@ -1095,45 +1095,72 @@ em, i { font-style: italic; }
 }
 
 /* ----------------------------------------------------------------- editing: one page, composed like a magazine feature
-   No rules between the parts. Every part shares one measure (the same two edges, the same centre) and one
-   interval of space (80px; 52px on phones), so the page reads in a single, even rhythm, like a story. Each part's
-   name stands over it like a running head, flush left: the approach (the draft left, her words right); the service
-   in its box on the same two columns (its name left, what an author receives right); the writers' kind words. All the
-   words share one ink, like the home page. */
-.editing { --ed-space: var(--section); }
+   No rules between the parts. Every part shares one measure (the same two edges) and one interval of space, and each
+   part's name stands over it like a running head, flush left. Each part has its own composition: the approach opens
+   with her first sentence set large, then the draft (five parts) beside her words (six); the service is a plain box
+   of her wall colour set like a spread, its name large on the left, what an author receives on the right, on the same
+   edge as her words above; the writers' kind words are two cards, each opening with a line of it in italics. Ink
+   (#1c1b1a) for the words, her brown (#54453a) for what is secondary */
+.editing { --ed-space: var(--section); --ed-gap: clamp(48px, 6.4vw, 92px); }
 .ed-frame { max-width: calc(1040px + var(--gutter) * 2); }
 .service { padding-top: var(--ed-space); }
 .editing > :first-child { padding-top: var(--space-open); } /* whichever part opens the page */
 /* each part's name, standing over it */
 .ed-label { margin-bottom: clamp(28px, 3vw, 40px); }
 
-/* the service, unmistakably the offer: one box of her wall colour with a hairline drawn just inside its edge, opened
-   like a book. A fine spine runs down the middle of the gap between its two pages, on the same centre line as the
-   approach above, so the left-hand page ends on the edge of the draft and the right-hand page starts on the edge of
-   her words. On the left-hand page the label, the name (set large, as the page's title) and the rate, all flush
-   left; on the right-hand page what an author receives, flush from the spine, level with the middle of the name and
-   rate */
+/* the approach: her first sentence as the opening statement; beneath it the draft, in its own proportions, framed in
+   a slim band of her wall colour like the portrait, beside her words: the first capitals level with the picture's
+   top, her philosophy at the larger reading size, then, set apart and a little smaller in her brown, her background */
+.spread__lead {
+  max-width: 18em;
+  margin-bottom: clamp(40px, 4.6vw, 64px);
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(27px, 3vw, 42px);
+  line-height: 1.24;
+  letter-spacing: -.014em;
+  color: var(--text);
+  text-wrap: balance;
+}
+.spread__pair {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  column-gap: var(--ed-gap);
+  align-items: start;
+}
+.spread__image { padding: clamp(6px, .55vw, 8px); background: var(--wall); }
+.spread__image img { width: 100%; height: auto; }
+.spread__text {
+  font-family: var(--serif);
+  font-size: var(--t-lead);
+  line-height: 1.75;
+  color: var(--text);
+  text-wrap: pretty;
+}
+.spread__text > :first-child { margin-top: -.5em; } /* its first capitals level with the top of the picture */
+.spread__text > p + p { margin-top: 1.15em; }
+.spread__text > .spread__credits {
+  margin-top: clamp(36px, 3.6vw, 48px);
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  color: var(--umber);
+}
+
+/* the service: one plain box of her wall colour, set like a spread on the approach's columns. On the left its name,
+   the page's title and its focal point, with the rate beneath, smaller; on the right, starting on the edge of her
+   words above, what an author receives, its last line level with the rate. The name borrows a little of the gap so
+   it can stand large */
 .service__box {
-  position: relative;
-  padding: clamp(56px, 5.6vw, 80px) clamp(40px, 4.4vw, 64px);
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  column-gap: var(--ed-gap);
+  align-items: end;
+  align-items: last baseline;
+  padding-block: clamp(64px, 7vw, 104px);
   background: var(--wall);
 }
-.service__box::after {
-  content: "";
-  position: absolute;
-  inset: clamp(9px, .9vw, 13px);
-  border: 1px solid var(--line);
-  pointer-events: none;
-}
-.service__spread {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 48px;
-  align-items: center;
-  background: linear-gradient(var(--line-mid), var(--line-mid)) 50% 0 / 1px 100% no-repeat; /* the spine */
-}
+.service__head { padding-left: clamp(40px, 5.6vw, 80px); margin-right: calc(40px - var(--ed-gap)); }
 .service__title {
-  margin-top: 18px;
   font-family: var(--serif);
   font-weight: 400;
   font-size: clamp(40px, 4.3vw, 60px);
@@ -1147,53 +1174,59 @@ em, i { font-style: italic; }
   font-family: var(--serif);
   font-size: var(--t-lead);
   line-height: 1.4;
+  color: var(--text);
 }
-.service__price em { font-size: .82em; }
+.service__price em { font-size: .82em; color: var(--umber); }
 .service__text {
-  max-width: 24em;
+  max-width: 27em;
+  padding-right: clamp(40px, 5.6vw, 80px);
   font-family: var(--serif);
   font-size: var(--t-lead);
-  line-height: 1.7;
+  line-height: 1.75;
   color: var(--text);
   text-wrap: pretty;
 }
 
-/* the approach: the measure split down the middle of the page. On the left the marked-up draft, framed in a
-   slim band of her wall colour like the portrait, exactly as tall as the text beside it (trimmed at its sides,
-   never stretched); on the right one continuous column whose first capitals are level with the picture's top and
-   whose last line sits on the picture's foot: her words (the same size as the text, set apart only by italics and
-   quotation marks, the opening one hung just outside the edge), her way of working, her background */
-.spread__pair {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 48px;
-}
-.spread__image { position: relative; padding: clamp(6px, .55vw, 8px); background: var(--wall); }
-.spread__image picture { position: absolute; inset: clamp(6px, .55vw, 8px); }
-.spread__image img { width: 100%; height: 100%; object-fit: cover; object-position: 0 50%; }
-.spread__text {
-  margin-bottom: -.53em; /* the last line's baseline, not its leading, meets the picture's foot */
-  font-family: var(--serif);
-  font-size: var(--t-body);
-  line-height: var(--t-body-lh);
-  color: var(--text);
-  text-wrap: pretty;
-}
-.spread__quote {
-  margin: -.52em 0 24px -.42em; /* its first capitals level with the top of the picture */
-  padding-left: .42em;
-  text-indent: -.42em;
-  font-style: italic;
-}
-.spread__quote p::before { content: "\201C"; }
-.spread__quote p::after { content: "\201D"; }
-.spread__text > p + p { margin-top: 24px; }
-
-/* the kind words (Editing): the two testimonial cards on the approach's two columns, straight on the page, so the
-   service's box stays the page's one coloured block. The questions (Contact): matted on her wall colour like a
-   framed print, the numbered sheet in the middle */
+/* the kind words: two cards of paper side by side, each as tall as its own words. Each opens with a line from the
+   testimonial set large in italics (the only italics in the testimonials); then the testimonial in full, upright;
+   then a short, fine rule in her brown and the writer. Pointed at, a card lifts a little toward you */
 .kind,
 .questions { padding-block: var(--section); }
+.editing .testimonials { column-gap: clamp(32px, 4vw, 56px); align-items: start; }
+.editing .testimonial {
+  gap: 0;
+  padding: clamp(40px, 4.4vw, 60px) clamp(36px, 4vw, 56px);
+  transition: transform .6s var(--ease-out), box-shadow .6s var(--ease-out);
+}
+.editing .testimonial__pull {
+  margin-bottom: clamp(22px, 2.2vw, 30px);
+  text-indent: -.4em; /* the opening quotation mark hangs just outside the edge */
+  font-family: var(--serif);
+  font-style: italic;
+  max-width: 12em; /* both lines break the same way: two lines each */
+  font-size: clamp(22px, 2.1vw, 28px);
+  line-height: 1.3;
+  letter-spacing: -.01em;
+  color: var(--text);
+  text-wrap: balance;
+}
+.editing .testimonial blockquote { font-style: normal; color: var(--text); }
+.editing .testimonial figcaption { margin-top: clamp(26px, 2.6vw, 34px); padding-top: 0; border-top: 0; }
+.editing .testimonial figcaption::before { content: ""; width: 28px; height: 1px; margin-bottom: 14px; background: var(--umber); opacity: .55; }
+.editing .testimonial__work { font-style: normal; }
+@media (hover: hover) {
+  .editing .testimonial:hover {
+    transform: translateY(-6px) scale(1.012);
+    box-shadow: 0 2px 2px rgba(60, 40, 25, .04), 0 30px 46px -28px rgba(60, 40, 25, .42);
+  }
+  .editing .testimonial:hover::after { border-color: var(--line-mid); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .editing .testimonial { transition: box-shadow .3s ease; }
+  .editing .testimonial:hover { transform: none; }
+}
+
+/* the questions (Contact): matted on her wall colour like a framed print, the numbered sheet in the middle */
 .mat {
   display: flex;
   flex-direction: column;
@@ -1204,42 +1237,24 @@ em, i { font-style: italic; }
 }
 .mat .qa__sheet { width: min(100%, 700px); }
 .questions .faq__answer { color: var(--text); }
-.kind .testimonials { column-gap: 48px; }
-.kind .testimonial { padding: clamp(36px, 4vw, 56px); transition: transform .6s var(--ease-out), box-shadow .6s var(--ease-out); }
-/* pointed at, a card lifts a little toward you: it rises and grows slightly, its shadow deepening beneath it */
-@media (hover: hover) {
-  .kind .testimonial:hover {
-    transform: translateY(-6px) scale(1.012);
-    box-shadow: 0 2px 2px rgba(60, 40, 25, .04), 0 30px 46px -28px rgba(60, 40, 25, .42);
-  }
-  .kind .testimonial:hover::after { border-color: var(--line-mid); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .kind .testimonial { transition: box-shadow .3s ease; }
-  .kind .testimonial:hover { transform: none; }
-}
 
-/* tablets: every part narrows to one 580px column, so all the parts share the same two edges; the draft stands
-   above its words */
+/* tablets: every part narrows to one 580px column, so all the parts share the same two edges, and each stacks in its
+   reading order: the statement, the draft, her words; the service's name and rate, then what an author receives; one
+   card after the other */
 @media (max-width: 900px) {
-  .spread, .kind, .questions { max-width: calc(580px + var(--gutter) * 2); }
-  .spread__pair { grid-template-columns: minmax(0, 1fr); row-gap: 30px; }
-  /* stacked, the picture keeps its own proportions */
-  .spread__image picture { position: static; display: block; }
-  .spread__image img { height: auto; }
-  .spread__text { margin-bottom: 0; }
-  .service { max-width: calc(580px + var(--gutter) * 2); }
-  /* stacked, the book closes: the label, name and rate, then, under a fine rule where the spine was, what an
-     author receives, all flush left */
-  .service__spread { grid-template-columns: minmax(0, 1fr); background: none; }
-  .service__text { margin-top: 28px; padding-top: 26px; border-top: 1px solid var(--line-mid); }
+  .spread, .service, .kind, .questions { max-width: calc(580px + var(--gutter) * 2); }
+  .spread__pair { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
+  .spread__text > :first-child { margin-top: 0; }
+  .service__box { grid-template-columns: minmax(0, 1fr); padding: 56px 40px 52px; }
+  .service__head { padding-left: 0; margin-right: 0; }
+  .service__text { margin-top: 28px; padding-right: 0; }
 }
 @media (max-width: 600px) {
   .spread__image { padding: 6px; }
-  .service__box { padding: 48px 28px 40px; }
-  .service__box::after { inset: 8px; }
+  .service__box { padding: 44px 26px 40px; }
+  .service__title { font-size: min(40px, calc((100vw - 96px) / 6.6)); } /* "Developmental" always fits the box */
   .mat { gap: 24px; padding: 36px 10px 10px; }
-  .kind .testimonial { padding: 32px 24px; }
+  .editing .testimonial { padding: 34px 24px 32px; }
 }
 
 /* ----------------------------------------------------------------- publications: a gallery of her published work
