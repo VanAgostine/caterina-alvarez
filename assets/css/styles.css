@@ -1060,8 +1060,8 @@ em, i { font-style: italic; }
    like a book. A fine spine runs down the middle of the gap between its two pages, on the same centre line as the
    approach above, so the left-hand page ends on the edge of the draft and the right-hand page starts on the edge of
    her words. On the left-hand page the label, the name (set large, as the page's title) and the rate, all flush
-   against the spine; on the right-hand page what an author receives, flush from the spine, level with the middle of
-   the name and rate */
+   left; on the right-hand page what an author receives, flush from the spine, level with the middle of the name and
+   rate */
 .service__box {
   position: relative;
   padding: clamp(56px, 5.6vw, 80px) clamp(40px, 4.4vw, 64px);
@@ -1081,7 +1081,6 @@ em, i { font-style: italic; }
   align-items: center;
   background: linear-gradient(var(--line-mid), var(--line-mid)) 50% 0 / 1px 100% no-repeat; /* the spine */
 }
-.service__head { text-align: right; }
 .service__title {
   margin-top: 18px;
   font-family: var(--serif);
@@ -1184,7 +1183,6 @@ em, i { font-style: italic; }
   /* stacked, the book closes: the label, name and rate, then, under a fine rule where the spine was, what an
      author receives, all flush left */
   .service__spread { grid-template-columns: minmax(0, 1fr); background: none; }
-  .service__head { text-align: left; }
   .service__text { margin-top: 28px; padding-top: 26px; border-top: 1px solid var(--line-mid); }
 }
 @media (max-width: 600px) {
