@@ -58,13 +58,12 @@
   <div class="menu" id="site-menu" data-menu inert>
     <div class="container menu__inner">
       <nav aria-label="Menu">
-        <span class="eyebrow menu__contents" aria-hidden="true">Contents</span>
         <ul class="menu__list">
-          <li><a href="./"><span></span>Home</a></li>
-          <li><a href="editing.html"><span>I.</span>Editing</a></li>
-          <li><a href="publications.html"><span>II.</span>Publications</a></li>
-          <li><a href="about.html" aria-current="page"><span>III.</span>About</a></li>
-          <li><a href="contact.html"><span>IV.</span>Contact</a></li>
+          <li><a href="./">Home</a></li>
+          <li><a href="editing.html">Editing</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
       <div class="menu__foot">
@@ -110,6 +109,66 @@
           <p>Caterina has been editing fiction and poetry for <a class="text-link" href="https://www.thirtywestph.com/" rel="noopener" target="_blank">Thirty West Publishing House</a> since May 2022 and <a class="text-link" href="https://flashfictionmagazine.com/" rel="noopener" target="_blank"><em>Flash Fiction Magazine</em></a> since June 2023. She has also edited several full-length works-in-progress as a freelance developmental editor. While she received her Masters at USC Annenberg School (2000), she began studying the art and craft of fiction in 2016 at The Lighthouse Writers Workshop, where she continues to study to this day. She has studied literary theory and criticism as well as the nuts and bolts of technique with an astounding collection of professors ranging from famous authors like Rachel Cusk, Rebecca Makkai, and Mat Johnson to professors from top-tier universities like Brown and many more. She is forever grateful for the education from Lighthouse.</p>
         </div>
       </div>
+    </section>
+
+    <!-- Her reading: the books on the art and craft of fiction she loves, their covers in one row that scrolls sideways
+         like the gallery on the Publications page (the line beneath built by main.js); then the craft newsletters she
+         reads, each a link to its Substack -->
+    <section class="container reading" aria-labelledby="books-title">
+      <div class="reading__books" data-gallery>
+        <h2 id="books-title" class="reading__lead">Caterina’s favorite books on the art and craft of fiction include:</h2>
+        <div class="pub-gallery__track" tabindex="0" role="region" aria-labelledby="books-title" data-gallery-track>
+          <ol class="reading__list">
+          <li class="reading__book" data-gallery-panel>
+            <picture>
+              <source srcset="assets/img/book-gardner-art-of-fiction.webp" type="image/webp">
+              <img src="assets/img/book-gardner-art-of-fiction.jpg" width="469" height="700" loading="lazy" decoding="async" alt="The cover of The Art of Fiction: Notes on Craft for Young Writers by John Gardner.">
+            </picture>
+            <h3 class="reading__title"><em>The Art of Fiction</em></h3>
+            <p class="reading__author">John Gardner</p>
+          </li>
+          <li class="reading__book" data-gallery-panel>
+            <picture>
+              <source srcset="assets/img/book-livesey-hidden-machinery.webp" type="image/webp">
+              <img src="assets/img/book-livesey-hidden-machinery.jpg" width="467" height="700" loading="lazy" decoding="async" alt="The cover of The Hidden Machinery: Essays on Writing by Margot Livesey.">
+            </picture>
+            <h3 class="reading__title"><em>The Hidden Machinery</em></h3>
+            <p class="reading__author">Margot Livesey</p>
+          </li>
+          <li class="reading__book" data-gallery-panel>
+            <picture>
+              <source srcset="assets/img/book-kardos-art-and-craft-of-fiction.webp" type="image/webp">
+              <img src="assets/img/book-kardos-art-and-craft-of-fiction.jpg" width="597" height="700" loading="lazy" decoding="async" alt="The cover of The Art and Craft of Fiction: A Writer’s Guide by Michael Kardos.">
+            </picture>
+            <h3 class="reading__title"><em>The Art and Craft of Fiction</em></h3>
+            <p class="reading__author">Michael Kardos</p>
+          </li>
+          <li class="reading__book" data-gallery-panel>
+            <picture>
+              <source srcset="assets/img/book-saunders-swim-in-a-pond-in-the-rain.webp" type="image/webp">
+              <img src="assets/img/book-saunders-swim-in-a-pond-in-the-rain.jpg" width="462" height="700" loading="lazy" decoding="async" alt="The cover of A Swim in a Pond in the Rain by George Saunders.">
+            </picture>
+            <h3 class="reading__title"><em>A Swim in a Pond in the Rain</em></h3>
+            <p class="reading__author">George Saunders</p>
+          </li>
+          <li class="reading__book" data-gallery-panel>
+            <picture>
+              <source srcset="assets/img/book-booth-rhetoric-of-fiction.webp" type="image/webp">
+              <img src="assets/img/book-booth-rhetoric-of-fiction.jpg" width="474" height="700" loading="lazy" decoding="async" alt="The cover of The Rhetoric of Fiction by Wayne C. Booth.">
+            </picture>
+            <h3 class="reading__title"><em>The Rhetoric of Fiction</em></h3>
+            <p class="reading__author">Wayne C. Booth</p>
+          </li>
+          </ol>
+        </div>
+        <div class="pub-line" role="group" aria-label="Choose a book" hidden data-gallery-line></div>
+      </div>
+      <h2 id="letters-title" class="reading__lead reading__lead--letters">Her favorite craft newsletters, on Substack:</h2>
+      <ul class="reading__letters" aria-labelledby="letters-title">
+        <li><a class="reading__letter" href="https://ninaschuyler.substack.com/" rel="noopener" target="_blank"><span class="reading__name"><em>Stunning Sentences</em></span><span class="reading__by">Nina Schuyler</span><span class="reading__arrow" aria-hidden="true">→</span></a></li>
+        <li><a class="reading__letter" href="https://rebeccamakkai.substack.com/" rel="noopener" target="_blank"><span class="reading__name"><em>SubMakk</em></span><span class="reading__by">Rebecca Makkai</span><span class="reading__arrow" aria-hidden="true">→</span></a></li>
+        <li><a class="reading__letter" href="https://1000wordsofsummer.substack.com/" rel="noopener" target="_blank"><span class="reading__name"><em>Craft Talk</em></span><span class="reading__by">Jami Attenberg</span><span class="reading__arrow" aria-hidden="true">→</span></a></li>
+      </ul>
     </section>
 
     <nav class="pager" aria-label="Grand Avenue: previous and next">
