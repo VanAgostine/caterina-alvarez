@@ -1139,7 +1139,7 @@ em, i { font-style: italic; }
      second, stepped two grid columns in (a sixth of the width and one gap); up to 92px, scaling down with the width
      so the longest word always fits with room to spare; in the space beneath the first line and before "editing", a small upright
      annotation in her brown, its last line on "editing"'s baseline;
-   - a fine rule, then three short columns: for your manuscript, what you receive, what we explore (her description,
+   - then three white cards of paper: for your manuscript, what you receive, what we explore (her description,
      divided, each detail once);
    - generous space, a hairline, then the commission line: the rate on the left, the way to begin on the right, its
      underline running on to the arrow when pointed at or focused.
@@ -1177,14 +1177,20 @@ em, i { font-style: italic; }
   color: var(--umber);
 }
 
+/* the offer on three white cards of paper resting on her ivory, framed like the testimonials (.frame), each as tall
+   as the tallest, lifting a little toward you when pointed at, as they do */
 .service__grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: clamp(28px, 3.6vw, 52px);
+  gap: clamp(16px, 1.8vw, 24px);
   margin-top: clamp(48px, 5.2vw, 76px);
-  padding-top: clamp(26px, 2.6vw, 34px);
-  border-top: 1px solid var(--line);
 }
+.service__col { padding: clamp(28px, 2.8vw, 38px) clamp(26px, 2.6vw, 34px) clamp(30px, 3vw, 40px); transition: transform .6s var(--ease-out), box-shadow .6s var(--ease-out); }
+@media (hover: hover) {
+  .service__col:hover { transform: translateY(-6px) scale(1.012); box-shadow: 0 2px 2px rgba(60, 40, 25, .04), 0 30px 46px -28px rgba(60, 40, 25, .42); }
+  .service__col:hover::after { border-color: var(--line-mid); }
+}
+@media (prefers-reduced-motion: reduce) { .service__col:hover { transform: none; } }
 .service__key { margin-bottom: 14px; font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .28em; text-transform: uppercase; color: var(--umber); }
 .service__col p,
 .service__gets li { font-family: var(--serif); font-size: var(--t-lead); line-height: 1.6; color: var(--text); text-wrap: pretty; }
@@ -1285,7 +1291,7 @@ em, i { font-style: italic; }
   .service__inner, .kind { max-width: calc(580px + var(--gutter) * 2); }
   /* the service: "editing" stepped in less; the annotation beneath the whole title; the three columns as groups */
   .service__composition { --indent: 9cqi; }
-  .service__grid { grid-template-columns: minmax(0, 1fr); row-gap: 30px; }
+  .service__grid { grid-template-columns: minmax(0, 1fr); }
   /* the masthead stacks as on Publications: the draft at the right below her words, still crossing the band's edge */
   .ed-approach { --hang: 0px; }
   .ed-approach .pub-hero__art { align-self: auto; width: min(100%, 440px); }
