@@ -1313,7 +1313,8 @@ em, i { font-style: italic; }
   justify-content: space-between; /* the title at the top, her line at the foot of the band */
   padding-bottom: calc(var(--hang) + clamp(28px, 2.8vw, 44px));
 }
-/* one heading: "From" on a small upright line, "Grand Avenue" in italics at the site's title size */
+/* one heading: a small upright word ("The") on its own line, then the title in italics at the site's title size
+   ("Latest Stories" here, "Approach" on Editing) */
 .pub-hero__title {
   margin-top: 18px;
   font-family: var(--serif);
