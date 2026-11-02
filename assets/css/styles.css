@@ -1093,7 +1093,7 @@ em, i { font-style: italic; }
   --p-ivory: var(--wall);
 }
 .ed-frame { max-width: calc(1040px + var(--gutter) * 2); }
-.service { padding-top: var(--ed-space); }
+.service { margin-top: var(--ed-space); }
 /* each part's name, standing over it */
 .ed-label { margin-bottom: clamp(28px, 3vw, 40px); }
 
@@ -1108,143 +1108,112 @@ em, i { font-style: italic; }
 .ed-approach .pub-hero__art img { height: 100%; object-fit: cover; object-position: 0 50%; }
 .ed-approach .pub-hero__quote { max-width: 30em; }
 
-/* the service: no box, set flush left on the page's edge and kept compact, like an entry in a fine catalogue, and
-   marked as if by her own pen, in the terracotta of the draft's margin line (--clay), the page's only pen colour:
-   - its label; its name, the page's title, with "editing" underlined in one stroke of ink, drawn in once as it comes
-     into view (the proofreader's mark for italics); one line on what it is, in italics;
-   - then a sheet ruled like the lined paper of the draft: fine rules across, a terracotta margin line down, the labels
-     set in the margin against it and everything else beyond it: what an author receives, two things numbered in her
-     brown; the areas of focus, each circled in ink when pointed at, like the circle she draws; and the rate, in
-     old-style figures, with the way to begin, a tan button whose fine arrow lengthens when pointed at */
-.service { --pen: var(--clay); --key: clamp(118px, 12.5vw, 172px); --margin: clamp(48px, 5vw, 72px); }
+/* the service, "a story, closely read": the page's defining moment. A full-width band of her ivory, inside it the
+   page's own margins (the inner container is a size container, so the title can be set to the width it has):
+   - a small label, a fine rule running on from it across the rest of the width;
+   - the title as one composition: "Developmental" on the first line, "editing" a tenth larger in italics on the
+     second, stepped two grid columns in (a sixth of the width and one gap); set as large as the width allows, up to
+     140px, the longest word always fitting; in the space beneath the first line and before "editing", a small upright
+     annotation in her brown, its last line on "editing"'s baseline;
+   - a fine rule, then three short columns: for your manuscript, what you receive, what we explore (her description,
+     divided, each detail once);
+   - generous space, a hairline, then the commission line: the rate on the left, the way to begin on the right, its
+     underline running on to the arrow when pointed at or focused.
+   The title's two words arrive as words, fading up from 10px; everything is visible without scripts */
+.service { padding-block: clamp(64px, 7vw, 112px); background: var(--wall); }
+.service__inner { container-type: inline-size; }
+.service__intro { display: flex; align-items: center; gap: 22px; }
+.service__intro::after { content: ""; flex: 1; height: 1px; background: var(--line-mid); }
+
+.service__composition {
+  --ts: min(140px, 100cqi / 6.9);
+  --indent: calc((100cqi + 24px) / 6);
+  position: relative;
+  margin-top: clamp(40px, 5vw, 72px);
+}
 .service__title {
-  margin-top: clamp(18px, 1.8vw, 24px);
   font-family: var(--serif);
   font-weight: 400;
-  font-size: var(--t-title);
-  line-height: 1.05;
-  letter-spacing: -.018em;
+  font-size: var(--ts);
+  line-height: .92;
+  letter-spacing: -.026em;
   color: var(--text);
 }
-.service__marked { position: relative; display: inline-block; }
-.service__stroke {
+.service__word { display: block; }
+.service__word--second { margin-left: var(--indent); margin-top: .11em; font-size: 1.1em; font-style: italic; letter-spacing: -.02em; } /* clear of the first line's descenders */
+.js .service__title [data-reveal] { translate: 0 10px; }
+.service__aside {
   position: absolute;
-  left: -.04em;
-  bottom: -.2em;
-  width: calc(100% + .14em);
-  height: .3em;
-  overflow: visible;
-  pointer-events: none;
-}
-/* the pen's marks are drawn in by a mask that sweeps along them: left to right under the word, round the loop for
-   the circles (the two properties are registered so the sweep can be animated) */
-@property --pen-reach { syntax: "<percentage>"; inherits: false; initial-value: 110%; }
-@property --pen-loop { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
-.service__stroke path,
-.service__circle path {
-  fill: none;
-  stroke: var(--pen);
-  stroke-width: 1.5px;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
-}
-.service__stroke {
-  --pen-reach: 110%;
-  -webkit-mask-image: linear-gradient(90deg, #000 var(--pen-reach), transparent calc(var(--pen-reach) + 8%));
-  mask-image: linear-gradient(90deg, #000 var(--pen-reach), transparent calc(var(--pen-reach) + 8%));
-}
-/* with scripts running, the stroke waits until the title comes into view, then is drawn in, left to right */
-.js .service__marked:not(.is-inked) .service__stroke { --pen-reach: -8%; }
-.js .service__marked .service__stroke { transition: --pen-reach 1.4s cubic-bezier(.6, 0, .3, 1) .35s; }
-.service__intro {
-  max-width: 30em;
-  margin-top: clamp(22px, 2.2vw, 30px);
+  left: 0;
+  bottom: calc(var(--ts) * .2 - .61em); /* its last line on "editing"'s baseline */
+  width: calc(var(--indent) - 28px);
   font-family: var(--serif);
-  font-style: italic;
-  font-size: var(--t-lead);
-  line-height: 1.6;
+  font-size: var(--t-body);
+  line-height: 1.5;
   color: var(--umber);
-  text-wrap: pretty;
 }
 
-/* the ruled sheet: rules across, the margin line down, through every rule, from the top rule to the bottom one */
-.service__sheet { position: relative; margin-top: clamp(40px, 4vw, 56px); border-top: 1px solid var(--line-mid); }
-.service__sheet::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: calc(var(--key) + var(--margin) / 2);
-  width: 1px;
-  background: var(--pen);
-  opacity: .55;
-}
-.service__row {
+.service__grid {
   display: grid;
-  grid-template-columns: var(--key) minmax(0, 1fr);
-  column-gap: var(--margin);
-  align-items: baseline;
-  padding-block: clamp(24px, 2.4vw, 32px);
-  border-bottom: 1px solid var(--line);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: clamp(28px, 3.6vw, 52px);
+  margin-top: clamp(48px, 5.2vw, 76px);
+  padding-top: clamp(26px, 2.6vw, 34px);
+  border-top: 1px solid var(--line-mid);
 }
-.service__row:last-child { border-bottom-color: var(--line-mid); }
-.service__key { font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .28em; margin-right: -.28em; text-transform: uppercase; text-align: right; color: var(--umber); }
-.service__row dd { margin: 0; }
-.service__gets { display: flex; flex-wrap: wrap; gap: 10px clamp(32px, 4vw, 64px); counter-reset: get; }
-.service__gets li {
-  counter-increment: get;
+.service__key { margin-bottom: 14px; font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .28em; text-transform: uppercase; color: var(--umber); }
+.service__col p,
+.service__gets li { font-family: var(--serif); font-size: var(--t-lead); line-height: 1.6; color: var(--text); text-wrap: pretty; }
+.service__gets li + li { margin-top: 4px; }
+
+.service__commission {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px 48px;
+  margin-top: clamp(56px, 6vw, 92px);
+  padding-top: clamp(24px, 2.4vw, 32px);
+  border-top: 1px solid var(--line);
+}
+.service__price { font-family: var(--serif); font-size: clamp(30px, 2.9vw, 40px); line-height: 1; letter-spacing: -.01em; font-variant-numeric: oldstyle-nums; color: var(--text); }
+.service__per { margin-left: .3em; font-size: var(--t-lead); font-style: italic; letter-spacing: 0; color: var(--umber); }
+.service__remote { margin-top: 10px; font-size: var(--t-small); line-height: 1.5; letter-spacing: .02em; color: var(--umber); }
+/* the way to begin: her words and a fine drawn arrow; the underline runs on from the words to the arrow's point when
+   pointed at or focused. A generous target: the whole line, at least 48px tall */
+.service__cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 48px;
+  padding-block: 8px;
   font-family: var(--serif);
   font-size: var(--t-heading);
   line-height: 1.3;
   color: var(--text);
 }
-.service__gets li::before { content: counter(get, upper-roman) "."; margin-right: .6em; font-style: italic; font-size: .64em; color: var(--umber); }
-.service__focus { display: flex; flex-wrap: wrap; font-family: var(--serif); font-size: var(--t-lead); line-height: 1.75; color: var(--text); }
-.service__focus li + li::before { content: "\00B7"; margin: 0 .55em; color: var(--umber); }
-/* each area of focus, circled in one loop of ink when pointed at, the pen overshooting where it began */
-.service__term { position: relative; display: inline-block; }
-.service__circle {
+.service__cta::after {
+  content: "";
   position: absolute;
-  left: -.42em;
-  top: -.4em;
-  width: calc(100% + .84em);
-  height: calc(100% + .8em);
-  overflow: visible;
-  pointer-events: none;
-  --pen-loop: 0deg;
-  -webkit-mask-image: conic-gradient(from 228deg, #000 var(--pen-loop), transparent 0);
-  mask-image: conic-gradient(from 228deg, #000 var(--pen-loop), transparent 0);
-  transition: --pen-loop .3s ease;
+  left: 0;
+  bottom: 6px;
+  width: calc(100% - 64px); /* under the words: the arrow (46px) and the gap (18px) left uncovered */
+  height: 1px;
+  background: currentColor;
+  transition: width .6s var(--ease-out);
 }
-@media (hover: hover) {
-  .service__term:hover .service__circle { --pen-loop: 400deg; transition: --pen-loop .75s cubic-bezier(.5, 0, .3, 1); }
+.service__cta:hover::after,
+.service__cta:focus-visible::after { width: 100%; }
+.service__cta-arrow { flex: none; width: 46px; height: 12px; }
+.service__cta:focus-visible { outline: 1px solid var(--text); outline-offset: 8px; }
+/* where the title is too small to leave room beneath its first line, the annotation follows the whole title */
+@media (max-width: 1000px) {
+  .service__aside { position: static; width: auto; margin-top: 26px; }
 }
-/* where the six would not fit on one line, they sit in a small grid instead, so no line ever starts with a dot */
-@media (max-width: 1100px) {
-  .service__focus { display: grid; grid-template-columns: repeat(auto-fill, minmax(10.5em, 1fr)); column-gap: 24px; line-height: 1.7; }
-  .service__focus li + li::before { content: none; }
-  .service__focus li { justify-self: start; }
-}
-.service__note { margin-top: 8px; font-family: var(--serif); font-size: var(--t-body); line-height: var(--t-body-lh); color: var(--umber); }
-.service__row--rate { align-items: center; }
-.service__rate { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; }
-.service__price { font-family: var(--serif); font-size: var(--t-heading); line-height: 1.3; font-variant-numeric: oldstyle-nums; color: var(--text); }
-.service__price em { font-size: .68em; color: var(--umber); }
-.service__begin { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
-.service__button { min-height: 50px; padding: 0 30px; gap: 1em; background: var(--wall); color: var(--text); border-color: var(--wall); }
-.service__button:hover { background: var(--greige); border-color: var(--greige); color: var(--text); }
-.service__button:active { background: var(--greige); }
-/* the fine arrow lengthens when pointed at, its head moving on */
-.service__go { width: 26px; height: 10px; overflow: visible; transition: width .55s var(--ease-out); }
-.service__go path { transition: d .55s var(--ease-out); }
-.service__button:hover .service__go { width: 38px; }
-.service__button:hover .service__go path { d: path("M.5 5H41M36.5.5 41 5l-4.5 4.5"); }
-.service__remote { font-size: var(--t-small); line-height: 1.5; letter-spacing: .02em; color: var(--umber); }
 @media (prefers-reduced-motion: reduce) {
-  .js .service__marked .service__stroke, .service__circle, .service__term:hover .service__circle { transition: none; }
-  .js .service__marked:not(.is-inked) .service__stroke { --pen-reach: 110%; }
-  .service__go, .service__go path { transition: none; }
+  .service__cta::after { transition: none; }
+  .js .service__title [data-reveal] { translate: none; }
 }
 
 /* the kind words: two cards of paper side by side, each as tall as its own words. Each opens with a line from the
@@ -1301,28 +1270,18 @@ em, i { font-style: italic; }
    reading order: the statement, the draft, her words; the service's name and rate, then what an author receives; one
    card after the other */
 @media (max-width: 900px) {
-  .service, .kind, .questions { max-width: calc(580px + var(--gutter) * 2); }
+  .service__inner, .kind, .questions { max-width: calc(580px + var(--gutter) * 2); }
+  /* the service: "editing" stepped in less; the annotation beneath the whole title; the three columns as groups */
+  .service__composition { --indent: 9cqi; }
+  .service__grid { grid-template-columns: minmax(0, 1fr); row-gap: 30px; }
   /* the masthead stacks as on Publications: the draft at the right below her words, still crossing the band's edge */
   .ed-approach { --hang: 40px; }
   .ed-approach .pub-hero__art { align-self: auto; width: min(88%, 440px); }
   .ed-approach .pub-hero__art img { height: auto; }
 }
 @media (max-width: 600px) {
-  .service__title { font-size: min(var(--t-title), calc((100vw - 48px) / 6.6)); } /* "Developmental" always fits the page */
-  /* the sheet stacks: each label above its row; the rate, then the button across the column */
-  /* stacked: no margin line; each label above its row, flush left */
-  .service__sheet::before { content: none; }
-  .service__row { grid-template-columns: minmax(0, 1fr); row-gap: 12px; }
-  .service__key { text-align: left; margin-right: 0; }
-  .service__gets { flex-direction: column; }
-  .service__focus { grid-template-columns: repeat(2, auto); justify-content: start; column-gap: 28px; font-size: var(--t-body); }
-  .service__begin { align-items: stretch; width: 100%; }
-  .service__button { width: 100%; }
-  .service__remote { text-align: center; }
-@media (max-width: 359px) {
-  .service__focus { grid-template-columns: minmax(0, 1fr); }
-  .service__gets li { font-size: 18px; }
-}
+  .service__composition { --indent: 7cqi; margin-top: 32px; }
+  .service__commission { flex-direction: column; align-items: flex-start; }
   .mat { gap: 24px; padding: 36px 10px 10px; }
   .editing .testimonial { padding: 34px 24px 32px; }
 }
