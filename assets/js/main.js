@@ -130,7 +130,7 @@
     const end = document.querySelector('.pager') || document.querySelector('.site-footer');
     const cue = document.createElement('div');
     cue.className = 'scroll-cue is-hidden';
-    cue.innerHTML = '<button class="scroll-cue__arrow" type="button" aria-label="Scroll down"><svg viewBox="0 0 18 10" aria-hidden="true" focusable="false"><path d="M1 1l8 8 8-8" fill="none" stroke="currentColor" stroke-width="1"/></svg></button>';
+    cue.innerHTML = '<button class="scroll-cue__arrow" type="button" aria-label="Scroll down"><svg viewBox="0 0 20 14" aria-hidden="true" focusable="false"><path d="M18.5 1.5c-4.4 2.2-7.4 6-8.5 11.5-1.1-5.5-4.1-9.3-8.5-11.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg></button>';
     body.appendChild(cue);
     const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
     cue.querySelector('button').addEventListener('click', () => {

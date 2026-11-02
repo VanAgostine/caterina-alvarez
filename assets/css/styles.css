@@ -1039,7 +1039,7 @@ em, i { font-style: italic; }
   cursor: pointer;
   transition: color .3s ease;
 }
-.scroll-cue__arrow svg { display: block; width: 18px; height: 10px; animation: scroll-cue 2.8s var(--ease) infinite; }
+.scroll-cue__arrow svg { display: block; width: 20px; height: 14px; overflow: visible; animation: scroll-cue 2.8s var(--ease) infinite; }
 .scroll-cue__arrow:hover { color: var(--text); }
 .scroll-cue__arrow:focus-visible { outline-offset: 2px; }
 @keyframes scroll-cue { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
@@ -1061,7 +1061,7 @@ em, i { font-style: italic; }
 .pager__link--next { justify-self: end; text-align: right; }
 /* just the arrow: a long, thin line that steps forward when you point at it */
 .pager__icon { display: block; flex: none; line-height: 0; }
-.pager__icon svg { display: block; width: 44px; height: 12px; transition: transform .6s var(--ease-out); }
+.pager__icon svg { display: block; width: 64px; height: auto; overflow: visible; transition: transform .6s var(--ease-out); } /* the cover's pen-drawn arrow */
 .pager__text { display: flex; flex-direction: column; gap: 4px; }
 .pager__dir { font-size: 10px; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: var(--umber); }
 .pager__title { font-family: var(--serif); font-size: var(--t-lead); line-height: 1.2; }
@@ -1087,7 +1087,7 @@ em, i { font-style: italic; }
   .pager__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 12px; padding-block: 34px 24px; }
   .pager__where { grid-column: 1 / -1; grid-row: 1; }
   .pager__link { gap: 12px; }
-  .pager__icon svg { width: 32px; height: 10px; }
+  .pager__icon svg { width: 46px; }
   .pager__dir { font-size: 9.5px; letter-spacing: .2em; }
   .pager__title { font-size: 15.5px; }
 }
@@ -1373,7 +1373,7 @@ em, i { font-style: italic; }
    a restrained arrow that steps forward on hover; its underline warms to terracotta */
 .pub-read {
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
   gap: .7em;
   font-family: var(--sans);
   font-weight: 500;
@@ -1391,7 +1391,7 @@ em, i { font-style: italic; }
   text-decoration-color: rgba(32, 30, 27, .3);
   transition: text-decoration-color .3s ease;
 }
-.pub-read__arrow { letter-spacing: 0; transition: transform .45s var(--ease-out); }
+.pub-read__arrow { flex: none; width: 30px; height: auto; overflow: visible; transition: transform .45s var(--ease-out); } /* the cover's pen-drawn arrow, small */
 .pub-read:hover .pub-read__word { text-decoration-color: var(--p-accent); }
 .pub-read:hover .pub-read__arrow { transform: translateX(4px); }
 .pub-read:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 6px; }
