@@ -1101,9 +1101,9 @@ em, i { font-style: italic; }
 .ed-label { margin-bottom: clamp(28px, 3vw, 40px); }
 
 /* the approach: laid out like the Publications masthead (see there), but on the page's own ground, without its band
-   (the service below carries the page's band): her words on the left, the marked-up draft in its near-white mat on the
-   right, its top level with the page label. Where her words run longer than the draft is tall, the plate grows to
-   their height and the draft is trimmed a little at its right side, never stretched. Her words are set in italics */
+   (the service below carries the page's band): her words on the left, opening with a drop capital; the marked-up
+   draft through a window on the right, its top level with the page label. Where her words run longer than the draft
+   is tall, the window grows to their height and the draft is trimmed a little at its right side, never stretched */
 .ed-approach { --hang: 0px; --ed-art: clamp(360px, calc(30vw + 80px), 470px); }
 .ed-approach .pub-masthead { --hang: inherit; }
 .ed-approach .pub-masthead::before { content: none; } /* on the page's own ground: the service below has the band */
@@ -1122,6 +1122,15 @@ em, i { font-style: italic; }
 .ed-window__pane picture { flex: 1 0 auto; display: block; }
 .ed-approach .pub-hero__art img { height: 100%; object-fit: cover; object-position: 0 50%; }
 .ed-approach .pub-hero__quote { max-width: 30em; }
+/* her words open the part as the Introduction opens the book: a drop capital two lines deep, its top level with the
+   capitals beside it, then the opening words in spaced capitals (the same measures as the Introduction's M) */
+.ed-approach__text { max-width: 31em; margin-top: 28px; font-family: var(--serif); font-size: var(--t-body); line-height: 1.85; color: var(--text); text-wrap: pretty; }
+.ed-approach__text .dropcap::first-letter { margin: .14em .06em 0 -.05em; font-size: 3.66em; line-height: .8; color: var(--text); }
+@supports (-moz-appearance: none) {
+  .ed-approach__text .dropcap::first-letter { margin-top: .182em; }
+}
+.ed-approach__text .dropcap::first-line { text-transform: none; letter-spacing: normal; font-size: 1em; }
+.ed-approach__text .lead-in { text-transform: uppercase; letter-spacing: .1em; font-size: .86em; }
 
 /* the service, "a story, closely read": the page's defining moment. A full-width band of her ivory, inside it the
    page's own margins (the inner container is a size container, so the title can be set to the width it has):
@@ -1771,6 +1780,14 @@ em, i { font-style: italic; }
 @media (max-width: 900px) { .motto__art, .motto__text { grid-column: 1 / -1; } }
 
 /* ----------------------------------------------------------------- contact */
+/* the opening, as the other parts open: the part's label, then "Write" on a small upright line above "to me" in
+   italics at the title size (the Publications title's measures, see .pub-hero__title) */
+.contact-hero { --p-ink: var(--text); padding-block: var(--space-open) clamp(40px, 4.4vw, 64px); }
+/* the form is a sheet of her letter paper: her name in spaced capitals and her imprint at its head, as on the cover,
+   above a fine rule */
+.letterhead { margin-bottom: clamp(30px, 3.2vw, 44px); padding-bottom: clamp(22px, 2.4vw, 30px); border-bottom: 1px solid var(--line); text-align: center; }
+.letterhead__name { font-family: var(--serif); font-size: min(var(--t-heading), 6.2vw); line-height: 1.1; letter-spacing: .1em; margin-right: -.1em; text-transform: uppercase; white-space: nowrap; color: var(--text); }
+.letterhead__imprint { margin-top: 10px; font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.5; letter-spacing: .28em; margin-right: -.28em; text-transform: uppercase; color: var(--umber); }
 .contact { row-gap: 56px; align-items: start; }
 .contact__form { grid-column: 1 / 8; padding: clamp(32px, 4.4vw, 64px); }
 .contact__aside { grid-column: 9 / 13; display: flex; flex-direction: column; gap: 22px; }
