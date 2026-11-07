@@ -1410,14 +1410,14 @@ em, i { font-style: italic; }
 .pub-gallery__track::-webkit-scrollbar { display: none; }
 .pub-gallery__track:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 6px; }
 
-/* one shared grid: every panel's recognition line, journal, date, title and link sit on the same lines across the
-   row (subgrid). The titles all start on one line with any sentence right beneath; the open space falls between
+/* one shared grid: every panel's picture, recognition line, journal, date, title and link sit on the same lines across
+   the row (subgrid). The titles all start on one line with any sentence right beneath; the open space falls between
    them and the Read link at the foot. About three panels and part of the next are in view */
 .pub-gallery__list {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: clamp(300px, calc((100% - 3 * var(--p-gap)) / 3.3), 340px);
-  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto auto auto minmax(0, 1fr) auto;
   column-gap: var(--p-gap);
   min-height: 300px;
 }
@@ -1440,16 +1440,28 @@ em, i { font-style: italic; }
 .pub-panel--ink .pub-read__word { text-decoration-color: rgba(244, 238, 229, .4); }
 .pub-panel--ink .pub-read:focus-visible { outline-color: var(--p-ivory); }
 
-.pub-panel__honour { grid-row: 1; display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+/* each work opens with the picture its journal ran it under, all cut to one banner shape and framed like every
+   picture on the site (see .window): on her ivory the band melts into the panel and leaves a fine line around the
+   picture; on the ink panel it reads as an ivory mat */
+.pub-panel__plate {
+  grid-row: 1;
+  justify-self: stretch;
+  margin-bottom: 22px;
+  padding: clamp(6px, .55vw, 8px);
+  border: 1px solid var(--greige);
+  background: var(--wall);
+}
+.pub-panel__plate img { display: block; width: 100%; height: auto; }
+.pub-panel__honour { grid-row: 2; display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 /* the honour marked with a small medal on its ribbon, drawn in a fine terracotta line: the ribbon's two tails
    crossing above it, lightly filled, and a filled star at its centre */
 .pub-panel__medal { flex: none; width: 16px; height: 20px; overflow: visible; }
 .pub-panel__medal path, .pub-panel__medal circle { fill: none; stroke: var(--p-accent); stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
 .pub-panel__medal .pub-panel__star { fill: var(--p-accent); stroke: none; }
 .pub-panel__medal .pub-panel__ribbon { fill: var(--p-accent); fill-opacity: .35; } /* the ribbon's two tails, crossing */
-.pub-panel__journal { grid-row: 2; font-family: var(--serif); font-size: var(--t-body); line-height: 1.45; }
-.pub-panel .pub-date { grid-row: 3; margin-top: 2px; }
-.pub-panel__body { grid-row: 4; align-self: start; padding-top: 18px; }
+.pub-panel__journal { grid-row: 3; font-family: var(--serif); font-size: var(--t-body); line-height: 1.45; }
+.pub-panel .pub-date { grid-row: 4; margin-top: 2px; }
+.pub-panel__body { grid-row: 5; align-self: start; padding-top: 18px; }
 .pub-panel__title {
   font-family: var(--serif);
   font-weight: 400;
@@ -1460,7 +1472,7 @@ em, i { font-style: italic; }
 }
 .pub-panel__title--long { font-size: calc(var(--t-heading) * .87); } /* a long title, a size down so it still reads as one shape */
 .pub-panel__text { margin-top: 12px; font-family: var(--serif); font-size: var(--t-body); line-height: 1.55; }
-.pub-panel__read { grid-row: 5; margin-top: 16px; }
+.pub-panel__read { grid-row: 6; margin-top: 16px; }
 
 /* the navigation line: one continuous hairline with an equal part for each work; the part for the work in view is her
    deep brown. Each part is a generous invisible button named after its work */
