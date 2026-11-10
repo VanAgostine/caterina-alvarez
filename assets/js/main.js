@@ -157,6 +157,22 @@
     setTimeout(() => { ready = true; update(); }, 700); // a moment after the page arrives
   }
 
+  /* ---- freshness: a page left open in a tab, or brought back by the back button, can be older than the site. Shown again
+     after ten minutes or more away, it reloads itself, so a returning reader always sees the latest version (but never
+     while a message is half-written in the inquiry form) */
+  const stale = 10 * 60 * 1000;
+  let awaySince = 0;
+  const writing = () => [...document.querySelectorAll('input, textarea')].some((el) => el.value.trim());
+  const away = () => { awaySince = awaySince || Date.now(); };
+  const back = () => {
+    const long = awaySince && Date.now() - awaySince >= stale;
+    awaySince = 0;
+    if (long && !writing()) window.location.reload();
+  };
+  document.addEventListener('visibilitychange', () => (document.visibilityState === 'hidden' ? away() : back()));
+  window.addEventListener('pagehide', away);
+  window.addEventListener('pageshow', (e) => { if (e.persisted) back(); });
+
   /* ---- footer year */
   document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
 
