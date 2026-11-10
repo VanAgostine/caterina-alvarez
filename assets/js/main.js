@@ -173,9 +173,6 @@
   window.addEventListener('pagehide', away);
   window.addEventListener('pageshow', (e) => { if (e.persisted) back(); });
 
-  /* ---- footer year */
-  document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
-
   /* ---- inquiry form: composes an email in the visitor's mail app (no server needed) */
   const form = document.querySelector('[data-inquiry]');
   if (form) {

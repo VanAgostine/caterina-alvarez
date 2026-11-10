@@ -768,8 +768,8 @@ em, i { font-style: italic; }
 /* ----------------------------------------------------------------- the cover (index.html)
    Set as the title page of a fine book: one white page resting on her ivory, framed like the site's cards (.frame: a
    fine outline, a second hairline just inside it, a soft shadow). On it, centred, her name in spaced capitals with the
-   imprint beneath, a short rule, her spiral and her motto beneath it; under the page, on the ivory, a single long
-   arrow that opens the site at the Introduction, and a small copyright line at the foot. The spiral takes the height
+   imprint beneath, a short rule, her spiral and her motto beneath it; in the page's lower right corner, a fine drawn
+   arrow that opens the site at the Introduction. The ivory frames the page evenly all round. The spiral takes the height
    the rest leaves free (--cover-words), so the whole cover fits in one view. Still: no animation, no grain */
 .home.cover {
   --cover-words: 430px;
@@ -777,7 +777,7 @@ em, i { font-style: italic; }
   flex-direction: column;
   align-items: center;
   min-height: 100svh;
-  padding: clamp(18px, 3.4svh, 36px) clamp(16px, 4vw, 32px) 0;
+  padding: clamp(18px, 3.4svh, 36px) clamp(16px, 4vw, 32px);
   background: var(--wall);
 }
 .cover-page::after { opacity: 0; } /* no paper grain on the cover */
@@ -849,7 +849,6 @@ em, i { font-style: italic; }
 @media (prefers-reduced-motion: reduce) { .cover__enter svg { transition: none; } .cover__enter:hover svg { transform: none; } }
 
 /* at the foot of the page */
-.cover__legal { padding: clamp(12px, 2svh, 18px) 0 clamp(14px, 2.4svh, 20px); font-size: 11px; line-height: 1.5; letter-spacing: .02em; color: var(--mute); text-align: center; }
 
 /* phones: a smaller name, a longer motto, a narrower margin inside the page */
 @media (max-width: 600px) {
